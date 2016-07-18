@@ -1,8 +1,0 @@
-<%= provide(:title, @article.name) %>
-
-<h1 class="page-header"><%= @article.name %></h1>
-<div class="pull-right">
-  <%= link_to 'Edit article', edit_article_path(@article.id), class: "text-danger" %> | 
-  <%= link_to 'Back to index', articles_path, class: "text-danger" %>
-</div>
-<div class="clearfix"><%= @article.text.html_safe %></div>
