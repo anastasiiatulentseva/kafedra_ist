@@ -10,8 +10,8 @@
     = f.label :category, class: "control-label"
     = f.text_field :category, list: 'category', class: "form-control"
     %datalist#category
-      - Article.select(:category).distinct.each do |article|
-        %option{:value => "#{article.category}"}
+      - @articles_categories.each do |article|
+        %option{value: article.category}
     %span.help-block Choose from list or create new category
   .form-group
     = f.label :order, class: "control-label"

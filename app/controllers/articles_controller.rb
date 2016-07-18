@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  
+
   def show
     @article = Article.find(params[:id])
   end
@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @articles_categories = Article.select(:category).distinct
   end
 
   def create
@@ -24,8 +25,9 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @articles_categories = Article.select(:category).distinct
   end
-  
+
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
@@ -41,9 +43,9 @@ class ArticlesController < ApplicationController
     flash[:info] = "Article deleted"
     redirect_to articles_path
   end
-  
+
   private
-  
+
   def article_params
     params.require(:article).permit(:name, :text, :category, :order)
   end
