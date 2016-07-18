@@ -46,6 +46,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.2.2)
     byebug (9.0.5)
     capybara (2.7.1)
@@ -66,6 +68,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -73,6 +76,8 @@ GEM
     ffi (1.9.13)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    haml (4.0.7)
+      tilt
     i18n (0.7.0)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -212,9 +217,12 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bootstrap-sass
+  bootstrap-wysihtml5-rails
   byebug
   capybara
   coffee-rails (~> 4.2)
+  database_cleaner
+  haml
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

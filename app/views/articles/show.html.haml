@@ -1,0 +1,7 @@
+- provide(:title, @article.name)
+%h1.page-header= @article.name
+.pull-right
+  = link_to 'Edit article', edit_article_path(@article.id), class: "text-danger"
+  |
+  = link_to 'Back to index', articles_path, class: "text-danger"
+.clearfix= @article.text.html_safe
