@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @articles_categories = Article.select(:category).distinct
     if @article.save
       flash[:success] = "Article has been created"
       redirect_to article_path(@article.id)
