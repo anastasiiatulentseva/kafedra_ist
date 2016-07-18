@@ -6,6 +6,7 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
+gem 'bootstrap-wysihtml5-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -28,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 group :test do
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 group :development, :test do
