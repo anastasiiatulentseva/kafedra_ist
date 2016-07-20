@@ -12,7 +12,15 @@
 
   .form-group
     = f.label :attachment, class: "control-label"
-    = f.file_field :attachment, accept: 'doc/zip'
+    - if @workbook.persisted?
+      %p
+        Current file:
+        = link_to File.basename(@workbook.attachment.path), @workbook.attachment.url
+        %span.help-block  If you upload another file the old one will be deleted.
+    = f.file_field :attachment, accept: 'doc/zip/pdf'
+    %span.help-block
+      Allowed file types: doc, pdf, zip.
+      As file size is not limited you are kindly asked to use storage space thriftily.
   .btn-group
     = f.submit "Save", class: "btn btn-primary"
     - if @workbook.persisted?
