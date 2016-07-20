@@ -10,6 +10,7 @@
         <p>Get useful information here. Click links below!</p>
         <p><%= link_to "Articles", articles_path, class: "btn btn-primary" %>
            <%= link_to "New article", new_article_path, class: "btn btn-default" %>
+        </p>
       </div>
     </div>
   </div>
@@ -19,7 +20,10 @@
       <div class="caption">
         <h3>Student</h3>
         <p>Get everything you need for your education here</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <p>
+          <%= link_to "Workbooks", workbooks_path, class: "btn btn-primary" %>
+          <%= link_to "New workbook", new_workbook_path, class: "btn btn-default" %>
+        </p>
       </div>
     </div>
   </div>
