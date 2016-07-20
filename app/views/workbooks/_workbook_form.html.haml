@@ -1,0 +1,19 @@
+= form_for(@workbook, html: { multipart: true }) do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.label :name, class: "control-label"
+    = f.text_field :name, class: "form-control", placeholder: "Enter workbook name"
+  .form-group
+    = f.label :subject_id, "Select subject", class: "control-label"
+    = f.collection_select(:subject_id, Subject.all, :id, :name, {}, class: "form-control")
+  .form-group
+    = f.label :description, class: "control-label"
+    = f.text_area :description, class: "text-wysiwyg form-control", rows: 15
+
+  .form-group
+    = f.label :attachment, class: "control-label"
+    = f.file_field :attachment, accept: 'doc/zip'
+  .btn-group
+    = f.submit "Save", class: "btn btn-primary"
+    - if @workbook.persisted?
+      = link_to "Delete", @workbook, method: :delete, data: { confirm: "Delete workbook?" }, class: "btn btn-danger"
