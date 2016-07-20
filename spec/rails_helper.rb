@@ -44,8 +44,8 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include FactoryGirl::Syntax::Methods
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -74,7 +74,7 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :truncation
     end
   end
-  
+
   config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
