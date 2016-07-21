@@ -17,9 +17,7 @@ RSpec.feature "Workbooks management" do
     visit new_workbook_path
     fill_in 'workbook[name]', with: "Workbook1"
     select subject.name, :from => "workbook[subject_id]"
-    page.execute_script <<-JS
-    $("#workbook_description").val('About workbook1');
-    JS
+    fill_wysiwyg("#workbook_description", "About workbook1")
     attach_file('workbook[attachment]', Rails.root.join('spec/files/123.zip'))
     click_button 'Save'
 
