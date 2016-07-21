@@ -9,18 +9,20 @@
   .form-group
     = f.label :description, class: "control-label"
     = f.text_area :description, class: "text-wysiwyg form-control", rows: 15
-
   .form-group
     = f.label :attachment, class: "control-label"
-    - if @workbook.persisted?
-      %p
-        Current file:
-        = link_to File.basename(@workbook.attachment.path), @workbook.attachment.url
-        %span.help-block  If you upload another file the old one will be deleted.
-    = f.file_field :attachment, accept: 'doc/zip/pdf'
-    %span.help-block
-      Allowed file types: doc, pdf, zip.
-      As file size is not limited you are kindly asked to use storage space thriftily.
+    .panel.panel-default
+      .panel-body
+        - if @workbook.persisted?
+          %p
+            Current file:
+            = link_to File.basename(@workbook.attachment.path), @workbook.attachment.url
+            %span.help-block  If you upload another file the old one will be deleted.
+        = f.file_field :attachment, accept: format_extensions_for_file_field(Workbook.allowed_file_extensions)
+        %span.help-block
+          Allowed file types:
+          = Workbook.allowed_file_extensions.join(', ')
+        %p As file size is not limited you are kindly asked to use storage space thriftily.
   .btn-group
     = f.submit "Save", class: "btn btn-primary"
     - if @workbook.persisted?

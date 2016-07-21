@@ -6,4 +6,11 @@ class Workbook < ApplicationRecord
 
   mount_uploader :attachment, AttachmentUploader
 
+  ALLOWED_FILE_EXTENSIONS = %w(doc zip pdf)
+
+  def self.allowed_file_extensions
+    ALLOWED_FILE_EXTENSIONS
+  end
+
 end
+
