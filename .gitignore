@@ -22,3 +22,6 @@
 
 # idea files
 .idea
+
+# Ignore uploaded test files
+/public/uploads

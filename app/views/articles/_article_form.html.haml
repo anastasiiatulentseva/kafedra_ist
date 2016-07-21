@@ -18,4 +18,5 @@
     = f.text_field :order, class: "form-control"
   .btn-group
     = f.submit "Save", class: "btn btn-primary"
-    = link_to "Delete", @article, method: :delete, data: { confirm: "Delete article?" }, class: "btn btn-danger"
+    - if @article.persisted?
+      = link_to "Delete", @article, method: :delete, data: { confirm: "Delete article?" }, class: "btn btn-danger"

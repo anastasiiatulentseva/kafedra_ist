@@ -1,0 +1,10 @@
+- provide(:title, @workbook.name)
+%h1.page-header= @workbook.name
+.pull-right
+  = link_to 'Edit workbook', edit_workbook_path(@workbook.id), class: "text-danger"
+  |
+  = link_to 'Back to index', workbooks_path, class: "text-danger"
+.clearfix
+  %p= @workbook.description.html_safe
+  %span.help-block Download file:
+  = link_to "Click", @workbook.attachment.url
