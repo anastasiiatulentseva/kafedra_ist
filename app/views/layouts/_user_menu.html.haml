@@ -1,21 +1,14 @@
 - unless user_signed_in?
   %li
-    =link_to "Log in", new_user_session_path
+    = link_to "Log in", new_user_session_path
 - else
   %li.dropdown
     %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-      =@user.name
+      = @user.name
       %span.caret
     %ul.dropdown-menu
       %li
-        =link_to 'My profile', user_path(@user.id)
-      %li
-        =link_to 'Log out', destroy_user_session_path, method: :delete
-      %li
-        %a{:href => "#"} Something else here
+        = link_to 'My profile', user_path(@user.id)
       %li.divider{:role => "separator"}
       %li
-        %a{:href => "#"} Separated link
-      %li.divider{:role => "separator"}
-      %li
-        %a{:href => "#"} One more separated link
+        = link_to 'Log out', destroy_user_session_path, method: :delete
