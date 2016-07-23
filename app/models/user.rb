@@ -6,4 +6,12 @@ class User < ApplicationRecord
 
   validates_presence_of :name
 
+  mount_uploader :picture, PictureUploader
+
+  ALLOWED_FILE_EXTENSIONS = %w(jpg jpeg gif png)
+
+  def self.allowed_file_extensions
+    ALLOWED_FILE_EXTENSIONS
+  end
+
 end
