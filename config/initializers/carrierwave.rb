@@ -3,6 +3,7 @@ require 'mini_magick'
 module CarrierWave
   module MiniMagick
     # round _square_ image
+    # taken from here https://gist.github.com/artemave/c20e7450af866f5e7735
     def round
       manipulate! do |img|
         img.format 'png'

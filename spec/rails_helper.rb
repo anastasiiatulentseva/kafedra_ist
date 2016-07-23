@@ -15,7 +15,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.configure do |config|
   config.current_driver = :selenium
-
   config.server_port = 3300
   config.app_host    = "http://localhost:#{config.server_port}"
 end
@@ -32,7 +31,6 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryGirl::Syntax::Methods
-
 
   # Database cleaner
   config.use_transactional_fixtures = false
@@ -57,7 +55,10 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :truncation
     end
   end
+
   config.include WysiwygMacros
+  config.include LoginMacros
+
   config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
