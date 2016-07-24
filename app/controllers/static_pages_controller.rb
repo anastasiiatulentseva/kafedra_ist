@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
 
-  before_action :get_user
+  before_action :set_user
 
   def home
   end
@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
 
   private
 
-  def get_user
+  def set_user
     @user = current_user
   end
 

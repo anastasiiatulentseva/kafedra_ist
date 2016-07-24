@@ -1,4 +1,3 @@
-
 do ->
   $(document).on 'turbolinks:load', ->
     window['rangy'].initilized = false
