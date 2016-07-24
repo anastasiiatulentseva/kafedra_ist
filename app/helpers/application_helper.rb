@@ -15,5 +15,9 @@ module ApplicationHelper
     extensions.join('/')
   end
 
+  def format_image_extensions_for_file_field(extensions)
+    image_extensions = extensions.map { |extension| 'image/' + extension }
+    image_extensions.join(',')
+  end
 
 end

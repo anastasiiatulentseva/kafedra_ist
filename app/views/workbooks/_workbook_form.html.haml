@@ -17,7 +17,7 @@
           %p
             Current file:
             = link_to File.basename(@workbook.attachment.path), @workbook.attachment.url
-            %span.help-block  If you upload another file the old one will be deleted.
+            %span.help-block If you upload another file the old one will be deleted.
         = f.file_field :attachment, accept: format_extensions_for_file_field(Workbook.allowed_file_extensions)
         %span.help-block
           Allowed file types:
