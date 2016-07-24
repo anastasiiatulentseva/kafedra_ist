@@ -10,7 +10,9 @@
         %img.img-circle{:src => "#{@user.picture}"}/
       .form-group
         = f.label :picture, "Change picture:", class: "control-label"
-        = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+        = f.file_field :picture,
+                       accept: format_image_extensions_for_file_field(User.allowed_file_extensions),
+                       class: 'picture-size-check'
         %span.help-block Use file up to 5MB
     .col-md-6
       = devise_error_messages!
