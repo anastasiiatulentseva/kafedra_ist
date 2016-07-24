@@ -1,10 +1,16 @@
 class StaticPagesController < ApplicationController
 
+  before_action :get_user
+
   def home
-    @user = current_user
   end
 
   def contacts
+  end
+
+  private
+
+  def get_user
     @user = current_user
   end
 
