@@ -1,4 +1,5 @@
 class WorkbooksController < ApplicationController
+  load_and_authorize_resource
 
   def show
     @workbook = Workbook.find(params[:id])
