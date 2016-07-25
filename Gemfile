@@ -25,6 +25,7 @@ gem 'mini_magick'
 gem 'fog'
 
 gem 'devise'
+gem 'cancancan'
 
 group :test do
   gem 'shoulda-matchers'
