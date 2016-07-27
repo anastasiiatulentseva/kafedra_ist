@@ -1,4 +1,5 @@
-%th= user.name
+%th
+  = link_to user.name, user_path(user.id)
 %td= user.email
 %td
   - if user.confirmed_at?

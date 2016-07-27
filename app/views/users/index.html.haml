@@ -1,6 +1,14 @@
 - provide(:title, "Users")
 
 %h2.page-header User list
+
+%ul.nav.nav-tabs
+  %li
+    = link_to 'All', users_path
+  - User::ROLES.each do |user_role|
+    %li{role: "presentation"}
+      = link_to user_role, users_path(type: user_role)
+
 %table.table.table-hover
   %thead
     %tr
@@ -13,3 +21,4 @@
     - @users.each do |user|
       %tr
         = render user
+= will_paginate

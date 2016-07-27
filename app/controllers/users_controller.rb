@@ -2,11 +2,18 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def index
-    @users = User.registered
+    user_type = params[:type]
+
+    if user_type
+      @users = User.registered.with_role(user_type.to_sym).order(:name).paginate(page: params[:page])
+    else
+      @users = User.registered.order(confirmed_at: :desc).paginate(page: params[:page])
+    end
+
   end
 
   def update
