@@ -1,4 +1,4 @@
-%td= user.name
+%th= user.name
 %td= user.email
 %td
   - if user.confirmed_at?
@@ -14,6 +14,14 @@
                             lambda{|i| i.to_s.humanize},
                             {},
                             multiple: true, class: "form-control input-sm select-state")
-%td= user.email
+%td
+  %button#close-button.close{"aria-label" => "Close", :type => "button"}
+  = link_to "&times;".html_safe,
+             user,
+             method: :delete,
+             data: { confirm: "Delete user?" },
+             remote: true,
+             class: "delete-user"
+
 
 

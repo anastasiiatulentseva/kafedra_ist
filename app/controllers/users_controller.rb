@@ -21,6 +21,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id]).destroy
+    respond_to do |format|
+      format.js  { render :layout => false }
+    end
+  end
+
   private
 
   def user_params
