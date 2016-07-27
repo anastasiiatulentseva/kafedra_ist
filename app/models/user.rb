@@ -6,9 +6,11 @@ class User < ApplicationRecord
 
   validates_presence_of :name
 
+  scope :registered, -> {where(guest: false)}
+
   mount_uploader :picture, PictureUploader
 
-  ROLES = %i[admin student teacher banned]
+  ROLES = %i[student teacher banned admin]
   ALLOWED_FILE_EXTENSIONS = %w(jpg jpeg gif png)
 
   def self.allowed_file_extensions

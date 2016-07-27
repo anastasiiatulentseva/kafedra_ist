@@ -1,0 +1,16 @@
+- provide(:title, "Users")
+%h2.page-header User list
+%table.table.table-hover
+  %thead
+    %tr
+      %th #
+      %th Name
+      %th Email
+      %th Confirmed
+      %th Set role
+      %th Action
+  %tbody
+    - @users.each_with_index do |user, i|
+      %tr
+        %th= i+1
+        = render user
