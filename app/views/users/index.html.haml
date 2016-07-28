@@ -3,10 +3,12 @@
 %h2.page-header User list
 
 %ul.nav.nav-tabs
-  %li
+  %li{class: (params[:type].blank? && params[:role].blank?) && 'active' }
     = link_to 'All', users_path
+  %li{class: params[:role] == 'none' && 'active' }
+    = link_to 'New', users_path(role: 'none')
   - User::ROLES.each do |user_role|
-    %li{role: "presentation"}
+    %li{class: params[:type] == user_role.to_s && 'active' }
       = link_to user_role, users_path(type: user_role)
 
 %table.table.table-hover

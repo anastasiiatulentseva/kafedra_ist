@@ -6,14 +6,18 @@ class UsersController < ApplicationController
   end
 
   def index
+    user_scope = params[:role]
     user_type = params[:type]
 
     if user_type
       @users = User.registered.with_role(user_type.to_sym).order(:name).paginate(page: params[:page])
     else
-      @users = User.registered.order(confirmed_at: :desc).paginate(page: params[:page])
+      if user_scope
+        @users = User.registered.without_role.order(:confirmed_at).paginate(page: params[:page])
+      else
+        @users = User.registered.order(confirmed_at: :desc).paginate(page: params[:page])
+      end
     end
-
   end
 
   def update

@@ -6,7 +6,8 @@ class Ability
 
     can :manage, :all if user.admin?
 
-    can :manage, User, id: user.id
+    can :update, User, id: user.id
+    can :show, User
     can :read, Article
 
   end

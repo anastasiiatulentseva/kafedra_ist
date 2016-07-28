@@ -6,10 +6,11 @@ class User < ApplicationRecord
 
   validates_presence_of :name
 
+  mount_uploader :picture, PictureUploader
+
   scope :registered, -> {where(guest: false)}
   scope :with_role, ->(role) { where("roles_mask & #{2**ROLES.index(role)} > 0") }
-
-  mount_uploader :picture, PictureUploader
+  scope :without_role, -> { where(roles_mask: nil)}
 
   ROLES = %i[student teacher banned admin]
   ALLOWED_FILE_EXTENSIONS = %w(jpg jpeg gif png)
