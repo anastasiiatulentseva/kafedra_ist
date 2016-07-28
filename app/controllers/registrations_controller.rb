@@ -5,7 +5,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    if current_user.admin?
+
+    if current_or_guest_user.admin?
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, roles: [] ])
     else
       devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture ])

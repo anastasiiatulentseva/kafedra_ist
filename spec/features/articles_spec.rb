@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.feature "Articles management" do
 
   scenario "Admin creates and deletes an article", :js do
+    user = create(:admin)
+    sign_in(user)
 
     visit new_article_path
     expect(page).to have_css 'div.form-group'
