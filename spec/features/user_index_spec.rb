@@ -2,14 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "Users management" do
 
-  def choose_from_selectize(parent, value)
-    within(parent) do
-      find('.selectize-input').click
-      dropdown_option = find(".selectize-dropdown-content .option[data-value='#{value}']")
-      dropdown_option.click if dropdown_option.visible?
-    end
-  end
-
   scenario "Admin uses user index", :js do
 
     guest = create(:guest)

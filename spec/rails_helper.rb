@@ -65,6 +65,7 @@ RSpec.configure do |config|
 
   config.include WysiwygMacros
   config.include LoginMacros
+  config.include SelectizeMacros
 
   config.infer_spec_type_from_file_location!
 
