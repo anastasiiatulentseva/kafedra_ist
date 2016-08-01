@@ -1,11 +1,7 @@
 %th
   = link_to user.name, user_path(user.id)
 %td= user.email
-%td
-  - if user.confirmed_at?
-    Yes
-  - else
-    No
+%td= user.confirmed_at? ? 'Yes' : 'No'
 %td
   =form_for(user, remote: true) do |f|
     .form-group-sm
