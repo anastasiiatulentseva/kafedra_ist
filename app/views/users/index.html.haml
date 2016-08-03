@@ -1,0 +1,29 @@
+- provide(:title, "Users")
+
+%h2.page-header User list
+#user_index
+  %ul.nav.nav-tabs
+    %li{class: (params[:type].blank? && params[:role].blank?) && 'active' }
+      = link_to 'All', users_path
+    %li{class: params[:type] == 'without_role' && 'active' }
+      = link_to 'New', users_path(type: 'without_role')
+    %li{class: params[:type] == 'banned' && 'active' }
+      = link_to 'Banned', users_path(type: 'banned')
+    - User::ROLES.each do |user_role|
+      %li{class: params[:role] == user_role.to_s && 'active' }
+        = link_to user_role.to_s.humanize, users_path(role: user_role)
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th.col-md-3 Name
+        %th.col-md-2 Email
+        %th.col-md-1 Confirmed
+        %th.col-md-2 Set role
+        %th.col-md-1 Ban
+        %th.col-md-1 Delete
+    %tbody
+      - @users.each do |user|
+        %tr{id: "user_#{user.id}"}
+          = render 'user', user: user
+  = will_paginate

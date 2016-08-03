@@ -1,0 +1,26 @@
+%th
+  = link_to user.name, user_path(user.id)
+%td= user.email
+%td= user.confirmed_at? ? 'Yes' : 'No'
+%td
+  =form_for(user, remote: true) do |f|
+    .form-group-sm
+      = f.collection_select(:roles,
+                            User::ROLES,
+                            :to_s,
+                            lambda{|i| i.to_s.humanize},
+                            {},
+                            multiple: true, class: "form-control input-sm select-role")
+%td
+  = render partial: 'users/ban', locals: {user: user}
+%td
+  %button#close-button.close{"aria-label" => "Close", :type => "button"}
+  = link_to "&times;".html_safe,
+             user,
+             method: :delete,
+             data: { confirm: "Delete user?" },
+             remote: true,
+             class: "delete-user"
+
+
+

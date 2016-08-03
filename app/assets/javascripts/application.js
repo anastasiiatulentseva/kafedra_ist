@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-wysihtml5
+//= require selectize
 //= require_tree .

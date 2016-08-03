@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.feature "Workbooks management" do
 
   scenario "Admin creates and deletes a workbook", :js do
-
     subject = create(:subject)
+    user = create(:admin)
+    sign_in(user)
 
     visit new_workbook_path
     expect(page).to have_css 'div.form-group'

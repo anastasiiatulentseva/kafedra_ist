@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
+  load_and_authorize_resource
 
   def show
     @article = Article.find(params[:id])

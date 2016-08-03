@@ -1,4 +1,5 @@
-class WorkbooksController < ApplicationController
+class WorkbooksController < PrivateAreaController
+  load_and_authorize_resource
 
   def show
     @workbook = Workbook.find(params[:id])

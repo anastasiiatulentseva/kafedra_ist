@@ -1,0 +1,78 @@
+- provide(:title, "Home")
+= image_tag('header_img.png', class: "img-responsive")
+%h1.page-header Body is here!
+.row
+  .col-sm-6.col-md-4
+    #enrollee.thumbnail
+      %img{:alt => "...", :src => "https://www.firestock.ru/wp-content/uploads/2014/04/114-istock_000008231672medium-700x465.jpg"}/
+      .caption
+        %h3 Enrollee
+        %p Get useful information here. Click links below!
+        %p
+          = link_to "Articles", articles_path, class: "btn btn-primary"
+          = link_to "New article", new_article_path, class: "btn btn-default"
+  .col-sm-6.col-md-4
+    .thumbnail
+      %img{:alt => "...", :src => "http://abiturient.ru/upload/medialibrary/342/IMG_17613_1got.jpg"}/
+      .caption
+        %h3 Student
+        %p Get everything you need for your education here
+        %p
+          = link_to "Workbooks", workbooks_path, class: "btn btn-primary"
+          - if can? :create, Workbook
+            = link_to "New workbook", new_workbook_path, class: "btn btn-default"
+  .col-sm-6.col-md-4
+    .thumbnail
+      %img{:alt => "...", :src => "http://bm.img.com.ua/berlin/storage/finance/600x500/b/90/b2b33549b9e179d6b8c51dbcc04dc90b.jpg"}/
+      .caption
+        %h3 Employer
+        %p Get information of our best students you may want to hire
+        %p
+          %a.btn.btn-primary{:href => "#", :role => "button"} Button
+          %a.btn.btn-default{:href => "#", :role => "button"} Button
+.row
+  .col-md-6
+    = image_tag("skrypitsyn.jpg", class: "img-responsive center-block", style: "height:650px")
+  .col-md-6
+    %h1 Welcome to Kafedra IST!
+    %p
+      h2 { font-size: 1.2em; letter-spacing: -1px; margin-bottom: 30px; text-align: center; font-weight: normal; color: $gray-light; } p { font-size: 1.1em; line-height: 1.7em; } /* header */ #logo { float: left; margin-right: 10px; font-size: 1.7em; color: #fff; text-transform: uppercase; letter-spacing: -1px; padding-top: 9px; font-weight: bold; &amp;:hover { color:#fff; text-decoration: none; } } /* footer */ footer { margin-top: 45px; padding-top:5px; border-top: 1px solid $gray-medium-light; color: $gray-light; a { color: $gray; &amp;:hover { color: $gray-darker; } } small { float: left; } ul { float: right; list-style: none; li { float: left; margin-left: 15px; } } }
+      h2 { font-size: 1.2em; letter-spacing: -1px; margin-bottom: 30px; text-align: center; font-weight: normal; color: $gray-light; } p { font-size: 1.1em; line-height: 1.7em; } /* header */ #logo { float: left; margin-right: 10px; font-size: 1.7em; color: #fff; text-transform: uppercase; letter-spacing: -1px; padding-top: 9px; font-weight: bold; &amp;:hover { color:#fff; text-decoration: none; } } /* footer */ footer { margin-top: 45px; padding-top:5px; border-top: 1px solid $gray-medium-light; color: $gray-light; a { color: $gray; &amp;:hover { color: $gray-darker; } } small { float: left; } ul { float: right; list-style: none; li { float: left; margin-left: 15px; } } }
+    %p.text-primary.pull-right Director Skrypitsyn N. V.
+%h1.page-header Our alumnus
+.row
+  .col-sm-6.col-md-4
+    = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
+    %span.clearfix Петя, сантехник
+    %span.clearfix Отдел продаж
+  .col-sm-6.col-md-4
+    = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
+    %span.clearfix Петя, сантехник
+    %span.clearfix Отдел продаж
+  .col-sm-6.col-md-4
+    = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
+    %span.clearfix Петя, сантехник
+    %span.clearfix Отдел продаж
+.row
+  .col-sm-6.col-md-4
+    = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
+    %span.clearfix Петя, сантехник
+    %span.clearfix Отдел продаж
+  .col-sm-6.col-md-4
+    = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
+    %span.clearfix Петя, сантехник
+    %span.clearfix Отдел продаж
+  .col-sm-6.col-md-4
+    = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
+    %span.clearfix Петя, сантехник
+    %span.clearfix Отдел продаж
+%h1.page-header Contact us!
+.row
+  .col-md-6.col-md-offset-3
+    %form
+      .form-group
+        %textarea.form-control{:rows => "7"}
+      .form-group
+        %label{:for => "exampleInputEmail1"} Email address
+        %input#exampleInputEmail1.form-control{:placeholder => "Email", :type => "email"}/
+      %button.btn.btn-success.center-block{:type => "submit"} Send

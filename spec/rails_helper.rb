@@ -54,10 +54,18 @@ RSpec.configure do |config|
       # specs, so use truncation strategy.
       DatabaseCleaner.strategy = :truncation
     end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.append_after(:each) do
+      DatabaseCleaner.clean
+    end
   end
 
   config.include WysiwygMacros
   config.include LoginMacros
+  config.include SelectizeMacros
 
   config.infer_spec_type_from_file_location!
 
