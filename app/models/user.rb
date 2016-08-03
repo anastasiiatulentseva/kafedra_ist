@@ -9,10 +9,11 @@ class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
 
   scope :registered, -> {where(guest: false)}
+  scope :banned, -> {where.not(banned_at: nil)}
   scope :with_role, ->(role) { where("roles_mask & #{2**ROLES.index(role)} > 0") }
   scope :without_role, -> { where(roles_mask: nil)}
 
-  ROLES = %i[student teacher banned admin]
+  ROLES = %i[student teacher admin]
   ALLOWED_FILE_EXTENSIONS = %w(jpg jpeg gif png)
 
   self.per_page = 7
@@ -46,10 +47,6 @@ class User < ApplicationRecord
 
   def teacher?
     self.has_role?(:teacher)
-  end
-
-  def banned?
-    self.has_role?(:banned)
   end
 
 end

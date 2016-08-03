@@ -7,5 +7,11 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :workbooks
-  resources :users
+  resources :users do
+    member do
+      post :ban
+      post :unban
+    end
+  end
+
 end

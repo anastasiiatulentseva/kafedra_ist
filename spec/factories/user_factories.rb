@@ -23,7 +23,7 @@ FactoryGirl.define do
 
     factory :banned do
       sequence(:email) { |n| "banned#{n}@banned.ru" }
-      roles :banned
+      banned_at {Time.new}
     end
 
     factory :guest do

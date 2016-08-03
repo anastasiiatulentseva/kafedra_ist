@@ -12,6 +12,8 @@
                             {},
                             multiple: true, class: "form-control input-sm select-role")
 %td
+  = render partial: 'users/ban', locals: {user: user}
+%td
   %button#close-button.close{"aria-label" => "Close", :type => "button"}
   = link_to "&times;".html_safe,
              user,
