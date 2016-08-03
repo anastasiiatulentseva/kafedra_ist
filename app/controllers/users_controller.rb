@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class UsersController < PrivateAreaController
+
   load_and_authorize_resource
 
   def show
