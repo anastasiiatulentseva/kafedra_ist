@@ -5,7 +5,8 @@ RSpec.describe Workbook, type: :model do
   let(:attachment_file) { File.open(filename) }
 
   it "is valid with name, subject_id and attachment" do
-    subject = create(:subject)
+    specialty = create(:specialty)
+    subject = create(:subject, specialty_id: specialty.id)
     workbook = Workbook.new(name: "Math workbook", subject_id: subject.id, attachment: attachment_file)
     expect(workbook).to be_valid
   end

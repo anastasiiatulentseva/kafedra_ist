@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.feature "Workbooks management" do
 
   scenario "Admin creates and deletes a workbook", :js do
-    subject = create(:subject)
+    specialty = create(:specialty)
+    subject = create(:subject, specialty_id: specialty.id)
     user = create(:admin)
     sign_in(user)
 
