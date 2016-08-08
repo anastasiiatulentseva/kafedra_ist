@@ -1,8 +1,9 @@
 class Workbook < ApplicationRecord
 
   belongs_to :subject
+  belongs_to :user
 
-  validates_presence_of :name, :subject_id, :attachment
+  validates_presence_of :name, :subject_id, :user_id, :attachment
 
   mount_uploader :attachment, AttachmentUploader
 

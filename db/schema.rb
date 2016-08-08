@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804115035) do
+ActiveRecord::Schema.define(version: 20160808192544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,9 +71,12 @@ ActiveRecord::Schema.define(version: 20160804115035) do
     t.string   "attachment"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
     t.index ["subject_id"], name: "index_workbooks_on_subject_id", using: :btree
+    t.index ["user_id"], name: "index_workbooks_on_user_id", using: :btree
   end
 
   add_foreign_key "subjects", "specialties"
   add_foreign_key "workbooks", "subjects"
+  add_foreign_key "workbooks", "users"
 end
