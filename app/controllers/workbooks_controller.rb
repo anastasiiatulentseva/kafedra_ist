@@ -6,6 +6,7 @@ class WorkbooksController < PrivateAreaController
   end
 
   def index
+    @user = current_user
     @workbooks = Workbook.all
   end
 

@@ -1,4 +1,6 @@
 - provide(:title, "Workbooks")
-%h1.page-header Workbooks
-%ul
-  = render @workbooks
+- if @user.teacher?
+  = render 'workbooks/index_for_teacher'
+- else
+  - if @user.student?
+    = render 'workbooks/index_for_student'
