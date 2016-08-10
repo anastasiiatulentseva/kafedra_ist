@@ -1,0 +1,16 @@
+%h1
+  = @user.name
+  subjects
+
+#select-subjects
+  = form_tag({ controller: 'users', action: 'set_subjects' }, method: 'post') do
+    = select_tag 'subjects',
+        option_groups_from_collection_for_select(@specialties,
+           :subjects,
+           :name,
+           :id,
+           :name,
+           @subjects.where(user_id: @user.id).ids),
+        multiple: true,
+        class: "select-subjects form-control", placeholder: "select subjects"
+    = submit_tag "Submit", class: 'btn btn-primary'

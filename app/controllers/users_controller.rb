@@ -21,8 +21,19 @@ class UsersController < PrivateAreaController
     end
   end
 
-  def update
+  def set_subjects
+    @specialties = Specialty.all
+    @subjects = Subject.all
+    @user = User.find(params[:id])
+    if request.post?
+      @selected_subjects = Subject.where(id: params[:subjects])
+      @selected_subjects.each do |subject|
+        subject.update(user_id: @user.id)
+      end
+    end
+  end
 
+  def update
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update_attributes(user_params)
