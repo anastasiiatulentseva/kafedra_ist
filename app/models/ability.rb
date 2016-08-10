@@ -7,7 +7,8 @@ class Ability
 
     can :show, User
     can :read, Article
-    can :read, Workbook if user.roles.any?
+    can :manage, Workbook if user.teacher?
+    can :read, Workbook if user.student?
     can :manage, :all if user.admin?
   end
 end

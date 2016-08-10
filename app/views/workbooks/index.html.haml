@@ -1,6 +1,20 @@
 - provide(:title, "Workbooks")
-- if @user.teacher?
-  = render 'workbooks/index_for_teacher'
-- else
-  - if @user.student?
-    = render 'workbooks/index_for_student'
+%h1.page_header
+  Workbooks for
+  = @user.name
+
+#workbook_index
+  .row
+    .col-md-4
+      %ul.nav.nav-pills.nav-stacked
+        %li.active
+          = link_to 'All', workbooks_path
+        - @subjects.each do |subject|
+          %li
+            = link_to subject.name, workbooks_path
+    .col-md-6.col-md-offset-1
+      .panel.panel-default
+        .panel-heading
+          Subject name here
+        .panel-body
+          = render @workbooks

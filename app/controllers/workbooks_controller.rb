@@ -7,7 +7,12 @@ class WorkbooksController < PrivateAreaController
 
   def index
     @user = current_user
-    @workbooks = Workbook.all
+    @subjects = Subject.all
+    if current_user.teacher?
+      @workbooks = @user.workbooks
+    else
+      @workbooks = Workbook.all
+    end
   end
 
   def new
@@ -15,7 +20,7 @@ class WorkbooksController < PrivateAreaController
   end
 
   def create
-    @workbook = Workbook.new(workbook_params)
+    @workbook = current_user.workbooks.new(workbook_params)
     if @workbook.save
       flash[:success] = "Workbook has been created"
       redirect_to workbook_path(@workbook.id)
