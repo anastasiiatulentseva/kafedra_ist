@@ -6,4 +6,5 @@ class Subject < ApplicationRecord
   validates_presence_of :name, :specialty_id, :course_year
   validates_inclusion_of :course_year, in: 1..6
 
+  scope :unassigned, -> {where(user_id: nil)}
 end

@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+  # TODO: extract stuff into user profiles
+  # has_one :teacher_profile
+  # has_one :student_profile
+
   has_many :workbooks
   has_many :subjects
 

@@ -22,14 +22,13 @@ class UsersController < PrivateAreaController
   end
 
   def set_subjects
-    @specialties = Specialty.all
-    @subjects = Subject.all
     @user = User.find(params[:id])
-    if request.post?
-      @selected_subjects = Subject.where(id: params[:subjects])
-      @selected_subjects.each do |subject|
-        subject.update(user_id: @user.id)
-      end
+    @specialties = Specialty.all
+    @subjects = Subject.where(user_id: (nil || @user.id))
+
+    if request.post? # TODO: break up into two actions
+      @user.subjects.update_all(user_id: nil)
+      Subject.where(id: params[:subjects]).update_all(user_id: @user.id)
     end
   end
 
