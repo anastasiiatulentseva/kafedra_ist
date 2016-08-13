@@ -23,8 +23,8 @@ class UsersController < PrivateAreaController
 
   def set_subjects
     @user = User.find(params[:id])
-    @specialties = Specialty.all
-    @subjects = Subject.where(user_id: (nil || @user.id))
+    @subjects = Subject.for_user_or_unassigned(@user)
+    @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
 
     if request.post? # TODO: break up into two actions
       @user.subjects.update_all(user_id: nil)

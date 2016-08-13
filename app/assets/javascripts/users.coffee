@@ -2,7 +2,7 @@ do ->
   init_selectized_roles_dropdown = ->
     $('.select-role').selectize maxItems: 3
   init_selectized_subjects_dropdown = ->
-    $('.select-subjects').selectize maxItems: 10
+    $('#select_subjects').selectize maxItems: 10
   init_form_auto_submit = ->
     $('select.select-role').change ->
       $(this).closest("form").submit()
