@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810111939) do
+ActiveRecord::Schema.define(version: 20160814135546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,8 +62,12 @@ ActiveRecord::Schema.define(version: 20160810111939) do
     t.integer  "roles_mask"
     t.boolean  "guest",                  default: false
     t.datetime "banned_at"
+    t.string   "group"
+    t.integer  "course_year"
+    t.integer  "specialty_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["specialty_id"], name: "index_users_on_specialty_id", using: :btree
   end
 
   create_table "workbooks", force: :cascade do |t|
@@ -80,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160810111939) do
 
   add_foreign_key "subjects", "specialties"
   add_foreign_key "subjects", "users"
+  add_foreign_key "users", "specialties"
   add_foreign_key "workbooks", "subjects"
   add_foreign_key "workbooks", "users"
 end

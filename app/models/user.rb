@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :workbooks
   has_many :subjects
+  belongs_to :specialty
 
   validates_presence_of :name
 
