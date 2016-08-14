@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Subject management", focus: true do
+RSpec.feature "Subject management" do
 
   scenario "Teacher set their subjects", :js do
     user = create(:teacher)
