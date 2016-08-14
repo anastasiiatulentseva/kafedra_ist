@@ -16,6 +16,13 @@
           Email: #{@user.email}
         %li
           You are here since: #{@user.created_at.strftime('%F')}
+        - if @user.student?
+          %li
+            Specialty:
+            = @user.specialty.name
+          %li
+            Group
+            = @user.group
     .col-md-3.col-md-offset-2
       %span
         %strong Current user picture:

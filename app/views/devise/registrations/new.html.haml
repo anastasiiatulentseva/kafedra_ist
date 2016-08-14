@@ -10,6 +10,16 @@
         .form-group
           = f.label :email
           = f.email_field :email, class: "form-control"
+        %button.btn.btn-default.btn-block{"aria-controls" => "for_student", "aria-expanded" => "false", "data-target" => "#for_student", "data-toggle" => "collapse", :type => "button"}
+          I am student!
+        #for_student.collapse
+          .well
+            .form-group
+              = f.label :group, class: "control-label"
+              = f.text_field :group, class: "form-control"
+            .form-group
+              = f.label :specialty_id, "Select specialty", class: "control-label"
+              = f.collection_select(:specialty_id, @specialties, :id, :name, {}, class: "form-control")
         .form-group
           = f.label :password
           - if @minimum_password_length
