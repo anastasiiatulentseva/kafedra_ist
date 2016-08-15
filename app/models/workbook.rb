@@ -1,7 +1,7 @@
 class Workbook < ApplicationRecord
 
   belongs_to :subject
-  belongs_to :user
+  belongs_to :teacher_profile
 
   validates_presence_of :name, :subject_id, :user_id, :attachment
 

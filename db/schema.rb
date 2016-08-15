@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814135546) do
+ActiveRecord::Schema.define(version: 20160815192454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,19 @@ ActiveRecord::Schema.define(version: 20160814135546) do
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.integer  "course_year"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "specialty_id"
-    t.integer  "user_id"
+    t.integer  "teacher_profile_id"
     t.index ["specialty_id"], name: "index_subjects_on_specialty_id", using: :btree
-    t.index ["user_id"], name: "index_subjects_on_user_id", using: :btree
+    t.index ["teacher_profile_id"], name: "index_subjects_on_teacher_profile_id", using: :btree
+  end
+
+  create_table "teacher_profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teacher_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,16 +82,17 @@ ActiveRecord::Schema.define(version: 20160814135546) do
     t.string   "name"
     t.string   "description"
     t.string   "attachment"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "teacher_profile_id"
     t.index ["subject_id"], name: "index_workbooks_on_subject_id", using: :btree
-    t.index ["user_id"], name: "index_workbooks_on_user_id", using: :btree
+    t.index ["teacher_profile_id"], name: "index_workbooks_on_teacher_profile_id", using: :btree
   end
 
   add_foreign_key "subjects", "specialties"
-  add_foreign_key "subjects", "users"
+  add_foreign_key "subjects", "teacher_profiles"
+  add_foreign_key "teacher_profiles", "users"
   add_foreign_key "users", "specialties"
   add_foreign_key "workbooks", "subjects"
-  add_foreign_key "workbooks", "users"
+  add_foreign_key "workbooks", "teacher_profiles"
 end

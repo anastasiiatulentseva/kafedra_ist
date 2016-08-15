@@ -5,11 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # TODO: extract stuff into user profiles
-  # has_one :teacher_profile
+  has_one :teacher_profile
   # has_one :student_profile
 
-  has_many :workbooks
-  has_many :subjects
   belongs_to :specialty
 
   validates_presence_of :name

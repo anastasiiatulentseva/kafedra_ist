@@ -1,6 +1,7 @@
 class Subject < ApplicationRecord
   belongs_to :specialty
-  belongs_to :user
+  belongs_to :teacher_profile
+
   has_many :workbooks, dependent: :destroy
 
   validates_presence_of :name, :specialty_id, :course_year
