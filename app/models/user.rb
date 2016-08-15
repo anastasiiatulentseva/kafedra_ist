@@ -6,9 +6,7 @@ class User < ApplicationRecord
 
   # TODO: extract stuff into user profiles
   has_one :teacher_profile
-  # has_one :student_profile
-
-  belongs_to :specialty
+  has_one :student_profile
 
   validates_presence_of :name
   validates_inclusion_of :course_year, in: 1..6, allow_blank: true
