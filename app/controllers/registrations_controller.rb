@@ -10,12 +10,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :group, :specialty_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :group, :specialty_id, :course_year])
 
     if current_or_guest_user.admin?
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :group, :specialty_id, roles: [] ])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :group, :course_year, :specialty_id, roles: [] ])
     else
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :group, :specialty_id])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :group, :course_year, :specialty_id])
     end
   end
 

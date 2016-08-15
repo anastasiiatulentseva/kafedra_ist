@@ -15,11 +15,14 @@
         #for_student.collapse
           .well
             .form-group
-              = f.label :group, class: "control-label"
-              = f.text_field :group, class: "form-control"
+              = f.label :course_year, class: "control-label"
+              = f.text_field :course_year, class: "form-control"
             .form-group
               = f.label :specialty_id, "Select specialty", class: "control-label"
               = f.collection_select(:specialty_id, @specialties, :id, :name, {}, class: "form-control")
+            .form-group
+              = f.label :group, class: "control-label"
+              = f.text_field :group, class: "form-control"
         .form-group
           = f.label :password
           - if @minimum_password_length

@@ -11,13 +11,14 @@ class WorkbooksController < PrivateAreaController
       @subjects = @user.subjects
       @workbooks = @user.workbooks
     else
-      @subjects = Subject.where(specialty_id: @user.specialty_id)
-      @workbooks = @user.specialty.workbooks
+      @subjects = Subject.where(specialty_id: @user.specialty_id, course_year: @user.course_year)
+      @workbooks = Workbook.with_subject_ids(@subjects.map(&:id))
     end
+
     subject_name = params[:subject]
     if subject_name
       pill_subject = Subject.find(params[:subject])
-      @panel_workbooks = @workbooks.where(subject_id: pill_subject.id)
+      @panel_workbooks = @workbooks.select { |w| w.subject_id == pill_subject.id }
       @panel_heading = pill_subject.name
     else
       @panel_workbooks = @workbooks

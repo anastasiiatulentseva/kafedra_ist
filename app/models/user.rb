@@ -13,6 +13,7 @@ class User < ApplicationRecord
   belongs_to :specialty
 
   validates_presence_of :name
+  validates_inclusion_of :course_year, in: 1..6, allow_blank: true
 
   mount_uploader :picture, PictureUploader
 

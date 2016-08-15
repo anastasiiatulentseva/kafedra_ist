@@ -8,5 +8,7 @@ RSpec.describe User, type: :model do
   end
 
   it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_inclusion_of(:course_year).in_range(1..6) }
+
 
 end
