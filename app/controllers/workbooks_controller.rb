@@ -7,22 +7,21 @@ class WorkbooksController < PrivateAreaController
   end
 
   def index
-    @subjects = Subject.all
-
     if current_user.teacher?
       @subjects = @user.subjects
-      subject_name = params[:subject]
-      if subject_name
-        @pill_subject = Subject.find(params[:subject])
-        @workbooks = @user.workbooks.where(subject_id: @pill_subject.id)
-        @panel_heading = @pill_subject.name
-      else
-        @pill_subject = @user.subjects
-        @workbooks = @user.workbooks
-        @panel_heading = 'All'
-      end
+      @workbooks = @user.workbooks
     else
-      @workbooks = Workbook.all
+      @subjects = Subject.where(specialty_id: @user.specialty_id)
+      @workbooks = @user.specialty.workbooks
+    end
+    subject_name = params[:subject]
+    if subject_name
+      pill_subject = Subject.find(params[:subject])
+      @panel_workbooks = @workbooks.where(subject_id: pill_subject.id)
+      @panel_heading = pill_subject.name
+    else
+      @panel_workbooks = @workbooks
+      @panel_heading = 'All'
     end
   end
 
