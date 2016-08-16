@@ -3,7 +3,7 @@ class Workbook < ApplicationRecord
   belongs_to :subject
   belongs_to :teacher_profile
 
-  validates_presence_of :name, :subject_id, :user_id, :attachment
+  validates_presence_of :name, :subject_id, :teacher_profile_id, :attachment
 
   scope :with_subject_ids, ->(ids) { where(subject_id: ids)}
 

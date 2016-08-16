@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :subject do
-    sequence(:name) { |n| "subject_#{n}" }
+  factory :student_profile do
+    user
     sequence(:course_year, (1..6).cycle)
     specialty
-    teacher_profile
+    sequence(:group) { |n| "GR #{n}" }
   end
 end
