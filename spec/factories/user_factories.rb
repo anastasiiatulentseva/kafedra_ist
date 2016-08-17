@@ -19,6 +19,9 @@ FactoryGirl.define do
     factory :teacher do
       sequence(:email) { |n| "teacher#{n}@teacher.ru" }
       roles :teacher
+      after(:create) do |teacher|
+        teacher.teacher_profile ||= create(:teacher_profile, user_id: teacher.id)
+      end
     end
 
     factory :banned do

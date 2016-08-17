@@ -7,7 +7,6 @@ RSpec.describe StudentProfile, type: :model do
     expect(student).to be_valid
   end
 
-  it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:specialty_id) }
   it { is_expected.to validate_inclusion_of(:course_year).in_range(1..6) }
 

@@ -6,15 +6,15 @@ RSpec.feature "Workbooks index" do
     user = create(:teacher)
     another_user = create(:teacher)
     specialty = create(:specialty)
-    subject_1 = create(:subject, specialty_id: specialty.id, user_id: user.id)
-    subject_2 = create(:subject, specialty_id: specialty.id, user_id: user.id)
-    workbook_1 = create(:workbook, subject_id: subject_1.id, user_id: user.id)
-    workbook_2 = create(:workbook, subject_id: subject_2.id, user_id: user.id)
+    subject_1 = create(:subject, specialty_id: specialty.id, teacher_profile_id: user.id)
+    subject_2 = create(:subject, specialty_id: specialty.id, teacher_profile_id: user.id)
+    workbook_1 = create(:workbook, subject_id: subject_1.id, teacher_profile_id: user.id)
+    workbook_2 = create(:workbook, subject_id: subject_2.id, teacher_profile_id: user.id)
 
-    subject_3 = create(:subject, specialty_id: specialty.id, user_id: another_user.id)
-    subject_4 = create(:subject, specialty_id: specialty.id, user_id: another_user.id)
-    workbook_3 = create(:workbook, subject_id: subject_3.id, user_id: another_user.id)
-    workbook_4 = create(:workbook, subject_id: subject_4.id, user_id: another_user.id)
+    subject_3 = create(:subject, specialty_id: specialty.id, teacher_profile_id: another_user.id)
+    subject_4 = create(:subject, specialty_id: specialty.id, teacher_profile_id: another_user.id)
+    workbook_3 = create(:workbook, subject_id: subject_3.id, teacher_profile_id: another_user.id)
+    workbook_4 = create(:workbook, subject_id: subject_4.id, teacher_profile_id: another_user.id)
 
     sign_in(user)
 

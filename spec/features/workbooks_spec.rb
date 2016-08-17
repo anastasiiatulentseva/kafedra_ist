@@ -5,7 +5,7 @@ RSpec.feature "Workbooks management" do
   scenario "Teacher creates and deletes a workbook", :js do
     user = create(:teacher)
     specialty = create(:specialty)
-    subject = create(:subject, specialty_id: specialty.id, user_id: user.id)
+    subject = create(:subject, specialty_id: specialty.id, teacher_profile_id: user.id)
 
     sign_in(user)
 

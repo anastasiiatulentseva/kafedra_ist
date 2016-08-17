@@ -31,11 +31,11 @@ RSpec.feature "Users behavior" do
     visit new_user_registration_path
     fill_in 'user[name]', with: 'Student'
     fill_in 'user[email]', with: 'stud@example.com'
-    click_button 'I am student!'
+    check 'I am student!'
     expect(page).to have_css '#for_student'
-    fill_in 'user[course_year]', with: '4'
-    select specialty.name, :from => "user[specialty_id]"
-    fill_in 'user[group]', with: '42 IST'
+    fill_in 'user[student_profile_attributes][course_year]', with: '4'
+    select specialty.name, :from => "user[student_profile_attributes][specialty_id]"
+    fill_in 'user[student_profile_attributes][group]', with: '42 IST'
     fill_in 'user[password]', with: '123456'
     fill_in 'user[password_confirmation]', with: '123456'
     click_button 'Sign up'
