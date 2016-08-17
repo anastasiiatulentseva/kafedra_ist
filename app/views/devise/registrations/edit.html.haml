@@ -30,15 +30,16 @@
         = f.email_field :email, class: "form-control"
       - if @user.student?
         .form-group
-          = f.label :group, class: "control-label"
-          = f.text_field :group, class: "form-control"
-        .form-group
-          = f.label :course_year, class: "control-label"
-          = f.text_field :course_year, class: "form-control"
-        .form-group
-          = f.label :specialty_id, "Select specialty", class: "control-label"
-          = f.collection_select(:specialty_id, @specialties, :id, :name, {}, class: "form-control")
-      .form-group
+          = f.fields_for :student_profile_attributes, resource.student_profile do |student|
+            .form-group
+              = student.label :course_year, class: "control-label"
+              = student.text_field :course_year, class: "form-control"
+            .form-group
+              = student.label :specialty_id, "Select specialty", class: "control-label"
+              = student.collection_select(:specialty_id, @specialties, :id, :name, {}, class: "form-control")
+            .form-group
+              = student.label :group, class: "control-label"
+              = student.text_field :group, class: "form-control"
         = f.label :password
         %span.help-block (leave blank if you don't want to change it)
         = f.password_field :password, autocomplete: "off", class: "form-control"

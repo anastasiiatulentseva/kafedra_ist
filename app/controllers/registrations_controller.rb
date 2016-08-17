@@ -3,6 +3,14 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :get_specialties, only: [:new, :create, :edit]
 
+  def create
+    unless params[:user][:is_student]
+      params[:user].delete(:student_profile_attributes)
+    end
+
+    super
+  end
+
   protected
 
   def get_specialties
@@ -10,12 +18,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :group, :specialty_id, :course_year])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, student_profile_attributes: [:group, :specialty_id, :course_year]])
 
     if current_or_guest_user.admin?
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :group, :course_year, :specialty_id, roles: [] ])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, student_profile_attributes: [:group, :specialty_id, :course_year], roles: []])
     else
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, :group, :course_year, :specialty_id])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :picture, student_profile_attributes: [:group, :specialty_id, :course_year]])
     end
   end
 

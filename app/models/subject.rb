@@ -7,5 +7,5 @@ class Subject < ApplicationRecord
   validates_presence_of :name, :specialty_id, :course_year
   validates_inclusion_of :course_year, in: 1..6
 
-  scope :for_user_or_unassigned, ->(user) { where(user_id: nil).or(where(user_id: user.id)) }
+  scope :for_teacher_or_unassigned, ->(teacher_profile) { where(teacher_profile_id: nil).or(where(teacher_profile_id: teacher_profile.id)) }
 end

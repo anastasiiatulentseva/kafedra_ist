@@ -4,8 +4,9 @@
   's page is here
 .pull-right
   = link_to 'Edit profile', edit_user_registration_path
-  |
-  = link_to 'Set subjects', set_subjects_user_path
+  - if @user.teacher?
+    |
+    = link_to 'Set subjects', set_subjects_user_path
 .container
   .row
     .col-md-4.col-md-offset-1
@@ -19,10 +20,10 @@
         - if @user.student?
           %li
             Specialty:
-            = @user.specialty.name
+            = @user.student_profile.specialty.name
           %li
             Group
-            = @user.group
+            = @user.student_profile.group
     .col-md-3.col-md-offset-2
       %span
         %strong Current user picture:

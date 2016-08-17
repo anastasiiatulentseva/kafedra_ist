@@ -23,18 +23,21 @@ class UsersController < PrivateAreaController
 
   def set_subjects
     @user = User.find(params[:id])
-    @subjects = Subject.for_user_or_unassigned(@user)
+    @subjects = Subject.for_teacher_or_unassigned(@user.teacher_profile)
     @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
 
     if request.post? # TODO: break up into two actions
-      @user.subjects.update_all(user_id: nil)
-      Subject.where(id: params[:subjects]).update_all(user_id: @user.id)
+      @user.teacher_profile.subjects.update_all(teacher_profile_id: nil)
+      Subject.where(id: params[:subjects]).update_all(teacher_profile_id: @user.teacher_profile.id)
     end
   end
 
   def update
     @user = User.find(params[:id])
     respond_to do |format|
+      if user_params[:roles].include?('teacher') && !@user.teacher_profile
+        @user.create_teacher_profile
+      end
       if @user.update_attributes(user_params)
         format.js
       else

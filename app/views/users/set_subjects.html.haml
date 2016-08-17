@@ -11,7 +11,7 @@
              :first,
              :id,
              :name,
-             @user.subjects.ids),
+             @user.teacher_profile.subjects.ids),
           multiple: true,
           class: "form-control", id: 'select_subjects', placeholder: "select subjects"
     = submit_tag "Submit", class: 'btn btn-primary'
