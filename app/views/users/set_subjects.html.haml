@@ -3,7 +3,7 @@
   subjects
 
 #select_subjects_form
-  = form_tag({ controller: 'users', action: 'set_subjects' }, method: 'post') do
+  = form_tag({ controller: 'users', action: 'save_subjects' }, method: 'post') do
     #select_subjects_dropdown
       = select_tag 'subjects',
           option_groups_from_collection_for_select(@grouped_subjects,

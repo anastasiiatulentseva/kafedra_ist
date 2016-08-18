@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post :ban
       post :unban
       get :set_subjects
-      post :set_subjects
+      post :save_subjects
     end
   end
 

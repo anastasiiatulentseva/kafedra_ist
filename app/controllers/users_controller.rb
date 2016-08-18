@@ -25,11 +25,15 @@ class UsersController < PrivateAreaController
     @user = User.find(params[:id])
     @subjects = Subject.for_teacher_or_unassigned(@user.teacher_profile)
     @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
+  end
 
-    if request.post? # TODO: break up into two actions
-      @user.teacher_profile.subjects.update_all(teacher_profile_id: nil)
-      Subject.where(id: params[:subjects]).update_all(teacher_profile_id: @user.teacher_profile.id)
-    end
+  def save_subjects
+    @user = User.find(params[:id])
+    @subjects = Subject.for_teacher_or_unassigned(@user.teacher_profile)
+    @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
+    @user.teacher_profile.subjects.update_all(teacher_profile_id: nil)
+    Subject.where(id: params[:subjects]).update_all(teacher_profile_id: @user.teacher_profile.id)
+    redirect_to set_subjects_user_path
   end
 
   def update
