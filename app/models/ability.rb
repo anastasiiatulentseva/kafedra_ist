@@ -5,10 +5,14 @@ class Ability
     user ||= User.new
     alias_action :set_subjects, :save_subjects, :to => :own_subjects
 
-    can :show, User
+    can :show, User unless user.guest?
     can :read, Article
-    can :manage, Workbook if user.teacher?
-    can :own_subjects, User, id: user.id if user.teacher?
+
+    if user.teacher? && user.teacher_profile.present?
+      can :manage, Workbook
+      can :own_subjects, User, id: user.id
+    end
+
     can :read, Workbook if user.student?
 
     can :manage, :all if user.admin?
