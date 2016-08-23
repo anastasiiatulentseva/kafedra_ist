@@ -1,12 +1,29 @@
 class WorkbooksController < PrivateAreaController
   load_and_authorize_resource
+  before_action :set_user
 
   def show
     @workbook = Workbook.find(params[:id])
   end
 
   def index
-    @workbooks = Workbook.all
+    if current_user.teacher?
+      @subjects = @user.teacher_profile.subjects
+      @workbooks = @user.teacher_profile.workbooks
+    else
+      @subjects = Subject.for_student(@user.student_profile)
+      @workbooks = Workbook.with_subject_ids(@subjects.map(&:id))
+    end
+
+    subject_name = params[:subject]
+    if subject_name
+      pill_subject = Subject.find(params[:subject])
+      @panel_workbooks = @workbooks.select { |w| w.subject_id == pill_subject.id }
+      @panel_heading = pill_subject.name
+    else
+      @panel_workbooks = @workbooks
+      @panel_heading = 'All'
+    end
   end
 
   def new
@@ -14,7 +31,7 @@ class WorkbooksController < PrivateAreaController
   end
 
   def create
-    @workbook = Workbook.new(workbook_params)
+    @workbook = current_user.teacher_profile.workbooks.new(workbook_params)
     if @workbook.save
       flash[:success] = "Workbook has been created"
       redirect_to workbook_path(@workbook.id)
@@ -47,5 +64,9 @@ class WorkbooksController < PrivateAreaController
 
   def workbook_params
     params.require(:workbook).permit(:name, :description, :subject_id, :attachment)
+  end
+
+  def set_user
+    @user = current_user
   end
 end

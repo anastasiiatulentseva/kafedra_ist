@@ -14,17 +14,34 @@ class UsersController < PrivateAreaController
       @users = User.registered.with_role(user_role.to_sym).order(:name).paginate(page: params[:page])
     else
       if user_scope
-        @users = with_user_scope(user_scope).order(:confirmed_at).paginate(page: params[:page])
+        @users = with_user_scope(user_scope).order(confirmed_at: :desc).paginate(page: params[:page])
       else
         @users = User.registered.order(confirmed_at: :desc).paginate(page: params[:page])
       end
     end
   end
 
-  def update
+  def choose_subjects
+    @user = User.find(params[:id])
+    @subjects = Subject.for_teacher_or_unassigned(@user.teacher_profile)
+    @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
+  end
 
+  def save_subjects
+    @user = User.find(params[:id])
+    @subjects = Subject.for_teacher_or_unassigned(@user.teacher_profile)
+    @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
+    @user.teacher_profile.subjects.update_all(teacher_profile_id: nil)
+    Subject.where(id: params[:subjects]).update_all(teacher_profile_id: @user.teacher_profile.id)
+    redirect_to choose_subjects_user_path
+  end
+
+  def update
     @user = User.find(params[:id])
     respond_to do |format|
+      if user_params[:roles].include?('teacher') && !@user.teacher_profile
+        @user.create_teacher_profile
+      end
       if @user.update_attributes(user_params)
         format.js
       else

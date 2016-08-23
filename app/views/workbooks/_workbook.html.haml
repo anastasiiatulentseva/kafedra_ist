@@ -1,7 +1,7 @@
 %li
   %span
-    = workbook.name
-    |
-    = link_to "Instructions", workbook_path(workbook.id)
-    |
-    = link_to "Download", workbook.attachment.url
+    = link_to workbook.name, workbook_path(workbook.id)
+    - if @user.teacher?
+      = render 'workbooks/teacher_links', workbook: workbook
+    - else
+      = render 'workbooks/student_links', workbook: workbook

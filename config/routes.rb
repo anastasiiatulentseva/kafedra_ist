@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     member do
       post :ban
       post :unban
+      get :choose_subjects
+      post :save_subjects
     end
   end
 

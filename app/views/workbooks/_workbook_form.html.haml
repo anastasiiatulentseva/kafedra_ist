@@ -5,7 +5,7 @@
     = f.text_field :name, class: "form-control", placeholder: "Enter workbook name"
   .form-group
     = f.label :subject_id, "Select subject", class: "control-label"
-    = f.collection_select(:subject_id, Subject.all, :id, :name, {}, class: "form-control")
+    = f.collection_select(:subject_id, @user.teacher_profile.subjects, :id, :name, {}, class: "form-control")
   .form-group
     = f.label :description, class: "control-label"
     = f.text_area :description, class: "text-wysiwyg form-control", rows: 15

@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "Workbooks management" do
 
-  scenario "Admin creates and deletes a workbook", :js do
-    subject = create(:subject)
-    user = create(:admin)
+  scenario "Teacher creates and deletes a workbook", :js do
+    user = create(:teacher)
+    specialty = create(:specialty)
+    subject = create(:subject, specialty_id: specialty.id, teacher_profile_id: user.id)
+
     sign_in(user)
 
     visit new_workbook_path

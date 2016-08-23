@@ -10,6 +10,23 @@
         .form-group
           = f.label :email
           = f.email_field :email, class: "form-control"
+        %label.btn.btn-default.btn-block
+          %input{"aria-controls" => "for_student", "aria-expanded" => "false",
+            "data-target" => "#for_student", "data-toggle" => "collapse", :type => "checkbox",
+            name: 'user[is_student]'}
+            I am student!
+        #for_student.collapse
+          .well
+            = f.fields_for :student_profile_attributes, StudentProfile.new do |student|
+              .form-group
+                = student.label :course_year, class: "control-label"
+                = student.text_field :course_year, class: "form-control"
+              .form-group
+                = student.label :specialty_id, "Select specialty", class: "control-label"
+                = student.collection_select(:specialty_id, @specialties, :id, :name, {}, class: "form-control")
+              .form-group
+                = student.label :group, class: "control-label"
+                = student.text_field :group, class: "form-control"
         .form-group
           = f.label :password
           - if @minimum_password_length

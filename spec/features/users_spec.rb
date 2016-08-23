@@ -25,6 +25,23 @@ RSpec.feature "Users behavior" do
     expect(page).to have_css 'div.alert-notice'
   end
 
+  scenario "Student signs up", :js do
+    specialty = create(:specialty)
+
+    visit new_user_registration_path
+    fill_in 'user[name]', with: 'Student'
+    fill_in 'user[email]', with: 'stud@example.com'
+    check 'I am student!'
+    expect(page).to have_css '#for_student'
+    fill_in 'user[student_profile_attributes][course_year]', with: '4'
+    select specialty.name, :from => "user[student_profile_attributes][specialty_id]"
+    fill_in 'user[student_profile_attributes][group]', with: '42 IST'
+    fill_in 'user[password]', with: '123456'
+    fill_in 'user[password_confirmation]', with: '123456'
+    click_button 'Sign up'
+    expect(page).to have_css 'div.alert-notice'
+  end
+
   scenario "User logs in and out", :js do
     user = create(:user)
 
@@ -50,7 +67,6 @@ RSpec.feature "Users behavior" do
     click_link 'My profile'
 
     expect(page).to have_text user.name
-    expect(page).to have_text user.email
     click_link 'Edit profile'
     expect(page).to have_text 'Current picture'
     fill_in 'user[name]', with: 'New user name'

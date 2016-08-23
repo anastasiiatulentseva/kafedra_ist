@@ -1,4 +1,21 @@
 - provide(:title, "Workbooks")
-%h1.page-header Workbooks
-%ul
-  = render @workbooks
+%h1.page_header
+  My workbooks
+
+#workbook_index
+  .row
+    .col-md-4
+      %ul.nav.nav-pills.nav-stacked
+        %li{class: params[:subject].blank? && 'active' }
+          = link_to 'All', workbooks_path
+        - @subjects.each do |subject|
+          %li{class: (params[:subject] == subject.id.to_s) && 'active' }
+            = link_to subject.name, workbooks_path(subject: subject.id)
+    .col-md-8
+      .panel.panel-default
+        .panel-heading
+          = @panel_heading
+        .panel-body
+          - if can? :create, Workbook
+            = link_to 'Create new workbook', new_workbook_path, class: "btn btn-sm btn-default pull-right"
+          = render @panel_workbooks

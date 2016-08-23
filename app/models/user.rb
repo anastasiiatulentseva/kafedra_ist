@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  has_one :teacher_profile, dependent: :destroy
+  has_one :student_profile, dependent: :destroy
+
+  accepts_nested_attributes_for :student_profile
+
   validates_presence_of :name
 
   mount_uploader :picture, PictureUploader
