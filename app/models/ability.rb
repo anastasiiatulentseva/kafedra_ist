@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    alias_action :set_subjects, :save_subjects, :to => :own_subjects
+    alias_action :choose_subjects, :save_subjects, :to => :own_subjects
 
     can :show, User unless user.guest?
     can :read, Article

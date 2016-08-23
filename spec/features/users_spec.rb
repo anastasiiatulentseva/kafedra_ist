@@ -67,7 +67,6 @@ RSpec.feature "Users behavior" do
     click_link 'My profile'
 
     expect(page).to have_text user.name
-    expect(page).to have_text user.email
     click_link 'Edit profile'
     expect(page).to have_text 'Current picture'
     fill_in 'user[name]', with: 'New user name'

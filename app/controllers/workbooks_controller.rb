@@ -11,7 +11,7 @@ class WorkbooksController < PrivateAreaController
       @subjects = @user.teacher_profile.subjects
       @workbooks = @user.teacher_profile.workbooks
     else
-      @subjects = Subject.where(specialty_id: @user.student_profile.specialty_id, course_year: @user.student_profile.course_year)
+      @subjects = Subject.for_student(@user.student_profile)
       @workbooks = Workbook.with_subject_ids(@subjects.map(&:id))
     end
 

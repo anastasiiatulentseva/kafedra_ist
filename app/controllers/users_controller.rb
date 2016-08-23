@@ -14,14 +14,14 @@ class UsersController < PrivateAreaController
       @users = User.registered.with_role(user_role.to_sym).order(:name).paginate(page: params[:page])
     else
       if user_scope
-        @users = with_user_scope(user_scope).order(:confirmed_at).paginate(page: params[:page])
+        @users = with_user_scope(user_scope).order(confirmed_at: :desc).paginate(page: params[:page])
       else
         @users = User.registered.order(confirmed_at: :desc).paginate(page: params[:page])
       end
     end
   end
 
-  def set_subjects
+  def choose_subjects
     @user = User.find(params[:id])
     @subjects = Subject.for_teacher_or_unassigned(@user.teacher_profile)
     @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
@@ -33,7 +33,7 @@ class UsersController < PrivateAreaController
     @grouped_subjects = @subjects.group_by{|s| s.specialty.name }
     @user.teacher_profile.subjects.update_all(teacher_profile_id: nil)
     Subject.where(id: params[:subjects]).update_all(teacher_profile_id: @user.teacher_profile.id)
-    redirect_to set_subjects_user_path
+    redirect_to choose_subjects_user_path
   end
 
   def update

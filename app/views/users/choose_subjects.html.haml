@@ -1,6 +1,4 @@
-%h1
-  = @user.name
-  subjects
+%h1 My subjects
 
 #select_subjects_form
   = form_tag({ controller: 'users', action: 'save_subjects' }, method: 'post') do
@@ -14,4 +12,6 @@
              @user.teacher_profile.subjects.ids),
           multiple: true,
           class: "form-control", id: 'select_subjects', placeholder: "select subjects"
-    = submit_tag "Submit", class: 'btn btn-primary'
+      .btn-group
+        = link_to "<- Go back", user_path(@user), class: "btn btn-default"
+        = submit_tag "Submit", class: 'btn btn-primary'

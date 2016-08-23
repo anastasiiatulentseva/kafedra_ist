@@ -1,7 +1,6 @@
 - provide(:title, "Workbooks")
 %h1.page_header
-  Workbooks for
-  = @user.name
+  My workbooks
 
 #workbook_index
   .row
@@ -17,4 +16,6 @@
         .panel-heading
           = @panel_heading
         .panel-body
+          - if can? :create, Workbook
+            = link_to 'Create new workbook', new_workbook_path, class: "btn btn-sm btn-default pull-right"
           = render @panel_workbooks

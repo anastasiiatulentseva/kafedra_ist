@@ -53,4 +53,33 @@ RSpec.feature "Workbooks index" do
     expect(page).to_not have_text workbook_1.name
     expect(page).to_not have_text workbook_2.name
   end
+
+   scenario "Student visits workbook index", :js do
+     specialty_1 = create(:specialty)
+     specialty_2 = create(:specialty)
+     subject_1 = create(:subject, specialty_id: specialty_1.id, course_year: 3)
+     subject_2 = create(:subject, specialty_id: specialty_1.id, course_year: 5)
+     subject_3 = create(:subject, specialty_id: specialty_2.id, course_year: 3)
+
+     workbook_1 = create(:workbook, subject_id: subject_1.id)
+     workbook_2 = create(:workbook, subject_id: subject_2.id)
+     workbook_3 = create(:workbook, subject_id: subject_3.id)
+     user = create(:student)
+     student_profile = create(:student_profile, user_id: user.id, specialty_id: specialty_1.id, course_year: subject_1.course_year)
+
+
+     sign_in(user)
+
+     visit user_path(user.id)
+     expect(page).to have_text specialty_1.name
+     visit workbooks_path
+
+     expect(page).to have_text subject_1.name
+     expect(page).to_not have_text subject_2.name
+     expect(page).to_not have_text subject_3.name
+     expect(page).to have_text workbook_1.name
+     expect(page).to_not have_text workbook_2.name
+     expect(page).to_not have_text workbook_3.name
+
+   end
 end

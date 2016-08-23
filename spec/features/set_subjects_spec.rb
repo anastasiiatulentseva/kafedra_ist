@@ -10,7 +10,7 @@ RSpec.feature "Subject management" do
     sign_in(user)
 
     visit user_path(user.id)
-    click_link "Set subjects"
+    click_link "My subjects"
 
     expect(page).to have_css '#select_subjects_form'
     choose_from_selectize('#select_subjects_dropdown', subject.id)
@@ -33,7 +33,7 @@ RSpec.feature "Subject management" do
 
     sign_in(user)
 
-    visit set_subjects_user_path(user.id)
+    visit choose_subjects_user_path(user.id)
     find('.selectize-input').click
     expect(page).to have_css (".selectize-dropdown-content .option[data-value='#{subject_1.id}']")
     find(".selectize-dropdown-content .option[data-value='#{subject_2.id}']").click
@@ -42,7 +42,7 @@ RSpec.feature "Subject management" do
     click_link 'Log out'
 
     sign_in(another_user)
-    visit set_subjects_user_path(another_user.id)
+    visit choose_subjects_user_path(another_user.id)
     find('.selectize-input').click
     expect(page).to_not have_css (".selectize-dropdown-content .option[data-value='#{subject_2.id}']")
     find(".selectize-dropdown-content .option[data-value='#{subject_1.id}']").click
