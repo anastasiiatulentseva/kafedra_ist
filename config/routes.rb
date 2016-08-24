@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'contacts' => 'static_pages#contacts'
 
+  post 'mailers/send_feedback'
+
   resources :articles
   resources :workbooks
   resources :users do

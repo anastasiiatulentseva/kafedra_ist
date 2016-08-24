@@ -1,0 +1,10 @@
+= form_tag({ controller: 'mailers', action: 'send_feedback' }, method: 'post') do
+  .form-group
+    = text_area_tag 'text', nil,
+        class: "form-control", rows: 7
+  .form-group
+    %label.control-label Email address
+    = text_field_tag 'user_email',
+        @user ? @user.email : nil,
+        class: "form-control", placeholder: "Email", type: "email"
+  = submit_tag :send, class: "btn btn-success center-block"
