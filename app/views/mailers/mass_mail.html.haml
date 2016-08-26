@@ -1,0 +1,49 @@
+- provide(:title, "Send mailout")
+%h1.page-header
+  Admin's mailout
+
+= form_tag({ controller: 'mailers', action: 'send_mailout' }, method: 'post', multipart: true) do
+  .row
+    .col-md-3
+      .form-group
+        %label.control-label Select group of users
+        = select_tag 'role',
+            options_for_select(['teachers', 'students']),
+            class: "form-control",
+            id: "select_user_roles",
+            include_blank: 'All'
+    .col-md-3
+      .form-group
+        %label.control-label Select specialty for students
+        = select_tag 'specialty_ids',
+            options_from_collection_for_select(@specialties, :id, :name),
+            include_blank: 'All',
+            multiple: true,
+            class: "form-control for-students select-specialty"
+    .col-md-3
+      .form-group
+        %label.control-label Select course year
+        = select_tag 'course_years',
+            options_for_select(1..6),
+            include_blank: 'All',
+            multiple: true,
+            class: "form-control for-students select-course"
+    .col-md-3
+      .form-group
+        %label.control-label Select group
+        = select_tag 'groups',
+            options_for_select(@groups),
+            include_blank: 'All',
+            multiple: true,
+            class: "form-control for-students select-group"
+  .form-group
+    %label.control-label Mail subject
+    = text_field_tag 'user_email', nil, class: "form-control"
+  .form-group
+    %label.control-label Letter content here:
+    = text_area_tag 'text', nil,
+        class: "form-control text-wysiwyg"
+  .form-group
+    %label.control-label Attachment
+    = file_field_tag 'attachment'
+  = submit_tag "Send this big mailout", class: "btn btn-success btn-lg center-block"

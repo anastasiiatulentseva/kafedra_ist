@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'contacts' => 'static_pages#contacts'
 
   post 'mailers/send_feedback'
+  post 'mailers/send_mailout'
+  get 'mailers/mass_mail'
 
   resources :articles
   resources :workbooks
