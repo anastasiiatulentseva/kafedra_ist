@@ -10,7 +10,8 @@
         %p Get useful information here. Click links below!
         %p
           = link_to "Articles", articles_path, class: "btn btn-primary"
-          = link_to "New article", new_article_path, class: "btn btn-default"
+          - if can? :create, Article
+            = link_to "New article", new_article_path, class: "btn btn-default"
   .col-sm-6.col-md-4
     .thumbnail
       %img{:alt => "...", :src => "http://abiturient.ru/upload/medialibrary/342/IMG_17613_1got.jpg"}/
