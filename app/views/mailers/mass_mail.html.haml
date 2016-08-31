@@ -24,7 +24,7 @@
       .form-group
         %label.control-label Select course year
         = select_tag 'course_years',
-            options_for_select(1..6),
+            options_for_select(@course_years),
             include_blank: 'All',
             multiple: true,
             class: "form-control for-students select-course"
@@ -38,7 +38,7 @@
             class: "form-control for-students select-group"
   .form-group
     %label.control-label Mail subject
-    = text_field_tag 'user_email', nil, class: "form-control"
+    = text_field_tag 'subject', nil, class: "form-control"
   .form-group
     %label.control-label Letter content here:
     = text_area_tag 'text', nil,

@@ -5,8 +5,10 @@ class UserMassMailer < ApplicationMailer
   def send_mailout(users_emails, subject, text, attachment)
     @text = text
     @subject = subject
-    attachments = attachment
+    if attachment
+      attachments['attachment'] = File.read(attachment)
+    end
+
     mail bcc: users_emails, subject: subject
   end
-
 end
