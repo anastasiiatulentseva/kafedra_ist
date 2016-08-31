@@ -4,9 +4,11 @@ class MailersController < ApplicationController
     @specialties = Specialty.joins(:student_profiles)
     @course_years = StudentProfile.distinct.pluck(:course_year)
     @groups = StudentProfile.distinct.pluck(:group)
+    authorize! :mass_mail, :emails
   end
 
   def send_mailout
+    authorize! :send_mailout, :emails
     users = ::QueryObjects::FindUsersForMailout.new(params).call
     users_emails = users.pluck(:email)
     text = params[:text]
