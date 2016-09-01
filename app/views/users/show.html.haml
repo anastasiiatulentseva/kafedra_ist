@@ -13,7 +13,7 @@
             %li.list-group-item= link_to 'My subjects', choose_subjects_user_path
             %li.list-group-item= link_to 'My workbooks', workbooks_path
         - else
-          %li.list-group-item= link_to 'Contact user', '#'
+          %li.list-group-item= link_to 'Contact user', mailers_contact_user_path(id: @user.id)
   .col-md-6.col-md-offset-1
     - if @user.student_profile
       %ul.list-unstyled

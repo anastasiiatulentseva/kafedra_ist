@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post 'mailers/send_feedback'
   post 'mailers/send_mailout'
   get 'mailers/mass_mail'
+  get 'mailers/contact_user'
+  post 'mailers/send_email_to_user'
 
   resources :articles
   resources :workbooks

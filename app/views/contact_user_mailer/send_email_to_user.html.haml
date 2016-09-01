@@ -1,0 +1,10 @@
+%h1
+  User
+  = @sender.name
+  sent you the message:
+%p=@text
+%p
+  To respond please use the email they provide:
+  = @sender.email
+  or go to
+  = link_to 'contact form on website', mailers_contact_user_url(id: @sender.id)

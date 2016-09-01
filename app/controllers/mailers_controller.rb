@@ -1,4 +1,5 @@
 class MailersController < ApplicationController
+  before_action :authenticate_user!, except: [:send_feedback]
 
   def mass_mail
     @specialties = Specialty.joins(:student_profiles)
@@ -43,6 +44,22 @@ class MailersController < ApplicationController
 
     flash[:success] = "Feedback has been sent"
     redirect_to root_path
+  end
+
+  def contact_user
+    @sender = current_user
+    @recipient = User.find(params[:id])
+
+  end
+
+  def send_email_to_user
+    @sender = current_user
+    @recipient = User.find(params[:recipient_id])
+    subject = params[:subject]
+    text = params[:text]
+    ContactUserMailer.send_email_to_user(@sender, @recipient, subject, text).deliver_now
+    flash[:success] = "Message has been sent"
+    redirect_to user_path(@recipient.id)
   end
 
 end
