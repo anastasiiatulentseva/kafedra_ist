@@ -2,7 +2,8 @@
 %h1.page-header
   Admin's mailout
 
-= form_tag({ controller: 'mailers', action: 'send_mailout' }, method: 'post', multipart: true) do
+= form_tag({ controller: 'mailers', action: 'send_mailout' },
+            method: 'post', multipart: true, id: 'send_mailout') do
   .row
     .col-md-3
       .form-group
@@ -13,7 +14,7 @@
             id: "select_user_roles",
             include_blank: 'All'
     .col-md-3
-      .form-group
+      .form-group#select_specialties
         %label.control-label Select specialty for students
         = select_tag 'specialty_ids',
             options_from_collection_for_select(@specialties, :id, :name),
@@ -21,7 +22,7 @@
             multiple: true,
             class: "form-control for-students select-specialty"
     .col-md-3
-      .form-group
+      .form-group#select_course_years
         %label.control-label Select course year
         = select_tag 'course_years',
             options_for_select(@course_years),
@@ -29,7 +30,7 @@
             multiple: true,
             class: "form-control for-students select-course"
     .col-md-3
-      .form-group
+      .form-group#select_groups
         %label.control-label Select group
         = select_tag 'groups',
             options_for_select(@groups),

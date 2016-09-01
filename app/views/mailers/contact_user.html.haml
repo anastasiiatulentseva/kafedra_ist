@@ -6,7 +6,8 @@
     %img.img-circle{:src => "#{@recipient.picture}"}
     %span=@recipient.name
   .col-md-6.col-md-offset-1
-    = form_tag({ controller: 'mailers', action: 'send_email_to_user' }, method: 'post') do
+    = form_tag({ controller: 'mailers', action: 'send_email_to_user' },
+               method: 'post', id: 'contact_user') do
       = hidden_field_tag 'recipient_id', @recipient.id
       .form-group
         = text_field_tag 'subject',
@@ -19,5 +20,5 @@
         %label.control-label Check your email address to get response
         = text_field_tag 'sender_email',
             @sender.email,
-            class: "form-control", placeholder: "Email", type: "email", disabled: true
+            class: "form-control", placeholder: "Email", type: "email", readonly: true
       = submit_tag :send, class: "btn btn-success center-block"
