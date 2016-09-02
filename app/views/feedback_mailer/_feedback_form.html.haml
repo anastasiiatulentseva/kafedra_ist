@@ -1,10 +1,15 @@
-= form_tag({ controller: 'mailers', action: 'send_feedback' }, method: 'post', id: "feedback") do
+#feedback_errors
+= form_for(@feedback_message,
+            url: url_for(:controller => 'mailers', :action => 'send_feedback', :anchor => "feedback"),
+            html: { id: "feedback" },
+            remote: true ) do |f|
   .form-group
-    = text_area_tag 'text', nil,
-        class: "form-control", rows: 7
+    = f.text_area 'text', class: "form-control", rows: 7
   .form-group
-    %label.control-label Email address
-    = text_field_tag 'user_email',
-        @user ? @user.email : nil,
-        class: "form-control", placeholder: "Email", type: "email"
-  = submit_tag :send, class: "btn btn-success center-block"
+    = f.label :user_email, "Email address", class: "control-label"
+    = f.text_field :user_email,
+                    value: (@user ? @user.email : nil),
+                    class: "form-control",
+                    placeholder: "Email",
+                    type: "email"
+  = f.submit :send, class: "btn btn-success center-block"

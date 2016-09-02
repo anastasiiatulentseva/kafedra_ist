@@ -8,15 +8,18 @@ RSpec.feature "Users mailing" do
     visit root_path
 
     expect(page).to have_css 'form#feedback'
-    fill_in 'text', with: "some text"
-    fill_in 'user_email', with: "user@user.ru"
+    fill_in 'form_objects_user_feedback[text]', with: "some text"
+    fill_in 'form_objects_user_feedback[user_email]', with: "user@user.ru"
     click_button 'send'
     expect(page).to have_css "div.alert-success"
 
     sign_in(user)
     visit root_path
     expect(page).to have_css 'form#feedback'
-    fill_in 'text', with: "some text"
+    click_button 'send'
+    expect(page).to have_css 'div#feedback_errors'
+    expect(page).to have_text "Text can't be blank"
+    fill_in 'form_objects_user_feedback[text]', with: "some text"
     expect(page).to have_css("input[value='#{user.email}']")
     click_button 'send'
 

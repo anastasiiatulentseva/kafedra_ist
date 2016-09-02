@@ -1,6 +1,6 @@
 class MailersController < ApplicationController
   before_action :authenticate_user!, except: [:send_feedback]
-
+  respond_to :js
   def mass_mail
     @specialties = Specialty.joins(:student_profiles)
     @course_years = StudentProfile.distinct.pluck(:course_year)
@@ -36,14 +36,21 @@ class MailersController < ApplicationController
 
   def send_feedback
     @user = current_or_guest_user
-    user_email = params[:user_email]
-    text = params[:text]
-
-    FeedbackMailer.feedback_from_user(user_email, text).deliver_now
-    FeedbackMailer.notify_user_of_getting_feedback(user_email).deliver_now
-
-    flash[:success] = "Feedback has been sent"
-    redirect_to root_path
+    @feedback_message = ::FormObjects::UserFeedback.new(feedback_params)
+    respond_to do |format|
+      if @feedback_message.valid?
+        format.js do
+          user_email = feedback_params[:user_email]
+          text = feedback_params[:text]
+          FeedbackMailer.feedback_from_user(user_email, text).deliver_now
+          FeedbackMailer.notify_user_of_getting_feedback(user_email).deliver_now
+          flash[:success] = "Feedback has been sent"
+          redirect_to root_path
+        end
+      else
+        format.js
+      end
+    end
   end
 
   def contact_user
@@ -62,4 +69,9 @@ class MailersController < ApplicationController
     redirect_to user_path(@recipient.id)
   end
 
+  private
+
+  def feedback_params
+    params.require(:form_objects_user_feedback).permit(:text, :user_email)
+  end
 end
