@@ -13,7 +13,8 @@
             %li.list-group-item= link_to 'My subjects', choose_subjects_user_path
             %li.list-group-item= link_to 'My workbooks', workbooks_path
         - else
-          %li.list-group-item= link_to 'Contact user', mailers_contact_user_path(id: @user.id)
+          %button.btn.btn-default{"data-target" => "#contact_user_modal", "data-toggle" => "modal", :type => "button"}
+            Contact user
   .col-md-6.col-md-offset-1
     - if @user.student_profile
       %ul.list-unstyled
@@ -34,3 +35,7 @@
           %li=subject.name
     - else
       %h4 No information about user
+
+#contact_user_modal.modal.fade{"aria-labelledby" => "contact_user", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    = render 'mailers/contact_user_form'

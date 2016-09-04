@@ -4,6 +4,8 @@ class UsersController < PrivateAreaController
 
   def show
     @user = User.find(params[:id])
+    @sender = current_user
+    @recipient = @user
   end
 
   def index
