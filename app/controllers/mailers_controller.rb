@@ -1,37 +1,44 @@
 class MailersController < ApplicationController
   before_action :authenticate_user!, except: [:send_feedback]
-  respond_to :js
+
   def mass_mail
+    authorize! :mass_mail, :emails
+    @mass_mailout = ::FormObjects::MassMailout.new
     @specialties = Specialty.joins(:student_profiles)
     @course_years = StudentProfile.distinct.pluck(:course_year)
     @groups = StudentProfile.distinct.pluck(:group)
-    authorize! :mass_mail, :emails
   end
 
   def send_mailout
     authorize! :send_mailout, :emails
     users = ::QueryObjects::FindUsersForMailout.new(params).call
-    users_emails = users.pluck(:email)
-    text = params[:text]
-    subject = params[:subject]
-    attachment = params[:attachment]
-    if attachment
-      attachment_path = File.absolute_path(attachment.tempfile)
-    else
-      attachment_path = nil
+    mailout_params = mass_mailout_params
+    mailout_params[:users] = users
+    @mass_mailout = ::FormObjects::MassMailout.new(mailout_params)
+    respond_to do |format|
+      if @mass_mailout.valid?
+        format.js do
+          users_emails = users.pluck(:email)
+          text = mass_mailout_params[:text]
+          subject = mass_mailout_params[:subject]
+          attachment = mass_mailout_params[:attachment]
+          if attachment
+            attachment_path = File.absolute_path(attachment.tempfile)
+          else
+            attachment_path = nil
+          end
+          UserMassMailer.send_mailout(users_emails, subject, text, attachment_path).deliver_now
+          flash[:success] = 'Email has been sent'
+          redirect_to mailers_mass_mail_path
+        end
+      else
+        format.js do
+          @specialties = Specialty.joins(:student_profiles)
+          @course_years = StudentProfile.distinct.pluck(:course_year)
+          @groups = StudentProfile.distinct.pluck(:group)
+        end
+      end
     end
-    if users.any?
-      UserMassMailer.send_mailout(users_emails, subject, text, attachment_path).deliver_now
-      flash[:success] = 'Email has been sent'
-      redirect_to mailers_mass_mail_path
-    else
-      @specialties = Specialty.joins(:student_profiles)
-      @course_years = StudentProfile.distinct.pluck(:course_year)
-      @groups = StudentProfile.distinct.pluck(:group)
-      flash[:danger] = 'No users in selected group'
-      render 'mass_mail'
-    end
-
   end
 
   def send_feedback
@@ -83,6 +90,12 @@ class MailersController < ApplicationController
 
   private
 
+  def mass_mailout_params
+    params.require(:form_objects_mass_mailout).permit(:subject, :text, :role,
+                                   :specialty_ids, :course_years,
+                                   :groups, :attachment, :users)
+  end
+
   def feedback_params
     params.require(:form_objects_user_feedback).permit(:text, :user_email)
   end
@@ -90,4 +103,5 @@ class MailersController < ApplicationController
   def contact_message_params
     params.require(:form_objects_contact_message).permit(:subject, :text, :recipient_id)
   end
+
 end

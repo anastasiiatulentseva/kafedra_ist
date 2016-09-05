@@ -12,9 +12,9 @@ module QueryObjects
       if students?
         criteria = User.with_role(:student)
 
-        criteria = students_by_specialties(criteria) if params[:specialty_ids].present?
-        criteria = students_by_course_year(criteria) if params[:course_years].present?
-        criteria = students_by_group(criteria) if params[:groups].present?
+        criteria = students_by_specialties(criteria) if params[:form_objects_mass_mailout][:specialty_ids].present?
+        criteria = students_by_course_year(criteria) if params[:form_objects_mass_mailout][:course_years].present?
+        criteria = students_by_group(criteria) if params[:form_objects_mass_mailout][:groups].present?
 
         criteria
       elsif teachers?
@@ -27,23 +27,23 @@ module QueryObjects
     private
 
     def teachers?
-      params[:role].include?('teachers')
+      params[:form_objects_mass_mailout][:role].include?('teachers')
     end
 
     def students?
-      params[:role].include?('students')
+      params[:form_objects_mass_mailout][:role].include?('students')
     end
 
     def students_by_specialties(criteria)
-      criteria.joins(:student_profile).where('student_profiles.specialty_id' => params[:specialty_ids])
+      criteria.joins(:student_profile).where('student_profiles.specialty_id' => params[:form_objects_mass_mailout][:specialty_ids])
     end
 
     def students_by_course_year(criteria)
-      criteria.joins(:student_profile).where('student_profiles.course_year' => params[:course_years])
+      criteria.joins(:student_profile).where('student_profiles.course_year' => params[:form_objects_mass_mailout][:course_years])
     end
 
     def students_by_group(criteria)
-      criteria.joins(:student_profile).where('student_profiles.group' => params[:groups])
+      criteria.joins(:student_profile).where('student_profiles.group' => params[:form_objects_mass_mailout][:groups])
     end
 
 

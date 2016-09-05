@@ -1,6 +1,6 @@
 class UserMassMailer < ApplicationMailer
 
-  default from: 'nporvatova@gmail.com'
+  default from: 'noreply@kafedra_ist.bumib.edu.ua'
 
   def send_mailout(users_emails, subject, text, attachment)
     @text = text
