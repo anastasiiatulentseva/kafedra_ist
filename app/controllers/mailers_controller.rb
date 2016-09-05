@@ -54,24 +54,40 @@ class MailersController < ApplicationController
   end
 
   def contact_user
+    @user = User.find(params[:id])
+    @contact_message = ::FormObjects::ContactMessage.new
     @sender = current_user
-    @recipient = User.find(params[:id])
-
+    @recipient = @user
+    render layout: false
   end
 
   def send_email_to_user
+    @contact_message = ::FormObjects::ContactMessage.new(contact_message_params)
     @sender = current_user
-    @recipient = User.find(params[:recipient_id])
-    subject = params[:subject]
-    text = params[:text]
-    ContactUserMailer.send_email_to_user(@sender, @recipient, subject, text).deliver_now
-    flash[:success] = "Message has been sent"
-    redirect_to user_path(@recipient.id)
+    @recipient = User.find(contact_message_params[:recipient_id])
+    respond_to do |format|
+      if @contact_message.valid?
+        format.js do
+          subject = contact_message_params[:subject]
+          text = contact_message_params[:text]
+          ContactUserMailer.send_email_to_user(@sender, @recipient, subject, text).deliver_now
+          flash[:success] = "Message has been sent"
+          redirect_to user_path(@recipient)
+        end
+      else
+        format.js
+      end
+    end
+
   end
 
   private
 
   def feedback_params
     params.require(:form_objects_user_feedback).permit(:text, :user_email)
+  end
+
+  def contact_message_params
+    params.require(:form_objects_contact_message).permit(:subject, :text, :recipient_id)
   end
 end

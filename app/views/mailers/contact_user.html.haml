@@ -6,19 +6,19 @@
       Send message to
       = @recipient.name
   .modal-body
-    = form_tag({ controller: 'mailers', action: 'send_email_to_user' },
-             method: 'post', id: 'contact_user') do
-      = hidden_field_tag 'recipient_id', @recipient.id
+    #contact_message_errors
+    = form_for(@contact_message, remote: true, html: {id: 'send_email_to_user'},
+          url: url_for(:controller => 'mailers', :action => 'send_email_to_user')) do |f|
+      = hidden_field_tag 'form_objects_contact_message[recipient_id]', @recipient.id
       .form-group
-        = text_field_tag 'subject',
-              nil,
+        = f.text_field :subject,
               class: "form-control", placeholder: "Subject", type: "text"
       .form-group
-        = text_area_tag 'text', nil, placeholder: "Message text",
+        = f.text_area :text, placeholder: "Message text",
               class: "form-control", rows: 7
       .text-center
         .btn-group
-          = submit_tag "Send", class: "btn btn-primary"
+          = f.submit "Send", class: "btn btn-primary"
           %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
   .modal-footer
     %span.help-block.small

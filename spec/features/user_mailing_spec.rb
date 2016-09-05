@@ -32,17 +32,23 @@ RSpec.feature "Users mailing" do
 
     sign_in(user)
 
-    visit user_path(another_user.id)
+    visit user_path(another_user)
     find_link("Contact user").click
-    expect(page).to have_text "Contact #{another_user.name}"
-    expect(page).to have_css 'form#contact_user'
+    expect(page).to have_css 'div.modal-content'
+    expect(page).to have_text another_user.name
+    expect(page).to have_css 'form#send_email_to_user'
+    click_button 'Send'
+    expect(page).to have_css 'div#contact_message_errors'
+    click_button '×'
 
-    fill_in 'subject', with: 'subject'
-    fill_in 'text', with: 'some letter text'
-    expect(page).to have_css("input[value='#{user.email}']")
-    click_button 'send'
+    find_link("Contact user").click
+    expect(page).to_not have_css 'div#contact_message_errors'
+
+    fill_in 'form_objects_contact_message[subject]', with: 'subject'
+    fill_in 'form_objects_contact_message[text]', with: 'some letter text'
+    click_button 'Send'
 
     expect(page).to have_css "div.alert-success"
-    expect(page).to have_text "Contact user"
+    expect(page).to_not have_css 'div.modal-content'
   end
 end
