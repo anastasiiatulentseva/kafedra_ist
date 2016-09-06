@@ -24,6 +24,6 @@ do ->
   init_selectize_fields_for_students = ->
     $('.for-students').selectize maxItems: 5
 
-  $(document).on 'turbolinks:load', ->
+  $ ->
     init_selectize_fields_for_students()
     init_enable_fields_for_students()
