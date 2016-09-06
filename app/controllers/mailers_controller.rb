@@ -16,8 +16,8 @@ class MailersController < ApplicationController
     mailout_params[:users] = users
     @mass_mailout = ::FormObjects::MassMailout.new(mailout_params)
     respond_to do |format|
-      if @mass_mailout.valid?
-        format.js do
+      format.js do
+        if @mass_mailout.valid?
           users_emails = users.pluck(:email)
           text = mass_mailout_params[:text]
           subject = mass_mailout_params[:subject]
@@ -29,13 +29,7 @@ class MailersController < ApplicationController
           end
           UserMassMailer.send_mailout(users_emails, subject, text, attachment_path).deliver_now
           flash[:success] = 'Email has been sent'
-          redirect_to mailers_mass_mail_path
-        end
-      else
-        format.js do
-          @specialties = Specialty.joins(:student_profiles)
-          @course_years = StudentProfile.distinct.pluck(:course_year)
-          @groups = StudentProfile.distinct.pluck(:group)
+          @redirect_url = mailers_mass_mail_path
         end
       end
     end
@@ -45,17 +39,15 @@ class MailersController < ApplicationController
     @user = current_or_guest_user
     @feedback_message = ::FormObjects::UserFeedback.new(feedback_params)
     respond_to do |format|
-      if @feedback_message.valid?
-        format.js do
+      format.js do
+        if @feedback_message.valid?
           user_email = feedback_params[:user_email]
           text = feedback_params[:text]
           FeedbackMailer.feedback_from_user(user_email, text).deliver_now
           FeedbackMailer.notify_user_of_getting_feedback(user_email).deliver_now
           flash[:success] = "Feedback has been sent"
-          redirect_to root_path
+          @redirect_url = root_path
         end
-      else
-        format.js
       end
     end
   end
@@ -73,16 +65,14 @@ class MailersController < ApplicationController
     @sender = current_user
     @recipient = User.find(contact_message_params[:recipient_id])
     respond_to do |format|
-      if @contact_message.valid?
-        format.js do
+      format.js do
+        if @contact_message.valid?
           subject = contact_message_params[:subject]
           text = contact_message_params[:text]
           ContactUserMailer.send_email_to_user(@sender, @recipient, subject, text).deliver_now
           flash[:success] = "Message has been sent"
-          redirect_to user_path(@recipient)
+          @redirect_url = user_path(@recipient)
         end
-      else
-        format.js
       end
     end
 
