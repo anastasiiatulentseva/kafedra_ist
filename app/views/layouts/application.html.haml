@@ -2,7 +2,6 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:content => "#{yield("meta_turbolinks-cache-control")}", :name => "turbolinks-cache-control"}/
     %title= full_title(yield(:title))
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'

@@ -10,10 +10,6 @@ module ApplicationHelper
     end
   end
 
-  def meta_tag(tag, text)
-    content_for "meta_#{tag}", text
-  end
-
   # Makes readable messages about allowed file extensions
   def format_extensions_for_file_field(extensions)
     extensions.join('/')
