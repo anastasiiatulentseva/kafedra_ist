@@ -38,7 +38,9 @@ h1 {
   margin-bottom: 30px;
   text-align: center;
 }
-
+.page-header {
+  margin-bottom: 60px;
+}
 h2 {
   font-size: 2em;
   letter-spacing: -1px;
@@ -96,6 +98,28 @@ p {
     color: #949494;
   }
 }
+/*jumbo*/
+.jumbotron {
+  position: relative;
+  background: #000 url("online-trading-platform.jpg") center center;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  overflow: hidden;
+    h1 {
+      color: silver;
+      text-align: right;
+      text-shadow: #444 0 1px 1px;
+      margin-top: 180px;
+      margin-bottom: 5px;
+    }
+    p {
+      color: silver;
+      text-align: right;
+      text-shadow: #444 0 1px 1px;
+    }
+}
+
 /*flash*/
   .alert {
     text-align: center;

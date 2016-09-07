@@ -10,6 +10,8 @@
   %body
     = render 'layouts/header'
     #main_container.container
+      - if request.original_url == root_url
+        = render 'layouts/jumbotron'
       #flash_messages
         - flash.each do |message_type, message|
           = content_tag(:div, message.html_safe, class: "alert alert-#{message_type}")
