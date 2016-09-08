@@ -21,11 +21,12 @@ class MailersController < ApplicationController
       subject = mass_mailout_params[:subject]
       attachment = mass_mailout_params[:attachment]
       if attachment
-        attachment_path = File.absolute_path(attachment.tempfile)
+        attachment_data = { path: File.absolute_path(attachment.tempfile),
+                            name: attachment.original_filename }
       else
-        attachment_path = nil
+        attachment_data = nil
       end
-      UserMassMailer.send_mailout(users_emails, subject, text, attachment_path).deliver_later
+      UserMassMailer.send_mailout(users_emails, subject, text, attachment_data).deliver_now
       flash[:success] = 'Email has been sent'
       redirect_to mailers_mass_mail_path
     else
