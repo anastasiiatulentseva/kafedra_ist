@@ -10,7 +10,7 @@ do ->
     $('.delete-user').bind 'ajax:success', ->
       $(this).closest('tr').fadeOut()
 
-  $(document).on 'turbolinks:load', ->
+  $ ->
     init_selectized_roles_dropdown()
     init_selectized_subjects_dropdown()
     init_form_auto_submit()

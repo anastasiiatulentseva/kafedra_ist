@@ -86,9 +86,9 @@ class UsersController < PrivateAreaController
   def with_user_scope(scope)
     case scope
     when 'without_role'
-      User.without_role
+      User.registered.without_role
     when 'banned'
-      User.banned
+      User.registered.banned
     else
       fail "Unknown scope"
     end

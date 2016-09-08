@@ -1,0 +1,13 @@
+%h1
+  Dear
+  = @recipient.name
+%h2
+  User
+  = @sender.name
+  sent you the message:
+%p.lead=@text
+%p
+  To respond please use the email they provide:
+  = @sender.email
+  or go to
+  = link_to 'contact form on website', user_url(@sender)

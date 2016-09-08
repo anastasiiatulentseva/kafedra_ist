@@ -1,0 +1,6 @@
+<% if @contact_message.valid? %>
+  window.location.href = '<%= @redirect_url %>';
+<% else %>
+  $(document).find("#contact_message_errors").html('<%= escape_javascript(render("shared/error_messages", object: @contact_message)) %>');
+<% end %>
+

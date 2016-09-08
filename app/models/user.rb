@@ -14,6 +14,7 @@ class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
 
   scope :registered, -> {where(guest: false)}
+  scope :active, -> {where.not(confirmed_at: nil)}
   scope :banned, -> {where.not(banned_at: nil)}
   scope :with_role, ->(role) { where("roles_mask & #{2**ROLES.index(role)} > 0") }
   scope :without_role, -> { where(roles_mask: nil)}

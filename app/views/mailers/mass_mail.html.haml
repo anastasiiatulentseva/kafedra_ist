@@ -1,0 +1,50 @@
+- provide(:title, "Send mailout")
+%h1.page-header
+  Admin's mailout
+#send_mailout_errors
+= form_for(@mass_mailout,
+            url: url_for(:controller => 'mailers', :action => 'send_mailout'),
+            html: { id: "send_mailout", multipart: true }, remote: true) do |f|
+  .row
+    .col-md-3
+      .form-group
+        %label.control-label Select group of users
+        = f.select(:role, ['teachers', 'students'],
+            {include_blank: 'All site users'},
+            {class: "form-control",
+            id: "select_user_roles"},
+            )
+    .col-md-3
+      .form-group#select_specialties
+        %label.control-label Select specialty for students
+        = f.collection_select :specialty_ids,
+           @specialties, :id, :name,
+            {include_blank: 'All',
+            multiple: true},
+            class: "form-control for-students select-specialty"
+    .col-md-3
+      .form-group#select_course_years
+        %label.control-label Select course year
+        = f.select :course_years,
+            @course_years,
+            {include_blank: 'All',
+            multiple: true},
+            class: "form-control for-students select-course"
+    .col-md-3
+      .form-group#select_groups
+        %label.control-label Select group
+        = f.select :groups,
+            @groups,
+            {include_blank: 'All',
+            multiple: true},
+            class: "form-control for-students select-group"
+  .form-group
+    %label.control-label Mail subject
+    = f.text_field :subject, class: "form-control"
+  .form-group
+    %label.control-label Letter content here:
+    = f.text_area :text, class: "form-control text-wysiwyg"
+  .form-group
+    %label.control-label Attachment
+    = f.file_field :attachment
+  = f.submit "Send this big mailout", class: "btn btn-success btn-lg center-block"
