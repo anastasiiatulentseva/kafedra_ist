@@ -10,16 +10,23 @@ RSpec.feature "Admins mass mailing" do
     expect(page).to have_css 'form#send_mailout'
 
     select 'teachers', from: 'select_user_roles'
-    click_button 'Send this big mailout'
-    expect(page).to have_css 'div#send_mailout_errors'
+    # attach attachment
+    attach_file('form_objects_mass_mailout[attachment]', Rails.root.join('spec/files/123.zip'))
 
-    teacher = create(:teacher)
+    click_button 'Send this big mailout'
+    expect(page).to have_css 'div#error_explanation'
+
+    create(:teacher)
 
     visit mailers_mass_mail_path
     select 'teachers', from: 'select_user_roles'
 
     fill_in 'form_objects_mass_mailout[subject]', with: 'mailout subject'
     fill_wysiwyg("#form_objects_mass_mailout_text", "Mass mailout text")
+
+    # attach attachment
+    attach_file('form_objects_mass_mailout[attachment]', Rails.root.join('spec/files/123.zip'))
+
     click_button 'Send this big mailout'
     expect(page).to have_css 'div.alert-success'
   end
@@ -50,7 +57,7 @@ RSpec.feature "Admins mass mailing" do
     choose_from_selectize('div#select_groups', 2)
     click_button 'Send this big mailout'
 
-    expect(page).to have_css 'div#send_mailout_errors'
+    expect(page).to have_css 'div#error_explanation'
     expect(page).to have_text 'Users list is empty, select other group of users'
 
     visit mailers_mass_mail_path

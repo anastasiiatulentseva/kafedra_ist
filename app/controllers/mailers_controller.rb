@@ -15,23 +15,24 @@ class MailersController < ApplicationController
     mailout_params = mass_mailout_params
     mailout_params[:users] = users
     @mass_mailout = ::FormObjects::MassMailout.new(mailout_params)
-    respond_to do |format|
-      format.js do
-        if @mass_mailout.valid?
-          users_emails = users.pluck(:email)
-          text = mass_mailout_params[:text]
-          subject = mass_mailout_params[:subject]
-          attachment = mass_mailout_params[:attachment]
-          if attachment
-            attachment_path = File.absolute_path(attachment.tempfile)
-          else
-            attachment_path = nil
-          end
-          UserMassMailer.send_mailout(users_emails, subject, text, attachment_path).deliver_now
-          flash[:success] = 'Email has been sent'
-          @redirect_url = mailers_mass_mail_path
-        end
+    if @mass_mailout.valid?
+      users_emails = users.pluck(:email)
+      text = mass_mailout_params[:text]
+      subject = mass_mailout_params[:subject]
+      attachment = mass_mailout_params[:attachment]
+      if attachment
+        attachment_path = File.absolute_path(attachment.tempfile)
+      else
+        attachment_path = nil
       end
+      UserMassMailer.send_mailout(users_emails, subject, text, attachment_path).deliver_later
+      flash[:success] = 'Email has been sent'
+      redirect_to mailers_mass_mail_path
+    else
+      @specialties = Specialty.joins(:student_profiles)
+      @course_years = StudentProfile.distinct.pluck(:course_year)
+      @groups = StudentProfile.distinct.pluck(:group)
+      render :mass_mail
     end
   end
 

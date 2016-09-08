@@ -1,5 +1,0 @@
-<% if @mass_mailout.valid? %>
-  window.location.href = '<%= @redirect_url %>';
-<% else %>
-  $(document).find("#send_mailout_errors").html('<%= escape_javascript(render("shared/error_messages", object: @mass_mailout)) %>');
-<% end %>

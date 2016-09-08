@@ -1,10 +1,10 @@
 - provide(:title, "Send mailout")
 %h1.page-header
   Admin's mailout
-#send_mailout_errors
 = form_for(@mass_mailout,
             url: url_for(:controller => 'mailers', :action => 'send_mailout'),
-            html: { id: "send_mailout", multipart: true }, remote: true) do |f|
+            html: { id: "send_mailout" }, multipart: true) do |f|
+  = render 'shared/error_messages', object: f.object
   .row
     .col-md-3
       .form-group
