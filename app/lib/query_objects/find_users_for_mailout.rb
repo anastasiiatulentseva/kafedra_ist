@@ -26,12 +26,16 @@ module QueryObjects
 
     private
 
+    def role
+      params[:form_objects_mass_mailout][:role]
+    end
+
     def teachers?
-      params[:form_objects_mass_mailout][:role].include?('teachers')
+      role.include?('teachers')
     end
 
     def students?
-      params[:form_objects_mass_mailout][:role].include?('students')
+      role.include?('students')
     end
 
     def students_by_specialties(criteria)
