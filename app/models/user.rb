@@ -16,8 +16,9 @@ class User < ApplicationRecord
   scope :registered, -> {where(guest: false)}
   scope :active, -> {where.not(confirmed_at: nil)}
   scope :banned, -> {where.not(banned_at: nil)}
-  scope :with_role, ->(role) { where("roles_mask & #{2**ROLES.index(role)} > 0") }
+  scope :with_role, -> (role) { where("roles_mask & #{2**ROLES.index(role)} > 0") }
   scope :without_role, -> { where(roles_mask: nil)}
+  scope :recently_logged_in, -> { where(['current_sign_in_at > ?', Time.now.beginning_of_day] )}
 
   ROLES = %i[student teacher admin]
   ALLOWED_FILE_EXTENSIONS = %w(jpg jpeg gif png)

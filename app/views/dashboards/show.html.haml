@@ -1,0 +1,11 @@
+- provide(:title, "Admin's dashboard")
+%h1.page-header Admin's dashboard
+
+.row
+  .col-md-6
+    #content_management
+      = render 'dashboards/content_management'
+
+  .col-md-6
+    #user_management
+      = render 'dashboards/user_management'

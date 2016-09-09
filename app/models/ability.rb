@@ -8,6 +8,7 @@ class Ability
     can :show, User unless user.guest?
     can :read, Article
 
+    cannot :read, :dashboard unless user.admin?
 
     if user.teacher? && user.teacher_profile.present?
       can :manage, Workbook
