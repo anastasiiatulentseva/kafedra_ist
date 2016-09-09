@@ -21,5 +21,6 @@ Rails.application.routes.draw do
       post :save_subjects
     end
   end
+  resource :dashboard, only: [:show]
 
 end

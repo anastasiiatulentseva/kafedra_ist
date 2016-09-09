@@ -1,0 +1,29 @@
+.panel.panel-info
+  .panel-heading
+    %h3.panel-title User management
+  %ul.list-group
+    %li.list-group-item
+      = link_to 'All users', users_path
+    %li.list-group-item
+      = link_to 'Send mailout', mailers_mass_mail_path
+  .panel-footer
+    %h4.panel-title User statistics
+    %p
+      %ul.list-inline
+        %li
+          Active users:
+          = @active_users_count
+        %li
+          Users today:
+          = @recent_users_count
+        %li
+          = link_to 'More statistics ->', '#collapseUserStatistics', 'data-toggle': 'collapse'
+    .collapse#collapseUserStatistics
+      .well-lg
+        %ul.list-inline
+          %li
+            Teachers:
+            = @teachers_count
+          %li
+            Students:
+            = @students_count

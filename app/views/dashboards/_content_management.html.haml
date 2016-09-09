@@ -1,0 +1,38 @@
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title Content management
+  %ul.list-group
+    %li.list-group-item
+      %h4.list-group-item-heading Articles
+    %li.list-group-item
+      = link_to 'Create new article', new_article_path
+    %li.list-group-item
+      =link_to 'All articles', articles_path
+  %ul.list-group
+    %li.list-group-item
+      %h4.list-group-item-heading Workbooks
+    %li.list-group-item
+      = link_to 'Create new workbook', new_workbook_path
+    %li.list-group-item
+      =link_to 'All workbooks', workbooks_path
+  .panel-footer
+    %h4.panel-title Content statistics
+    %p
+      %ul.list-inline
+        %li
+          Articles:
+          = @articles_count
+        %li
+          Workbooks:
+          = @workbooks_count
+        %li
+          = link_to 'More statistics ->', '#collapseContentStatistics', 'data-toggle': 'collapse'
+      .collapse#collapseContentStatistics
+        .well-lg
+          %ul.list-inline
+            %li
+              Specialties:
+              = @specialties_count
+            %li
+              Subjects:
+              = @subjects_count
