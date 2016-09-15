@@ -1,4 +1,4 @@
-= form_for(@special_workbook, html: { multipart: true }) do |f|
+= form_for(@special_workbook, url: special_workbooks_path, html: { multipart: true } ) do |f|
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :name, class: "control-label"
@@ -26,4 +26,6 @@
   .btn-group
     = f.submit "Save", class: "btn btn-primary"
     - if @special_workbook.persisted?
-      = link_to "Delete", @special_workbook, method: :delete, data: { confirm: "Delete special workbook?" }, class: "btn btn-danger"
+      = link_to "Delete", { controller: "special/workbooks", action: :destroy },
+        method: :delete, data: { confirm: "Delete special workbook?" },
+        class: "btn btn-danger"

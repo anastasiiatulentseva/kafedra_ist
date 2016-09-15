@@ -25,7 +25,7 @@ class Special::WorkbooksController < PrivateAreaController
   end
 
   def create
-    @special_workbook = Workbook.new(special_workbook_params)
+    @special_workbook = current_user.teacher_profile.workbooks.new(special_workbook_params)
     @special_subjects = Subject.special
     if @special_workbook.save
       flash[:success] = "Special workbook has been created"
@@ -37,16 +37,23 @@ class Special::WorkbooksController < PrivateAreaController
 
   def edit
     @special_workbook = Workbook.find(params[:id])
+    @special_subjects = Subject.special
   end
 
   def update
     @special_workbook = Workbook.find(params[:id])
     if @special_workbook.update_attributes(special_workbook_params)
-      flash[:success] = "Workbook has been updated"
+      flash[:success] = "Special workbook has been updated"
       redirect_to special_workbook_path
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @special_workbook = Workbook.find(params[:id]).destroy
+    flash[:info] = "Special workbook deleted"
+    redirect_to special_workbooks_path
   end
 
   private
