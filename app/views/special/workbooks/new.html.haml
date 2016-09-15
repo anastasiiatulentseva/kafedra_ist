@@ -1,32 +1,4 @@
 - provide(:title, "Adding new special workbook")
 %h1.page-header New special workbook
 .col-md-9.col-md-offset-2
-  = form_for(@special_workbook, html: { multipart: true }) do |f|
-    = render 'shared/error_messages', object: f.object
-    .form-group
-      = f.label :name, class: "control-label"
-      = f.text_field :name, class: "form-control", placeholder: "Enter workbook name"
-    .form-group
-      = f.label :subject_id, "Select subject", class: "control-label"
-      = f.collection_select(:subject_id, @special_subjects, :id, :name, {}, class: "form-control")
-    .form-group
-      = f.label :description, class: "control-label"
-      = f.text_area :description, class: "text-wysiwyg form-control", rows: 15
-    .form-group
-      = f.label :attachment, class: "control-label"
-      .panel.panel-default
-        .panel-body
-          - if @special_workbook.persisted?
-            %p
-              Current file:
-              = link_to File.basename(@special_workbook.attachment.path), @special_workbook.attachment.url
-              %span.help-block If you upload another file the old one will be deleted.
-          = f.file_field :attachment, accept: format_extensions_for_file_field(Workbook.allowed_file_extensions)
-          %span.help-block
-            Allowed file types:
-            = Workbook.allowed_file_extensions.join(', ')
-          %p As file size is not limited you are kindly asked to use storage space thriftily.
-    .btn-group
-      = f.submit "Save", class: "btn btn-primary"
-      - if @special_workbook.persisted?
-        = link_to "Delete", @special_workbook, method: :delete, data: { confirm: "Delete special workbook?" }, class: "btn btn-danger"
+  = render 'special/workbooks/workbook_form'

@@ -19,8 +19,8 @@ class Special::WorkbooksController < PrivateAreaController
       @panel_workbooks = @workbooks.select { |w| w.subject_id == pill_subject.id }
       @panel_heading = pill_subject.name
     else
-      @panel_workbooks = @workbooks
-      @panel_heading = 'All'
+      @panel_workbooks = @workbooks.special
+      @panel_heading = 'Special'
     end
   end
 

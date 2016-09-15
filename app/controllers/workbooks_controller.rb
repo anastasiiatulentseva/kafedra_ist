@@ -9,7 +9,7 @@ class WorkbooksController < PrivateAreaController
   def index
     if current_user.teacher?
       @subjects = @user.teacher_profile.subjects
-      @workbooks = @user.teacher_profile.workbooks
+      @workbooks = @user.teacher_profile.workbooks.simple
     else
       @subjects = Subject.for_student(@user.student_profile)
       @workbooks = Workbook.with_subject_ids(@subjects.map(&:id))

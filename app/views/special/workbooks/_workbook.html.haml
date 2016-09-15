@@ -2,4 +2,4 @@
   %span
     = link_to workbook.name, special_workbook_path(workbook.id)
     - if @user.admin?
-      = render 'workbooks/teacher_links', workbook: workbook
+      = link_to "Edit", edit_special_workbook_path(workbook.id), class: "btn btn-default btn-xs"
