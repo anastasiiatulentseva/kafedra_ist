@@ -1,0 +1,5 @@
+%li
+  %span
+    = link_to workbook.name, special_workbook_path(workbook.id)
+    - if @user.admin?
+      = render 'workbooks/teacher_links', workbook: workbook
