@@ -11,11 +11,11 @@ class Subject < ApplicationRecord
   scope :special, -> { where(special: true) }
   scope :for_teacher_or_unassigned, ->(teacher_profile) {
     simple.where(teacher_profile_id: nil).
-      or(where(teacher_profile_id: teacher_profile.id))
+      or(simple.where(teacher_profile_id: teacher_profile.id))
   }
 
   scope :for_student, ->(student_profile) {
-    simple.where(
+      where(
       specialty_id: student_profile.specialty_id,
       course_year: student_profile.course_year,
     )

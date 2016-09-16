@@ -7,7 +7,6 @@ RSpec.feature "Special workbooks management" do
     create(:teacher_profile, user_id: user.id)
     specialty = create(:specialty)
     special_subject = create(:special_subject, specialty_id: specialty.id, teacher_profile_id: user.id)
-    simple_subject = create(:subject, specialty_id: specialty.id, teacher_profile_id: user.id)
     sign_in(user)
 
     visit new_special_workbook_path
@@ -36,5 +35,30 @@ RSpec.feature "Special workbooks management" do
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_css 'div.alert'
     expect(page).to_not have_text 'About special workbook1'
+  end
+
+  scenario "Student visits special workbook index", :js do
+    user = create(:student)
+    specialty = create(:specialty)
+    create(:student_profile, user_id: user.id, specialty_id: specialty.id, course_year: 5)
+    special_subject = create(:special_subject, specialty_id: specialty.id, course_year: 5)
+    simple_subject = create(:subject, specialty_id: specialty.id, course_year: 5)
+    sign_in(user)
+
+    visit special_workbooks_path
+
+    expect(page).to have_text special_subject.name
+    expect(page).to_not have_text simple_subject.name
+  end
+
+  scenario "Guest and user without role visits special workbooks index", :js do
+    user = create(:user)
+    visit special_workbooks_path
+    expect(page).to have_css 'div.alert-alert'
+
+    sign_in(user)
+
+    visit special_workbooks_path
+    expect(page).to have_css 'div.alert-alert'
   end
 end

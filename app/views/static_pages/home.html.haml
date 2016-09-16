@@ -18,8 +18,8 @@
         %p Get everything you need for your education here
         %p
           = link_to "Workbooks", workbooks_path, class: "btn btn-primary"
-          - if can? :create, Workbook
-            = link_to "New workbook", new_workbook_path, class: "btn btn-default"
+          - if can? :read, Workbook
+            = link_to "Special workbooks", special_workbooks_path, class: "btn btn-default"
   .col-sm-6.col-md-4
     .thumbnail
       %img{:alt => "...", :src => "http://bm.img.com.ua/berlin/storage/finance/600x500/b/90/b2b33549b9e179d6b8c51dbcc04dc90b.jpg"}/
