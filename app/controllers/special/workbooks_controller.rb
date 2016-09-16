@@ -1,4 +1,5 @@
 class Special::WorkbooksController < PrivateAreaController
+  load_and_authorize_resource
   before_action :set_user
 
   def new
@@ -11,21 +12,33 @@ class Special::WorkbooksController < PrivateAreaController
   end
 
   def index
-    @subjects = Subject.all
-    @workbooks = Workbook.all
+    if @user.student?
+      @subjects = Subject.for_student(@user.student_profile).special
+      @workbooks = Workbook.with_subject_ids(@subjects.map(&:id))
+    else
+      @subjects = Subject.all
+      @workbooks = Workbook.all
+    end
+
     subject_name = params[:subject]
     if subject_name
       pill_subject = Subject.find(params[:subject])
       @panel_workbooks = @workbooks.select { |w| w.subject_id == pill_subject.id }
       @panel_heading = pill_subject.name
+
     else
       @panel_workbooks = @workbooks.special
       @panel_heading = 'Special'
     end
+
+    @workbook_counts = @workbooks.group_by(&:subject_id).each_with_object(Hash.new(0)) do |(subj_id, workbooks), memo|
+      memo[subj_id] = workbooks.length
+    end
   end
 
   def create
-    @special_workbook = current_user.teacher_profile.workbooks.new(special_workbook_params)
+
+    @special_workbook = current_user.teacher_profile.workbooks.new(workbook_params)
     @special_subjects = Subject.special
     if @special_workbook.save
       flash[:success] = "Special workbook has been created"
@@ -42,7 +55,7 @@ class Special::WorkbooksController < PrivateAreaController
 
   def update
     @special_workbook = Workbook.find(params[:id])
-    if @special_workbook.update_attributes(special_workbook_params)
+    if @special_workbook.update_attributes(workbook_params)
       flash[:success] = "Special workbook has been updated"
       redirect_to special_workbook_path
     else
@@ -58,7 +71,7 @@ class Special::WorkbooksController < PrivateAreaController
 
   private
 
-  def special_workbook_params
+  def workbook_params
     params.require(:workbook).permit(:name, :description, :subject_id, :attachment)
   end
 

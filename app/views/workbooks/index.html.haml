@@ -10,7 +10,10 @@
           = link_to 'All', workbooks_path
         - @subjects.each do |subject|
           %li{class: (params[:subject] == subject.id.to_s) && 'active' }
-            = link_to subject.name, workbooks_path(subject: subject.id)
+            = link_to workbooks_path(subject: subject.id) do
+              = subject.name
+              %span.badge
+                = @workbook_counts[subject.id]
     .col-md-8
       .panel.panel-default
         .panel-heading

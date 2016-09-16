@@ -8,10 +8,10 @@ class WorkbooksController < PrivateAreaController
 
   def index
     if current_user.teacher?
-      @subjects = @user.teacher_profile.subjects
+      @subjects = @user.teacher_profile.subjects.simple
       @workbooks = @user.teacher_profile.workbooks.simple
     else
-      @subjects = Subject.for_student(@user.student_profile)
+      @subjects = Subject.for_student(@user.student_profile).simple
       @workbooks = Workbook.with_subject_ids(@subjects.map(&:id))
     end
 
@@ -23,6 +23,9 @@ class WorkbooksController < PrivateAreaController
     else
       @panel_workbooks = @workbooks
       @panel_heading = 'All'
+    end
+    @workbook_counts = @workbooks.group_by(&:subject_id).each_with_object(Hash.new(0)) do |(subj_id, workbooks), memo|
+      memo[subj_id] = workbooks.length
     end
   end
 
