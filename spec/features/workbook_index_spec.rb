@@ -55,9 +55,12 @@ RSpec.feature "Workbooks index" do
   end
 
    scenario "Student visits workbook index", :js do
+     teacher = create(:teacher)
+     teacher_profile = create(:teacher_profile, user_id: teacher.id)
+
      specialty_1 = create(:specialty)
      specialty_2 = create(:specialty)
-     subject_1 = create(:subject, specialty_id: specialty_1.id, course_year: 3)
+     subject_1 = create(:subject, specialty_id: specialty_1.id, course_year: 3, teacher_profile_id: teacher_profile.id )
      subject_2 = create(:subject, specialty_id: specialty_1.id, course_year: 5)
      subject_3 = create(:subject, specialty_id: specialty_2.id, course_year: 3)
 
@@ -65,7 +68,7 @@ RSpec.feature "Workbooks index" do
      workbook_2 = create(:workbook, subject_id: subject_2.id)
      workbook_3 = create(:workbook, subject_id: subject_3.id)
      user = create(:student)
-     student_profile = create(:student_profile, user_id: user.id, specialty_id: specialty_1.id, course_year: subject_1.course_year)
+     create(:student_profile, user_id: user.id, specialty_id: specialty_1.id, course_year: subject_1.course_year)
 
 
      sign_in(user)
@@ -80,6 +83,10 @@ RSpec.feature "Workbooks index" do
      expect(page).to have_text workbook_1.name
      expect(page).to_not have_text workbook_2.name
      expect(page).to_not have_text workbook_3.name
+
+     click_link subject_1.name
+     expect(page).to have_text workbook_1.name
+     expect(page).to have_text teacher.name
 
    end
 end

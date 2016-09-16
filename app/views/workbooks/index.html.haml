@@ -18,6 +18,11 @@
       .panel.panel-default
         .panel-heading
           = @panel_heading
+          - if @teacher && current_user.student?
+            %span.pull-right
+              = link_to user_path(@teacher) do
+                Teacher:
+                = @teacher.name
         .panel-body
           - if can? :create, Workbook
             = link_to 'Create new workbook', new_workbook_path, class: "btn btn-sm btn-default pull-right"

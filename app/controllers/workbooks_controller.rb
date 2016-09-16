@@ -20,6 +20,9 @@ class WorkbooksController < PrivateAreaController
       pill_subject = Subject.find(params[:subject])
       @panel_workbooks = @workbooks.select { |w| w.subject_id == pill_subject.id }
       @panel_heading = pill_subject.name
+      if pill_subject.teacher_profile
+        @teacher = pill_subject.teacher_profile.user
+      end
     else
       @panel_workbooks = @workbooks
       @panel_heading = 'All'
