@@ -4,9 +4,9 @@ RSpec.feature "Special workbooks management" do
 
   scenario "Admin creates and deletes a special workbook", :js do
     user = create(:admin)
-    create(:teacher_profile, user_id: user.id)
+    teacher_profile = create(:teacher_profile, user_id: user.id)
     specialty = create(:specialty)
-    special_subject = create(:special_subject, specialty_id: specialty.id, teacher_profile_id: user.id)
+    special_subject = create(:special_subject, specialty_id: specialty.id, teacher_profile_id: teacher_profile.id)
     sign_in(user)
 
     visit new_special_workbook_path
@@ -30,6 +30,7 @@ RSpec.feature "Special workbooks management" do
     expect(page).to have_css "a[href=\"#{Workbook.last.attachment.url}\"]"
 
     click_link 'Edit special workbook'
+
     expect(page).to have_css 'div.form-group'
     click_link 'Delete'
     page.driver.browser.switch_to.alert.accept

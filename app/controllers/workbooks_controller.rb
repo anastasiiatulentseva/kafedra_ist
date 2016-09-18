@@ -7,7 +7,7 @@ class WorkbooksController < PrivateAreaController
   end
 
   def index
-    if current_user.teacher?
+    if @user.teacher?
       @subjects = @user.teacher_profile.subjects.simple
       @workbooks = @user.teacher_profile.workbooks.simple
     else
@@ -34,10 +34,12 @@ class WorkbooksController < PrivateAreaController
 
   def new
     @workbook = Workbook.new
+    @subjects = current_user.teacher_profile.subjects.simple
   end
 
   def create
     @workbook = current_user.teacher_profile.workbooks.new(workbook_params)
+    @subjects = current_user.teacher_profile.subjects.simple
     if @workbook.save
       flash[:success] = "Workbook has been created"
       redirect_to workbook_path(@workbook.id)
@@ -48,10 +50,12 @@ class WorkbooksController < PrivateAreaController
 
   def edit
     @workbook = Workbook.find(params[:id])
+    @subjects = current_user.teacher_profile.subjects.simple
   end
 
   def update
     @workbook = Workbook.find(params[:id])
+    @subjects = current_user.teacher_profile.subjects.simple
     if @workbook.update_attributes(workbook_params)
       flash[:success] = "Workbook has been updated"
       redirect_to workbook_path

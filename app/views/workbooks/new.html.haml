@@ -1,4 +1,8 @@
 - provide(:title, "Adding new workbook")
 %h1.page-header New workbook
 .col-md-9.col-md-offset-2
-  = render 'workbooks/workbook_form'
+  = render partial: 'workbooks/workbook_form',
+    locals: { object: @workbook,
+      url: workbooks_path,
+      http_method: :post,
+      subjects: @subjects }

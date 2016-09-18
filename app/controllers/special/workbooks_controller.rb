@@ -2,11 +2,6 @@ class Special::WorkbooksController < PrivateAreaController
   load_and_authorize_resource
   before_action :set_user
 
-  def new
-    @special_workbook = Workbook.new
-    @special_subjects = Subject.special
-  end
-
   def show
     @special_workbook = Workbook.find(params[:id])
   end
@@ -36,8 +31,12 @@ class Special::WorkbooksController < PrivateAreaController
     end
   end
 
-  def create
+  def new
+    @special_workbook = Workbook.new
+    @special_subjects = Subject.special
+  end
 
+  def create
     @special_workbook = current_user.teacher_profile.workbooks.new(workbook_params)
     @special_subjects = Subject.special
     if @special_workbook.save
