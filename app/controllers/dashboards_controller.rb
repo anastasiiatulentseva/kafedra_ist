@@ -12,6 +12,6 @@ class DashboardsController < PrivateAreaController
     @workbooks_count = Workbook.count
 
     @specialties_count = Specialty.count
-    @subjects_count = Subject.count
+    @subjects_count = Subject.simple.count
   end
 end

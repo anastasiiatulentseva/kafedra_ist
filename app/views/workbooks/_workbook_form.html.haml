@@ -1,11 +1,11 @@
-= form_for(@workbook, html: { multipart: true }) do |f|
+= form_for(object, url: url, html: { method: http_method, multipart: true }) do |f|
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :name, class: "control-label"
     = f.text_field :name, class: "form-control", placeholder: "Enter workbook name"
   .form-group
     = f.label :subject_id, "Select subject", class: "control-label"
-    = f.collection_select(:subject_id, @user.teacher_profile.subjects, :id, :name, {}, class: "form-control")
+    = f.collection_select(:subject_id, subjects, :id, :name, {}, class: "form-control")
   .form-group
     = f.label :description, class: "control-label"
     = f.text_area :description, class: "text-wysiwyg form-control", rows: 15
@@ -13,10 +13,10 @@
     = f.label :attachment, class: "control-label"
     .panel.panel-default
       .panel-body
-        - if @workbook.persisted?
+        - if object.persisted?
           %p
             Current file:
-            = link_to File.basename(@workbook.attachment.path), @workbook.attachment.url
+            = link_to File.basename(object.attachment.path), object.attachment.url
             %span.help-block If you upload another file the old one will be deleted.
         = f.file_field :attachment, accept: format_extensions_for_file_field(Workbook.allowed_file_extensions)
         %span.help-block
@@ -25,5 +25,5 @@
         %p As file size is not limited you are kindly asked to use storage space thriftily.
   .btn-group
     = f.submit "Save", class: "btn btn-primary"
-    - if @workbook.persisted?
-      = link_to "Delete", @workbook, method: :delete, data: { confirm: "Delete workbook?" }, class: "btn btn-danger"
+    - if object.persisted?
+      = link_to "Delete", url, method: :delete, data: { confirm: "Delete workbook?" }, class: "btn btn-danger"

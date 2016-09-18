@@ -12,6 +12,6 @@ csv.each do |row|
   existing_specialty = Specialty.where(name: specialty).first
 
   if existing_specialty
-    Subject.create!(name: name, course_year: course_year, specialty_id: existing_specialty.id)
+    Subject.create!(name: name, course_year: course_year, specialty_id: existing_specialty.id, special: false)
   end
 end

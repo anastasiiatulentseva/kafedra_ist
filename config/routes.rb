@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :workbooks
+
+  namespace :special do
+    resources :workbooks
+  end
+
   resources :users do
     member do
       post :ban

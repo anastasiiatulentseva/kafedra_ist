@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815194237) do
+ActiveRecord::Schema.define(version: 20160910173142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(version: 20160815194237) do
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.integer  "course_year"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "specialty_id"
     t.integer  "teacher_profile_id"
+    t.boolean  "special",            default: false
     t.index ["specialty_id"], name: "index_subjects_on_specialty_id", using: :btree
     t.index ["teacher_profile_id"], name: "index_subjects_on_teacher_profile_id", using: :btree
   end

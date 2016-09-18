@@ -10,11 +10,19 @@
           = link_to 'All', workbooks_path
         - @subjects.each do |subject|
           %li{class: (params[:subject] == subject.id.to_s) && 'active' }
-            = link_to subject.name, workbooks_path(subject: subject.id)
+            = link_to workbooks_path(subject: subject.id) do
+              = subject.name
+              %span.badge
+                = @workbook_counts[subject.id]
     .col-md-8
       .panel.panel-default
         .panel-heading
           = @panel_heading
+          - if @teacher && current_user.student?
+            %span.pull-right
+              = link_to user_path(@teacher) do
+                Teacher:
+                = @teacher.name
         .panel-body
           - if can? :create, Workbook
             = link_to 'Create new workbook', new_workbook_path, class: "btn btn-sm btn-default pull-right"

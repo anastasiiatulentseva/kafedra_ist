@@ -10,8 +10,11 @@ class Ability
 
     cannot :read, :dashboard unless user.admin?
 
+    can :read, Workbook if user.student?
+
     if user.teacher? && user.teacher_profile.present?
-      can :manage, Workbook
+      can [:read, :create], Workbook
+      can [:update, :destroy], Workbook.with_subject_ids(user.teacher_profile.subjects)
       can :own_subjects, User, id: user.id
     end
 
@@ -20,7 +23,7 @@ class Ability
     end
 
     can :send_feedback
-    can :read, Workbook if user.student?
+
 
     can :manage, :all if user.admin?
   end
