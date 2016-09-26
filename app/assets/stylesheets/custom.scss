@@ -146,7 +146,37 @@ p {
   text-align: center;
 }
 
+/* schedule */
 
+#schedule_table {
+  tbody {
+    tr:nth-child(5n+1) {
+      td {
+        border-top-color: darkgrey;
+        border-top-width: 2px;
+      }
+    }
+    td {
+      border-right-color: darkgrey;
+    }
+  }
+
+  tr {
+    th:first-child {
+      min-width: 100px;
+    }
+  }
+  th {
+    min-width: 170px;
+    background-color: #CCCCCC;
+  }
+  select {
+    width: 120px;
+  }
+  input {
+    padding: 5px;
+  }
+}
 
 
 

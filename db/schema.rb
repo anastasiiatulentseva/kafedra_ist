@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910173142) do
+ActiveRecord::Schema.define(version: 20160919123553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20160910173142) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_teacher_profiles_on_user_id", using: :btree
+  end
+
+  create_table "teachers_schedules", force: :cascade do |t|
+    t.date     "week"
+    t.json     "schedule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
