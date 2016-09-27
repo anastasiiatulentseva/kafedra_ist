@@ -2,7 +2,27 @@ class TeachersSchedulesController < PrivateAreaController
 
   def show
     @teachers_schedule = TeachersSchedule.find(params[:id])
-    @days = ['Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday']
+    @schedule = @teachers_schedule.schedule
+    @date = @teachers_schedule.week
+
+    teacher_ids = @schedule.keys.uniq
+    @teachers = teacher_ids.each_with_object({}) do |tid, memo|
+      memo[tid] = User.find(tid)
+    end
+    @subject_ids = @schedule.values.each_with_object([]) do |days, acc|
+      days.values.each do |lessons|
+        lessons.each do |para, lesson|
+          unless lesson["subject"].blank?
+            acc << lesson["subject"]
+          end
+        end
+      end
+    end
+
+    @subjects = @subject_ids.each_with_object({}) do |sid, memo|
+      memo[sid] = Subject.find(sid)
+    end
+
   end
 
   def new

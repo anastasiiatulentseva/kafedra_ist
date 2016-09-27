@@ -3,33 +3,33 @@
 
 %p
   ID:
-  =@teachers_schedule.id
+  = @teachers_schedule.id
 %p
   %b
     Schedule days:
   from
-  %b=@teachers_schedule.week.at_beginning_of_week.strftime("%d.%m.%Y")
+  %b=@date.at_beginning_of_week.strftime("%d.%m.%Y")
   to
-  %b=@teachers_schedule.week.at_end_of_week.strftime("%d.%m.%Y")
+  %b=@date.at_end_of_week.strftime("%d.%m.%Y")
 
 #schedule_table_show.table-responsive
-  -@teachers_schedule.schedule.each do |teacher_id, schedule|
+  - @schedule.each do |teacher_id, schedule|
     %table.table.table-condensed.table-bordered
       %thead
         %tr
           %th{colspan: 5}
             Teacher:
-            = User.find(teacher_id).name
+            = @teachers[teacher_id].name
         %tr
           - schedule.each do |day, lessons|
             %th
-              = (@teachers_schedule.week + day.to_i.days).strftime("%A, %d %b")
+              = (@date + day.to_i.days).strftime("%A, %d %b")
       %tbody
         - schedule.each do |day_number, lessons|
           %tr
             - lessons.each do |para, lesson|
               %td
                 - unless lesson["subject"].empty?
-                  = Subject.find(lesson["subject"].to_i).name
+                  = @subjects[lesson["subject"]].name
                   ,
                   = lesson["room"]
