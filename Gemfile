@@ -29,6 +29,9 @@ gem 'fog'
 gem 'devise'
 gem 'cancancan'
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
