@@ -1,0 +1,29 @@
+%p
+  Schedule days: from
+  %b=@date.at_beginning_of_week.strftime("%d.%m.%Y")
+  to
+  %b=@date.at_end_of_week.strftime("%d.%m.%Y")
+- @schedule.each do |teacher_id, schedule|
+  %p
+  %table{style: "width:100%; border-collapse:collapse;"}
+    %thead
+      %tr
+        %th{colspan: 5}
+          Teacher:
+          = @teachers[teacher_id].name
+      %tr
+        - schedule.each do |day, lessons|
+          %th{colspan: 2, style: "min-width:150px;"}
+            = (@date + day.to_i.days).strftime("%A, %d %b")
+    %tbody
+      - schedule.each do |day_number, lessons|
+        %tr
+          - lessons.each do |para, lesson|
+            %td{style: "font-size:80%;border: 1px solid black;"}
+              %b
+                = day_number.to_i + 1
+            %td{style: "font-size:80%; border: 1px solid black;min-width:130px;"}
+              - unless lesson["subject"].empty?
+                = @subjects[lesson["subject"]].name
+                ,
+                = lesson["room"]

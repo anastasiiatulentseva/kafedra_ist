@@ -23,6 +23,13 @@ class TeachersSchedulesController < PrivateAreaController
       memo[sid] = Subject.find(sid)
     end
 
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Teachers schedule #{@date}"
+      end
+    end
+
   end
 
   def new

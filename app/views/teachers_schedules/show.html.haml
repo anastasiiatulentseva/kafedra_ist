@@ -2,16 +2,15 @@
 %h1.page-header Show teachers schedule
 
 %p
-  ID:
-  = @teachers_schedule.id
-%p
+  .pull-right
+    %span.glyphicon.glyphicon-print
+    = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf')
   %b
     Schedule days:
   from
   %b=@date.at_beginning_of_week.strftime("%d.%m.%Y")
   to
   %b=@date.at_end_of_week.strftime("%d.%m.%Y")
-
 #schedule_table_show.table-responsive
   - @schedule.each do |teacher_id, schedule|
     %table.table.table-condensed.table-bordered
