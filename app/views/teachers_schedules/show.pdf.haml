@@ -25,5 +25,4 @@
             %td{style: "font-size:80%; border: 1px solid black;min-width:130px;"}
               - unless lesson["subject"].empty?
                 = @subjects[lesson["subject"]].name
-                ,
-                = lesson["room"]
+              = lesson["room"]

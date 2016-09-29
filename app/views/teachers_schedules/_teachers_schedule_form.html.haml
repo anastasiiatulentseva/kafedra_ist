@@ -1,0 +1,38 @@
+= form_tag(  url, method: http_method, id: "schedule_form") do
+  .form-group
+    %label.control-label Choose start date
+    .form-inline
+      = date_field_tag 'week', teachers_schedule.persisted? ? teachers_schedule.week : Date.today, name: "week", class: "form-control"
+      = submit_tag 'Save schedule', class: 'btn btn-primary pull-right'
+  #schedule_table.table-responsive
+    %table.table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th
+            Teacher
+          - days.each do |day|
+            %th
+              = day
+      %tbody
+        - teachers.each do |teacher|
+          - 5.times do |para|
+            %tr
+              - if para == 0
+                %td(rowspan='5')
+                  = teacher.name
+              - 5.times do |day|
+                %td{id: "#{teacher.id}_#{day}_#{para + 1}"}
+                  .form-inline
+                    .form-group
+                      = select_tag 'subject',
+                        options_from_collection_for_select(teacher.teacher_profile.subjects, :id, :name,
+                          teachers_schedule.persisted? ? teachers_schedule.schedule["#{teacher.id}"]["#{day}"]["#{para + 1}"]["subject"] : nil),
+                        include_blank: true,
+                        class: "form-control input-sm",
+                        name: "schedule[#{teacher.id}][#{day}][#{para + 1}][subject]"
+                    .form-group
+                      = text_field_tag 'room',
+                        teachers_schedule.persisted? ? teachers_schedule.schedule["#{teacher.id}"]["#{day}"]["#{para + 1}"]["room"] : nil,
+                        { name: "schedule[#{teacher.id}][#{day}][#{para + 1}][room]",
+                          size: 3, class: "form-control input-sm" }
+  = submit_tag 'Save schedule', class: 'btn btn-primary pull-right'

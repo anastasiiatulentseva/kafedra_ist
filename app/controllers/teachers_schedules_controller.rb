@@ -49,5 +49,25 @@ class TeachersSchedulesController < PrivateAreaController
     end
   end
 
+  def edit
+    @teachers_schedule = TeachersSchedule.find(params[:id])
+    @teachers = User.with_role(:teacher).order(:name)
+    @days = ['Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday']
+
+  end
+
+  def update
+    @teachers_schedule = TeachersSchedule.find(params[:id])
+    @teachers = User.with_role(:teacher).order(:name)
+    @days = ['Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday']
+    if @teachers_schedule.update_attributes(week: params[:week], schedule: params[:schedule] )
+      flash[:success] = "Schedule has been updated"
+      redirect_to teachers_schedule_path(@teachers_schedule)
+    else
+      flash[:danger] = "Something went wrong"
+      render 'edit'
+    end
+  end
+
 end
 

@@ -1,0 +1,9 @@
+- provide(:title, "Edit teacher schedule")
+%h1.page-header Edit teachers schedule
+
+= render 'teachers_schedule_form',
+  teachers_schedule: @teachers_schedule,
+  teachers: @teachers,
+  days: @days,
+  url: teachers_schedule_path(@teachers_schedule),
+  http_method: :patch
