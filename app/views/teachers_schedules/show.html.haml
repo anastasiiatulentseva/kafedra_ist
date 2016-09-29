@@ -3,14 +3,15 @@
 
 %p
   .pull-right
+    = link_to 'Edit', edit_teachers_schedule_url(@teachers_schedule)
     %span.glyphicon.glyphicon-print
     = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf')
   %b
     Schedule days:
   from
-  %b=@date.at_beginning_of_week.strftime("%d.%m.%Y")
+  %b=@date.strftime("%d.%m.%Y")
   to
-  %b=@date.at_end_of_week.strftime("%d.%m.%Y")
+  %b=@date_end.strftime("%d.%m.%Y")
 #schedule_table_show.table-responsive
   - @schedule.each do |teacher_id, schedule|
     %table.table.table-condensed.table-bordered
@@ -24,11 +25,11 @@
             %th
               = (@date + day.to_i.days).strftime("%A, %d %b")
       %tbody
-        - schedule.each do |day_number, lessons|
+        - 5.times do |para|
           %tr
-            - lessons.each do |para, lesson|
+            - 5.times do |day|
               %td
-                - unless lesson["subject"].empty?
-                  = @subjects[lesson["subject"]].name
-                  ,
-                  = lesson["room"]
+                - subj = @schedule["#{teacher_id}"]["#{day}"]["#{para+1}"]["subject"]
+                = @subjects[subj].name if subj.present?
+                = @schedule["#{teacher_id}"]["#{day}"]["#{para+1}"]["room"]
+

@@ -3,7 +3,8 @@ class TeachersSchedulesController < PrivateAreaController
   def show
     @teachers_schedule = TeachersSchedule.find(params[:id])
     @schedule = @teachers_schedule.schedule
-    @date = @teachers_schedule.week
+    @date = @teachers_schedule.week.at_beginning_of_week
+    @date_end = @teachers_schedule.week.at_end_of_week
 
     teacher_ids = @schedule.keys.uniq
     @teachers = teacher_ids.each_with_object({}) do |tid, memo|
