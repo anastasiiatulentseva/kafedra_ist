@@ -169,6 +169,7 @@ p {
   th {
     min-width: 170px;
     background-color: #CCCCCC;
+    text-align: center;
   }
   select {
     width: 120px;
@@ -179,6 +180,9 @@ p {
 }
 
 #schedule_table_show {
+  th {
+    text-align: center;
+  }
   tbody {
 
     td {

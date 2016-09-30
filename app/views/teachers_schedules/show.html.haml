@@ -5,7 +5,7 @@
   .pull-right
     = link_to 'Edit', edit_teachers_schedule_url(@teachers_schedule)
     %span.glyphicon.glyphicon-print
-    = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf')
+    = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf'), id: "print_pdf"
   %b
     Schedule days:
   from
@@ -14,7 +14,7 @@
   %b=@date_end.strftime("%d.%m.%Y")
 #schedule_table_show.table-responsive
   - @schedule.each do |teacher_id, schedule|
-    %table.table.table-condensed.table-bordered
+    %table.table.table-condensed.table-bordered{id: "teacher_#{teacher_id}"}
       %thead
         %tr
           %th{colspan: 5}
