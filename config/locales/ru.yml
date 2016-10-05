@@ -1,0 +1,37 @@
+ru:
+  sign_in: Вход
+  sign_up: Регистрация
+  remember_me: Запомнить меня
+  forgotten_password: Забыли пароль?
+  no_confirmation_instructions: Не получили письмо для подтверждения?
+  no_unlock_instructions: Не получали инструкции по разблокировке?
+
+  activerecord:
+      attributes:
+        user:
+          name: Имя пользователя
+          picture: Изображение
+          email: Электронная почта
+          password: Пароль
+        article:
+          name: Название
+          text: Tекст
+          category: Категория
+          order: Порядковый номер
+        workbook:
+          name: Название
+          description: Описание
+          attachment: Прикрепленный файл
+        teachers_schedule:
+          week: Неделя
+        specialtie:
+          name: Название
+        subject:
+          name: Название
+          course_year: Курс
+        student_profile:
+          group: Группа
+          course_year: Курс
+  submissions:
+    yes: Да
+    no: Нет

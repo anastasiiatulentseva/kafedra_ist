@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
+  before_action :set_locale
+
   def current_or_guest_user
     if current_user
       if session[:guest_user_id] && session[:guest_user_id] != current_user.id
@@ -33,6 +35,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale
+    I18n.locale = :ru
+  end
 
   def redirect_to_back_or_default(default = root_url)
     if request.env["HTTP_REFERER"].present? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]

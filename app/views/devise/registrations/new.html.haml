@@ -5,10 +5,10 @@
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
         .form-group
-          = f.label :name
+          = f.label :name, t('models.users.name')
           = f.text_field :name, autofocus: true, class: "form-control"
         .form-group
-          = f.label :email
+          = f.label :email, t('models.users.email')
           = f.email_field :email, class: "form-control"
         %label.btn.btn-default.btn-block
           %input{"aria-controls" => "for_student", "aria-expanded" => "false",
