@@ -1,11 +1,17 @@
 - provide(:title, "Teacher schedule")
 %h1.page-header Show teachers schedule
 
-%p
+.clearfix
+  .pull-left
+    = link_to '<< previous', teachers_schedule_path(@teachers_schedule.previous)
   .pull-right
-    = link_to 'Edit', edit_teachers_schedule_url(@teachers_schedule)
-    %span.glyphicon.glyphicon-print
-    = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf'), id: "print_pdf"
+    = link_to 'next >>', teachers_schedule_path(@teachers_schedule.next)
+.clearfix
+  %p
+    .pull-right
+      = link_to 'Edit', edit_teachers_schedule_url(@teachers_schedule)
+      %span.glyphicon.glyphicon-print
+      = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf'), id: "print_pdf"
   %b
     Schedule days:
   from

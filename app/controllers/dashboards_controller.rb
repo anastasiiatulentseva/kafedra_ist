@@ -13,5 +13,7 @@ class DashboardsController < PrivateAreaController
 
     @specialties_count = Specialty.count
     @subjects_count = Subject.simple.count
+
+    @schedule = TeachersSchedule.last
   end
 end
