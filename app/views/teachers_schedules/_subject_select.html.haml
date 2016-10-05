@@ -1,0 +1,13 @@
+.form-inline
+  .form-group
+    = select_tag 'subject',
+        options_from_collection_for_select(teacher.teacher_profile.subjects, :id, :name,
+          teachers_schedule.persisted? ? teachers_schedule.schedule["#{teacher.id}"]["#{day}"]["#{lesson_number + 1}"]["subject"] : nil),
+        include_blank: true,
+        class: "form-control input-sm",
+        name: "schedule[#{teacher.id}][#{day}][#{lesson_number + 1}][subject]"
+  .form-group
+    = text_field_tag 'room',
+        teachers_schedule.persisted? ? teachers_schedule.schedule["#{teacher.id}"]["#{day}"]["#{lesson_number + 1}"]["room"] : nil,
+        { name: "schedule[#{teacher.id}][#{day}][#{lesson_number + 1}][room]",
+          size: 3, class: "form-control input-sm" }

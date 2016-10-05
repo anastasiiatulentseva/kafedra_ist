@@ -1,0 +1,41 @@
+- provide(:title, "Teacher schedule")
+%h1.page-header Show teachers schedule
+
+.clearfix
+  .pull-left
+    = link_to '<< previous', teachers_schedule_path(@teachers_schedule.previous)
+  .pull-right
+    = link_to 'next >>', teachers_schedule_path(@teachers_schedule.next)
+.clearfix
+  %p
+    .pull-right
+      = link_to 'Edit', edit_teachers_schedule_url(@teachers_schedule)
+      %span.glyphicon.glyphicon-print
+      = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf'), id: "print_pdf"
+  %b
+    Schedule days:
+  from
+  %b=@date.strftime("%d.%m.%Y")
+  to
+  %b=@date_end.strftime("%d.%m.%Y")
+#schedule_table_show.table-responsive
+  - @schedule.each do |teacher_id, schedule|
+    %table.table.table-condensed.table-bordered{id: "teacher_#{teacher_id}"}
+      %thead
+        %tr
+          %th{colspan: 5}
+            Teacher:
+            = @teachers[teacher_id].name
+        %tr
+          - schedule.each do |day, lessons|
+            %th
+              = (@date + day.to_i.days).strftime("%A, %d %b")
+      %tbody
+        - 5.times do |para|
+          %tr
+            - 5.times do |day|
+              %td
+                - subj = @schedule["#{teacher_id}"]["#{day}"]["#{para+1}"]["subject"]
+                = @subjects[subj].name if subj.present?
+                = @schedule["#{teacher_id}"]["#{day}"]["#{para+1}"]["room"]
+

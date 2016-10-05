@@ -5,10 +5,10 @@ class Ability
     user ||= User.new
     alias_action :choose_subjects, :save_subjects, :to => :own_subjects
     alias_action :mass_mail, :send_mailout, :to => :send_mass_mailout
+
     can :show, User unless user.guest?
     can :read, Article
-
-    cannot :read, :dashboard unless user.admin?
+    can :send_feedback
 
     can :read, Workbook if user.student?
 
@@ -18,13 +18,13 @@ class Ability
       can :own_subjects, User, id: user.id
     end
 
-    if user.teacher? || user.admin?
+
+    if user.teacher?
       can :send_mass_mailout, :emails
+      can :read, TeachersSchedule
     end
 
-    can :send_feedback
-
-
+    cannot :read, :dashboard unless user.admin?
     can :manage, :all if user.admin?
   end
 end

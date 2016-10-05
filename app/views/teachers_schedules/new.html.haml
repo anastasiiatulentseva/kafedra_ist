@@ -1,0 +1,8 @@
+- provide(:title, "Adding new teacher schedule")
+%h1.page-header New teachers schedule
+
+= render 'teachers_schedule_form',
+  teachers_schedule: @teachers_schedule,
+  teachers: @teachers,
+  url: teachers_schedules_path,
+  http_method: :post

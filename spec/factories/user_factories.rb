@@ -17,6 +17,7 @@ FactoryGirl.define do
     end
 
     factory :teacher do
+      sequence(:name) { |n| "teacher_#{n}" }
       sequence(:email) { |n| "teacher#{n}@teacher.ru" }
       roles :teacher
       after(:create) do |teacher|

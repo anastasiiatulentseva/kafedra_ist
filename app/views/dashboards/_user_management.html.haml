@@ -6,6 +6,11 @@
       = link_to 'All users', users_path
     %li.list-group-item
       = link_to 'Send mailout', mailers_mass_mail_path
+    %li.list-group-item
+      = link_to 'New teachers schedule', new_teachers_schedule_path
+    %li.list-group-item
+      - if @schedule
+        = link_to 'Teacher schedule', teachers_schedule_path(@schedule)
   .panel-footer
     %h4.panel-title User statistics
     %p
