@@ -1,7 +1,9 @@
 - provide(:title, @article.name)
-%h1.page-header= @article.name
+%h1.page-header
+  = @article.name
 .pull-right
-  = link_to 'Edit article', edit_article_path(@article.id), class: "text-danger"
-  |
-  = link_to 'Back to index', articles_path, class: "text-danger"
+  .btn-group
+    = link_to t('back'), articles_path, class: "btn btn-default"
+    - if can? :edit, Article
+      = link_to t('edit'), edit_article_path(@article.id), class: "btn btn-default"
 .clearfix= @article.text.html_safe

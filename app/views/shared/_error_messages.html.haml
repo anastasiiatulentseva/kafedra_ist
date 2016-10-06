@@ -1,7 +1,7 @@
 #error_explanation
   - if object.errors.any?
     .alert.alert-danger
-      The form contains #{pluralize(object.errors.count, "error")}
+      = t('error_alert', errors_count: pluralize(object.errors.count, "error"))
     %ul
       - object.errors.full_messages.each do |msg|
         %li.text-danger= msg

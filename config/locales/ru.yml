@@ -50,6 +50,15 @@ ru:
   active_users: Активных пользователей
   users_today: Заходило сегодня
 
+  delete_article: Удалить статью?
+  delete: Удалить
+  edit: Редактировать
+  error_alert: "Форма содержит следующие ошибки:"
+
+  article_created: Статья успешно создана!
+  article_updated: Статья обновлена
+  article_deleted: Статья удалена
+
   activerecord:
     models:
       users: Пользователи
@@ -87,6 +96,14 @@ ru:
         group: Группа
         course_year: Курс
         specialty_id: Специальность
+    errors:
+      models:
+        article:
+          attributes:
+            name:
+              blank: должно быть заполнено
+            order:
+              not_a_number: должен быть целым числом
   submissions:
     yes: Да
     no: Нет

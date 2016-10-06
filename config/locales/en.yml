@@ -52,3 +52,12 @@ en:
   active_users: Active users
   users_today: Users today
 
+  delete_article: Delete article?
+  delete: Delete
+  edit: Edit
+  error_alert: "The form contains %{errors_count}"
+
+
+  article_created: "Article has been created"
+  article_updated: "Article has been updated"
+  article_deleted: "Article has been deleted"
