@@ -7,7 +7,6 @@ ru:
   no_unlock_instructions: Не получали инструкции по разблокировке?
   send_password_insrtuctions: Получить письмо с инструкциями
   change_password: Придумайте новый пароль
-  specialty: Специальность
   me_student: Я студент!
   password_length: "Минимум %{minimum_password_length} символов"
   save: Сохранить
@@ -19,35 +18,75 @@ ru:
   current_picture: "Текущее изображение"
   change_picture: "Сменить изображение:"
   file_size_limit: Выберите файл до 5МБ
+  my_subjects: Мои дисциплины
+  my_workbooks: Мои методички
+  contact_user: Написать пользователю
+  users_subjects: "Дисциплины, которые преподает %{user}:"
+  mail_subject: Тема письма
+  no_user_information: Пользователь не предоставил информацию о себе
+  message_text: Текст письма
+  response_email_info: Вы получите ответ на адрес email, который указан в Вашем профиле
+  send_message to: "Отправить сообщение пользователю %{recipient}"
 
+  dashboard: Панель управления
+  my_profile: Мой профиль
+  log_out: Выйти
+
+  content_management: Управление контентом
+  user_management: Управление пользователями
+  create_article: Создать статью
+  create_workbook: Создать методичку по дисциплине
+  create_special_workbook: Создать методичку по ДП/практике
+  all_articles: Все статьи
+  all_workbooks: Все методички
+  more: "Больше ->"
+  content_statistics: Статистика по материалам
+  user_statistics: Статистика по пользователям
+  teachers: Преподаватели
+  students: Студенты
+  send_mailout: Рассылка
+  new_teachers_schedule: Создать новое расписание
+  all_users: Все пользователи
+  active_users: Активных пользователей
+  users_today: Заходило сегодня
 
   activerecord:
-      attributes:
-        user:
-          name: Имя пользователя
-          picture: Изображение
-          email: Электронная почта
-          password: Пароль
-          password_confirmation: Подтверждение пароля
-        article:
-          name: Название
-          text: Tекст
-          category: Категория
-          order: Порядковый номер
-        workbook:
-          name: Название
-          description: Описание
-          attachment: Прикрепленный файл
-        teachers_schedule:
-          week: Неделя
-        specialtie:
-          name: Название
-        subject:
-          name: Название
-          course_year: Курс
-        student_profile:
-          group: Группа
-          course_year: Курс
+    models:
+      users: Пользователи
+      articles: Статьи
+      workbooks: Методички
+      subjects: Дисциплины
+      specialties: Специальности
+      teachers_schedule: Расписание для преподавателей
+    attributes:
+      user:
+        name: Имя пользователя
+        picture: Изображение
+        email: Электронная почта
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      article:
+        name: Название
+        text: Tекст
+        category: Категория
+        order: Порядковый номер
+      workbook:
+        name: Название
+        description: Описание
+        attachment: Прикрепленный файл
+        subject_id: Дисциплина
+      teachers_schedule:
+        week: Неделя
+      specialty:
+        name: Название
+      subject:
+        name: Название
+        specialty_id: Специальность
+        course_year: Курс
+      student_profile:
+        group: Группа
+        course_year: Курс
+        specialty_id: Специальность
   submissions:
     yes: Да
     no: Нет

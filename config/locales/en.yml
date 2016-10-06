@@ -10,6 +10,7 @@ en:
   save: Save
   resend_confirmation: Resend confirmation instructions
   send: Send
+
   edit_profile: Edit profile
   back: "<- Go back"
   leave_blank: (leave blank if you don't want to change it)
@@ -19,4 +20,35 @@ en:
   current_picture: "Current picture:"
   change_picture: "Change picture:"
   file_size_limit: Use file up to 5MB
+  my_subjects: My subjects
+  my_workbooks: My workbooks
+  contact_user: Contact user
+  users_subjects: "%{user}'s subjects:"
+  mail_subject: Subject
+  no_user_information: No information about user
+  message_text: Message text
+  response_email_info: You'll get response to the email address you have provided in your profile
+  send_message_to: "Send message to %{user}"
+
+  dashboard: Dashboard
+  my_profile: My profile
+  log_out: Log out
+
+  content_management: Content management
+  user_management: User management
+  create_article: Create new article
+  create_workbook: Create new workbook
+  create_special_workbook: Create new special workbook
+  all_articles: All articles
+  all_workbooks: All workbooks
+  more: "more ->"
+  content_statistics: Content statistics
+  user_statistics: Users statistics
+  teachers: Teachers
+  students: Students
+  send_mailout: Send mailout
+  new_teachers_schedule: New schedule
+  all_users: All users
+  active_users: Active users
+  users_today: Users today
 

@@ -24,7 +24,7 @@
               = student.label :course_year, class: "control-label"
               = student.text_field :course_year, class: "form-control"
             .form-group
-              = student.label :specialty_id, t('specialty'), class: "control-label"
+              = student.label :specialty_id, t('activerecord.attributes.student_profile.specialty_id'), class: "control-label"
               = student.collection_select(:specialty_id, @specialties, :id, :name, {}, class: "form-control")
             .form-group
               = student.label :group, class: "control-label"
