@@ -2,6 +2,21 @@ en:
   sign_in: Sign in
   sign_up: Sign up
   remember_me: Remember me
-  forgotten_password: Forgot password?
+  forgotten_password: Forgot your password?
   no_confirmation_instructions: Didn't receive confirmation instructions?
   no_unlock_instructions: Didn't receive unlock instructions?
+  send_password_insrtuctions: Send me reset password instructions
+  change_password: Change your password
+  save: Save
+  resend_confirmation: Resend confirmation instructions
+  send: Send
+  edit_profile: Edit profile
+  back: "<- Go back"
+  leave_blank: (leave blank if you don't want to change it)
+  specialty: Specialty
+  me_student: I am student!
+  password_length: "%{minimum_password_length} characters minimum"
+  current_picture: "Current picture:"
+  change_picture: "Change picture:"
+  file_size_limit: Use file up to 5MB
+

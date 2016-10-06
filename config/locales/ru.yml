@@ -5,6 +5,21 @@ ru:
   forgotten_password: Забыли пароль?
   no_confirmation_instructions: Не получили письмо для подтверждения?
   no_unlock_instructions: Не получали инструкции по разблокировке?
+  send_password_insrtuctions: Получить письмо с инструкциями
+  change_password: Придумайте новый пароль
+  specialty: Специальность
+  me_student: Я студент!
+  password_length: "Минимум %{minimum_password_length} символов"
+  save: Сохранить
+  resend_confirmation: Выслать письмо для подтверждения еще раз
+  send: Отправить
+  edit_profile: Редактировать профиль
+  back: "<- Назад"
+  leave_blank: (не заполняйте, если не хотите менять пароль)
+  current_picture: "Текущее изображение"
+  change_picture: "Сменить изображение:"
+  file_size_limit: Выберите файл до 5МБ
+
 
   activerecord:
       attributes:
@@ -13,6 +28,7 @@ ru:
           picture: Изображение
           email: Электронная почта
           password: Пароль
+          password_confirmation: Подтверждение пароля
         article:
           name: Название
           text: Tекст
