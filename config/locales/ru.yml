@@ -27,7 +27,7 @@ ru:
   message_text: Текст письма
   response_email_info: Вы получите ответ на адрес email, который указан в Вашем профиле
   send_message to: "Отправить сообщение пользователю %{recipient}"
-
+  all_workbooks: Все методички
   dashboard: Панель управления
   my_profile: Мой профиль
   log_out: Выйти
@@ -51,13 +51,25 @@ ru:
   users_today: Заходило сегодня
 
   delete_article: Удалить статью?
+  delete_workbook: Удалить методичку?
   delete: Удалить
   edit: Редактировать
   error_alert: "Форма содержит следующие ошибки:"
-
+  file_types: "Разрешенные типы файлов:"
+  unlimited_file_size: Размер загружаемого файла не ограничен, однако используйте дисковое пространство рационально
   article_created: Статья успешно создана!
   article_updated: Статья обновлена
   article_deleted: Статья удалена
+  workbook_created: Методичка успешно создана!
+  workbook_updated: Методичка обновлена
+  workbook_deleted: Методичка удалена
+  current_file: "Текущий файл:"
+  file_upload_warning: При загрузке нового файла старый будет удален.
+  all: Все
+  special: ДП/практика
+  download: Скачать
+  new_workbook: Новая методичка
+  special_workbook: Методичка по ДП/практике
 
   activerecord:
     models:
@@ -92,6 +104,7 @@ ru:
         name: Название
         specialty_id: Специальность
         course_year: Курс
+        teacher_profile_id: Преподаватель
       student_profile:
         group: Группа
         course_year: Курс
@@ -104,6 +117,14 @@ ru:
               blank: должно быть заполнено
             order:
               not_a_number: должен быть целым числом
+        workbook:
+          attributes:
+            name:
+              blank: должно быть заполнено
+            attachment:
+              blank: обязателен
   submissions:
     yes: Да
     no: Нет
+  unauthorized:
+        default: "Доступ к запрашиваемой странице не разрешен."

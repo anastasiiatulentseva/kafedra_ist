@@ -1,8 +1,10 @@
-- provide(:title, "Edit workbook")
-%h1.page-header= @workbook.name
-.col-md-9.col-md-offset-2
-  = render partial: 'workbooks/workbook_form',
-    locals: { object: @workbook,
-      url: workbook_path(@workbook),
-      http_method: :patch,
-      subjects: @subjects }
+- provide(:title, @workbook_name)
+%h1.page-header
+  = @workbook_name
+.row
+  .col-md-10.col-md-offset-1
+    = render partial: 'workbooks/workbook_form',
+      locals: { object: @workbook,
+        url: workbook_path(@workbook),
+        http_method: :patch,
+        subjects: @subjects }

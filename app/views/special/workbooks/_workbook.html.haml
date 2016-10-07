@@ -1,5 +1,4 @@
-%li
-  %span
-    = link_to workbook.name, special_workbook_path(workbook.id)
-    - if @user.admin?
-      = link_to "Edit", edit_special_workbook_path(workbook.id), class: "btn btn-default btn-xs"
+%li.list-group-item
+  = link_to workbook.name, special_workbook_path(workbook.id)
+  - if @user.admin?
+    = link_to t('edit'), edit_special_workbook_path(workbook.id), class: "btn btn-default btn-xs pull-right"

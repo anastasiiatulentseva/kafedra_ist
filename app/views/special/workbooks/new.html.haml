@@ -1,8 +1,10 @@
-- provide(:title, "Adding new special workbook")
-%h1.page-header New special workbook
-.col-md-9.col-md-offset-2
-  = render partial: 'workbooks/workbook_form',
-    locals: { object: @special_workbook,
-      url: special_workbooks_path,
-      http_method: :post,
-      subjects: @special_subjects }
+- provide(:title, t('special_workbook'))
+%h1.page-header
+  = t('special_workbook')
+.row
+  .col-md-10.col-md-offset-1
+    = render partial: 'workbooks/workbook_form',
+      locals: { object: @special_workbook,
+        url: special_workbooks_path,
+        http_method: :post,
+        subjects: @special_subjects }

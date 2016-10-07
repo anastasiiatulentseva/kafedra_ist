@@ -6,4 +6,6 @@
     = link_to t('back'), articles_path, class: "btn btn-default"
     - if can? :edit, Article
       = link_to t('edit'), edit_article_path(@article.id), class: "btn btn-default"
-.clearfix= @article.text.html_safe
+.clearfix
+  %p
+    = @article.text.html_safe

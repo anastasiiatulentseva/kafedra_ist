@@ -1,7 +1,6 @@
-%li
-  %span
-    = link_to workbook.name, workbook_path(workbook.id)
-    - if @user.teacher?
-      = render 'workbooks/teacher_links', workbook: workbook
-    - else
-      = render 'workbooks/student_links', workbook: workbook
+%li.list-group-item
+  = link_to workbook.name, workbook_path(workbook.id)
+  - if @user.teacher?
+    = render 'workbooks/teacher_links', workbook: workbook
+  - else
+    = render 'workbooks/student_links', workbook: workbook

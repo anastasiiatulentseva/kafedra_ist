@@ -51,13 +51,24 @@ en:
   all_users: All users
   active_users: Active users
   users_today: Users today
-
+  current_file: "Current file:"
+  file_upload_warning: If you upload another file the old one will be deleted.
   delete_article: Delete article?
+  delete_worbook: Delete workbook?
   delete: Delete
   edit: Edit
+  all: All
   error_alert: "The form contains %{errors_count}"
-
-
+  file_types: "Allowed file types:"
+  unlimited_file_size: As file size is not limited you are kindly asked to use storage space thriftily.
   article_created: "Article has been created"
   article_updated: "Article has been updated"
   article_deleted: "Article has been deleted"
+  workbook_created: "Workbook has been created"
+  workbook_updated: "Workbook has been updated"
+  workbook_deleted: "Workbook has been deleted"
+  special: Special
+  download: Download
+  new_workbook: New workbook
+  special_workbook: Special workbook
+  all_workbooks: All workbooks

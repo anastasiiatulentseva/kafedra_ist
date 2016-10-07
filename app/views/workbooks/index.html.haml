@@ -1,13 +1,17 @@
-- provide(:title, "Workbooks")
+- provide(:title, t('activerecord.models.workbooks'))
 %h1.page-header
-  My workbooks
+  = t('activerecord.models.workbooks')
+
+- if can? :create, Workbook
+  = link_to t('create_workbook'), new_workbook_path, class: "btn btn-sm btn-default"
+  %hr
 
 #workbook_index
   .row
     .col-md-4
       %ul.nav.nav-pills.nav-stacked
         %li{class: params[:subject].blank? && 'active' }
-          = link_to 'All', workbooks_path
+          = link_to t('all'), workbooks_path
         - @subjects.each do |subject|
           %li{class: (params[:subject] == subject.id.to_s) && 'active' }
             = link_to workbooks_path(subject: subject.id) do
@@ -21,9 +25,6 @@
           - if @teacher && current_user.student?
             %span.pull-right
               = link_to user_path(@teacher) do
-                Teacher:
-                = @teacher.name
-        .panel-body
-          - if can? :create, Workbook
-            = link_to 'Create new workbook', new_workbook_path, class: "btn btn-sm btn-default pull-right"
+                = "#{t('activerecord.attributes.subject.teacher_profile_id')}: #{@teacher.name}"
+        %ul.list-group
           = render @panel_workbooks
