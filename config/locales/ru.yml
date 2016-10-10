@@ -66,11 +66,19 @@ ru:
   current_file: "Текущий файл:"
   file_upload_warning: При загрузке нового файла старый будет удален.
   all: Все
+  new: Новые
+  delete_user: Удалить пользователя?
   special: ДП/практика
   download: Скачать
   new_workbook: Новая методичка
   special_workbook: Методичка по ДП/практике
-
+  ban: Бан
+  unban: Разбан
+  confirmed: Подтвержден
+  set_role: Задать роль
+  unban_user: "Разблокировать пользователя?"
+  ban_user: "Заблокировать пользователя?"
+  banned: В бане
   activerecord:
     models:
       users: Пользователи
@@ -123,8 +131,10 @@ ru:
               blank: должно быть заполнено
             attachment:
               blank: обязателен
-  submissions:
-    yes: Да
-    no: Нет
+  'yes': Да
+  'no': Нет
   unauthorized:
         default: "Доступ к запрашиваемой странице не разрешен."
+  will_paginate:
+    next_label: Вперед
+    previous_label: Назад

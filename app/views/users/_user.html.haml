@@ -1,7 +1,7 @@
 %th
   = link_to user.name, user_path(user.id)
 %td= user.email
-%td= user.confirmed_at? ? 'Yes' : 'No'
+%td= user.confirmed_at? ? t('yes') : t('No')
 %td
   =form_for(user, remote: true) do |f|
     .form-group-sm
@@ -18,7 +18,7 @@
   = link_to "&times;".html_safe,
              user,
              method: :delete,
-             data: { confirm: "Delete user?" },
+             data: { confirm: t('delete_user') },
              remote: true,
              class: "delete-user"
 

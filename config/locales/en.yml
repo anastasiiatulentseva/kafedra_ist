@@ -58,6 +58,8 @@ en:
   delete: Delete
   edit: Edit
   all: All
+  new: new
+  delete_user: Delete user?
   error_alert: "The form contains %{errors_count}"
   file_types: "Allowed file types:"
   unlimited_file_size: As file size is not limited you are kindly asked to use storage space thriftily.
@@ -72,3 +74,12 @@ en:
   new_workbook: New workbook
   special_workbook: Special workbook
   all_workbooks: All workbooks
+  'yes': Yes
+  'no': No
+  ban: ban
+  unban: unban
+  set_role: Set role
+  unban_user: Unban user?
+  ban_user: Ban user?
+  banned: Banned
+  confirmed: Confirmed
