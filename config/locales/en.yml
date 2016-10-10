@@ -63,12 +63,12 @@ en:
   error_alert: "The form contains %{errors_count}"
   file_types: "Allowed file types:"
   unlimited_file_size: As file size is not limited you are kindly asked to use storage space thriftily.
-  article_created: "Article has been created"
-  article_updated: "Article has been updated"
-  article_deleted: "Article has been deleted"
-  workbook_created: "Workbook has been created"
-  workbook_updated: "Workbook has been updated"
-  workbook_deleted: "Workbook has been deleted"
+  article_created: Article has been created
+  article_updated: Article has been updated
+  article_deleted: Article has been deleted
+  workbook_created: Workbook has been created
+  workbook_updated: Workbook has been updated
+  workbook_deleted: Workbook has been deleted
   special: Special
   download: Download
   new_workbook: New workbook
@@ -83,3 +83,19 @@ en:
   ban_user: Ban user?
   banned: Banned
   confirmed: Confirmed
+  user_list_message: "list is empty, select other group of users"
+  select_user_group: Select group of users
+  select_specialty: Select specialty for students
+  select_course_year: Select course year
+  select_student_group: Select group
+  all_site_users: All site users
+  send_mailout: Send this big mailout
+  activemodel:
+    models:
+      form_objects/mass_mailout: Admin's mailout
+    errors:
+      models:
+        form_objects/mass_mailout:
+          attributes:
+            users:
+              user_list_blank: "list is empty, select other group of users"

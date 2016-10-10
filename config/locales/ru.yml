@@ -79,6 +79,12 @@ ru:
   unban_user: "Разблокировать пользователя?"
   ban_user: "Заблокировать пользователя?"
   banned: В бане
+  select_user_group: Выберите пользователей
+  select_specialty: Выберите специальность
+  select_course_year: Выберите курс
+  select_student_group: Выберите группу
+  all_site_users: Все активные
+  send_mailout: Разослать всем!
   activerecord:
     models:
       users: Пользователи
@@ -138,3 +144,21 @@ ru:
   will_paginate:
     next_label: Вперед
     previous_label: Назад
+  activemodel:
+    models:
+      form_objects/mass_mailout: Почтовая рассылка
+    attributes:
+      form_objects/mass_mailout:
+          subject: Тема письма
+          text: Текст письма
+          users: Список пользователей
+    errors:
+      models:
+        form_objects/mass_mailout:
+          attributes:
+            subject:
+              blank: должна быть указана
+            text:
+              blank: отсутствует
+            users:
+              user_list_blank: "пуст, выберите другие критерии"
