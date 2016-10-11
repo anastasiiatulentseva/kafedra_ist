@@ -31,6 +31,7 @@ gem 'cancancan'
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'russian'
 
 group :test do
   gem 'shoulda-matchers'
