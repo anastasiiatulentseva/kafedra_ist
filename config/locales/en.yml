@@ -89,7 +89,16 @@ en:
   select_course_year: Select course year
   select_student_group: Select group
   all_site_users: All site users
-  send_mailout: Send this big mailout
+  send_this_mailout: Send this big mailout
+  new_teachers_schedule: New teachers schedule
+  choose_date: Choose start date
+  teacher: 'Teacher:'
+  print_pdf: Print PDF
+  schedule_week: "Schedule days: from"
+  to: to
+  schedule_created: "Teachers schedule has been created"
+  schedule_updated: "Schedule has been updated"
+
   activemodel:
     models:
       form_objects/mass_mailout: Admin's mailout
@@ -99,3 +108,8 @@ en:
           attributes:
             users:
               user_list_blank: "list is empty, select other group of users"
+    time:
+      formats:
+        days_of_week: "%A"
+        days_with_date: "%A, %d %b"
+        simple_date: "%d/%m/%Y"

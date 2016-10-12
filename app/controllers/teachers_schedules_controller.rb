@@ -28,7 +28,7 @@ class TeachersSchedulesController < PrivateAreaController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Teachers schedule #{@date}"
+        render pdf: "#{t('activerecord.models.teachers_schedule')}_#{l @date, format: :simple_date}"
       end
     end
 
@@ -43,7 +43,7 @@ class TeachersSchedulesController < PrivateAreaController
     @teachers_schedule = TeachersSchedule.new(week: params[:week], schedule: params[:schedule])
     if @teachers_schedule.save
       redirect_to teachers_schedule_path(@teachers_schedule)
-      flash[:success] = "Teachers schedule has been created"
+      flash[:success] = t('schedule_created')
     else
       render 'new'
     end
@@ -59,7 +59,7 @@ class TeachersSchedulesController < PrivateAreaController
     @teachers_schedule = TeachersSchedule.find(params[:id])
     @teachers = User.with_role(:teacher).order(:name)
     if @teachers_schedule.update_attributes(week: params[:week], schedule: params[:schedule] )
-      flash[:success] = "Schedule has been updated"
+      flash[:success] = t('schedule_updated')
       redirect_to teachers_schedule_path(@teachers_schedule)
     else
       flash[:danger] = "Something went wrong"

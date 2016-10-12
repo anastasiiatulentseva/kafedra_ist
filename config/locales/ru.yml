@@ -84,7 +84,16 @@ ru:
   select_course_year: Выберите курс
   select_student_group: Выберите группу
   all_site_users: Все активные
-  send_mailout: Разослать всем!
+  send_this_mailout: Разослать всем!
+  new_teachers_schedule: Новое расписание
+  choose_date:  Выберите начальную дату
+  teacher: "Преподаватель:"
+  print_pdf: Печать PDF
+  schedule_week: "Расписание с"
+  to: по
+  schedule_created: Расписание успешно создано!
+  schedule_updated: Расписание изменено
+
   activerecord:
     models:
       users: Пользователи
@@ -162,3 +171,8 @@ ru:
               blank: отсутствует
             users:
               user_list_blank: "пуст, выберите другие критерии"
+  date:
+    formats:
+      days_of_week: "%A"
+      days_with_date: "%A, %d %b"
+      simple_date: "%d-%m-%y"
