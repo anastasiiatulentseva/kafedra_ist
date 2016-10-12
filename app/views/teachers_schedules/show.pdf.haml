@@ -3,7 +3,7 @@
   %b=@date.at_beginning_of_week.strftime("%d.%m.%Y")
   = t('to')
   %b=@date.at_end_of_week.strftime("%d.%m.%Y")
-- @schedule.each do |teacher_id, schedule|
+- @schedule.each_with_index do |(teacher_id, schedule), idx |
   %p
   %table{style: "width:100%; border-collapse:collapse;"}
     %thead
@@ -26,3 +26,5 @@
               - unless lesson["subject"].empty?
                 = @subjects[lesson["subject"]].name
               = lesson["room"]
+  - if (idx+1)%5 == 0 && idx > 0
+    .page-break{style: "display:block; clear:both; page-break-after:always"}
