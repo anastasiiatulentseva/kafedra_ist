@@ -99,6 +99,22 @@ en:
   schedule_created: "Teachers schedule has been created"
   schedule_updated: "Schedule has been updated"
   email_sent: 'Email has been sent'
+  contact_us: Contact us!
+  kafedra_ist: Kafedra IST
+  slogan: The cool kafedra with cool teachers!
+  for_enrollee: Enrollee
+  for_student: Student
+  for_teacher: Teacher
+  for_employer: Employer
+  remote_education: Remote education
+  contacts: Contacts
+  addresses: Address and contacts
+  follow_us: "Follow us"
+  alumnus: Our alumnus
+  enrollee_text: Get useful information here. Click links below!
+  employer_text: Get information of our best students you may want to hire
+  student_text: Get everything you need for your education here
+
 
   activemodel:
     models:
