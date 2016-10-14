@@ -98,6 +98,7 @@ en:
   to: to
   schedule_created: "Teachers schedule has been created"
   schedule_updated: "Schedule has been updated"
+  email_sent: 'Email has been sent'
 
   activemodel:
     models:

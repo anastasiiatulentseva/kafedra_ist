@@ -93,7 +93,7 @@ ru:
   to: по
   schedule_created: Расписание успешно создано!
   schedule_updated: Расписание изменено
-
+  email_sent: Письмо отправлено!
   activerecord:
     models:
       users: Пользователи
@@ -134,6 +134,10 @@ ru:
         specialty_id: Специальность
     errors:
       models:
+        user:
+          attributes:
+            email:
+              blank: должна быть указана
         article:
           attributes:
             name:
@@ -158,9 +162,12 @@ ru:
       form_objects/mass_mailout: Почтовая рассылка
     attributes:
       form_objects/mass_mailout:
-          subject: Тема письма
-          text: Текст письма
-          users: Список пользователей
+        subject: Тема письма
+        text: Текст письма
+        users: Список пользователей
+      form_objects/user_feedback:
+        text: Текст письма
+        user_email: Электронная почта
     errors:
       models:
         form_objects/mass_mailout:
@@ -171,6 +178,12 @@ ru:
               blank: отсутствует
             users:
               user_list_blank: "пуст, выберите другие критерии"
+        form_objects/user_feedback:
+          attributes:
+            text:
+              blank: обязателен
+            user_email:
+              blank: должна быть указана
   date:
     formats:
       days_of_week: "%A"
