@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
     redirect_to :back, :alert => exception.message
   end
 
-  before_action :set_locale
+  before_action :set_locale_from_query_string
+  before_action :restore_locale_from_session
+
 
   def current_or_guest_user
     if current_user
@@ -36,8 +38,17 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_locale
-    I18n.locale = :ru
+  def set_locale_from_query_string
+    if params[:lang].present?
+      session[:current_lang] = params[:lang]
+    end
+  end
+
+  def restore_locale_from_session
+    lang = session[:current_lang]
+    lang ||= :ru
+
+    I18n.locale = lang
   end
 
   def redirect_to_back_or_default(default = root_url)
