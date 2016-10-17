@@ -29,7 +29,8 @@ en:
   message_text: Message text
   response_email_info: You'll get response to the email address you have provided in your profile
   send_message_to: "Send message to %{user}"
-
+  next: Next
+  previous: Previous
   dashboard: Dashboard
   my_profile: My profile
   log_out: Log out
@@ -54,11 +55,11 @@ en:
   current_file: "Current file:"
   file_upload_warning: If you upload another file the old one will be deleted.
   delete_article: Delete article?
-  delete_worbook: Delete workbook?
+  delete_workbook: Delete workbook?
   delete: Delete
   edit: Edit
   all: All
-  new: new
+  new: New
   delete_user: Delete user?
   error_alert: "The form contains %{errors_count}"
   file_types: "Allowed file types:"
@@ -115,6 +116,44 @@ en:
   employer_text: Get information of our best students you may want to hire
   student_text: Get everything you need for your education here
 
+  activerecord:
+    models:
+      workbooks: Workbooks
+      articles: Articles
+      users: Users
+      teachers_schedule: Teachers Schedule
+      specialty: Specialty
+      subjects: Subjects
+    attributes:
+      user:
+        name: Username
+        picture: Picture
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+      article:
+        name: Name
+        text: Text
+        category: Category
+        order: Order
+      workbook:
+        name: Name
+        description: Description
+        attachment: Attachment
+        subject_id: Subject
+      teachers_schedule:
+        week: Week
+      specialty:
+        name: Name
+      subject:
+        name: Name
+        specialty_id: Specialty
+        course_year: Course year
+        teacher_profile_id: Teacher
+      student_profile:
+        group: Group
+        course_year: Course year
+        specialty_id: Specialty
 
   activemodel:
     models:
@@ -125,8 +164,16 @@ en:
           attributes:
             users:
               user_list_blank: "list is empty, select other group of users"
-    time:
-      formats:
-        days_of_week: "%A"
-        days_with_date: "%A, %d %b"
-        simple_date: "%d/%m/%Y"
+    attributes:
+      form_objects/mass_mailout:
+        subject: Subject
+        text: Text
+        users: User list
+      form_objects/user_feedback:
+        text: Text
+        user_email: Email
+  date:
+    formats:
+      days_of_week: "%A"
+      days_with_date: "%A, %d %b"
+      simple_date: "%d/%m/%Y"

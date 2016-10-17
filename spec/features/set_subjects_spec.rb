@@ -14,7 +14,7 @@ RSpec.feature "Subject management" do
 
     expect(page).to have_css '#select_subjects_form'
     choose_from_selectize('#select_subjects_dropdown', subject.id)
-    click_button 'Submit'
+    click_button 'Save'
 
     visit new_workbook_path
     fill_in 'workbook[name]', with: "Workbook1"
@@ -37,7 +37,7 @@ RSpec.feature "Subject management" do
     find('.selectize-input').click
     expect(page).to have_css (".selectize-dropdown-content .option[data-value='#{subject_1.id}']")
     find(".selectize-dropdown-content .option[data-value='#{subject_2.id}']").click
-    click_button 'Submit'
+    click_button 'Save'
     click_link user.name
     click_link 'Log out'
 
@@ -47,6 +47,6 @@ RSpec.feature "Subject management" do
     expect(page).to_not have_css (".selectize-dropdown-content .option[data-value='#{subject_2.id}']")
     find(".selectize-dropdown-content .option[data-value='#{subject_1.id}']").click
 
-    click_button 'Submit'
+    click_button 'Save'
   end
 end

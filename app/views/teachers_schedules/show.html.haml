@@ -4,9 +4,9 @@
 
 .clearfix
   .pull-left
-    = link_to t('will_paginate.previous_label'), teachers_schedule_path(@teachers_schedule.previous), class: "btn btn-default btn-xs"
+    = link_to t('previous'), teachers_schedule_path(@teachers_schedule.previous), class: "btn btn-default btn-xs"
   .pull-right
-    = link_to t('will_paginate.next_label'), teachers_schedule_path(@teachers_schedule.next), class: "btn btn-default btn-xs"
+    = link_to t('next'), teachers_schedule_path(@teachers_schedule.next), class: "btn btn-default btn-xs"
 %hr
 .btn-group.pull-right
   = link_to t('edit'), edit_teachers_schedule_url(@teachers_schedule), class: "btn btn-danger btn-xs"

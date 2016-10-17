@@ -47,4 +47,4 @@
   .form-group
     %label.control-label=t('activerecord.attributes.workbook.attachment')
     = f.file_field :attachment
-  = f.submit t('send_this_mailout'), class: "btn btn-success btn-lg center-block"
+  = f.submit t('send_this_mailout'), class: "btn btn-success btn-lg center-block", id: "send_mailout"

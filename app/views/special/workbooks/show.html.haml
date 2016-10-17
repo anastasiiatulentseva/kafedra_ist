@@ -4,7 +4,7 @@
 .text-right
   .btn-group
     = link_to t('back'), special_workbooks_path, class: "btn btn-default"
-    - if can? :edit, Workbook
+    - if can? :edit, @workbook
       = link_to t('edit'), edit_special_workbook_path(@special_workbook.id), class: "btn btn-default"
 
 .clearfix

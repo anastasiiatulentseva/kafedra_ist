@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, :alert => exception.message
+    redirect_back(fallback_location: root_path, flash: {alert: exception.message})
   end
 
   before_action :set_locale_from_query_string

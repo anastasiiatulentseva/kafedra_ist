@@ -29,7 +29,7 @@ RSpec.feature "Workbooks management" do
     expect(page).to have_text 'Workbook1'
     expect(page).to have_css "a[href=\"#{Workbook.last.attachment.url}\"]"
 
-    click_link 'Edit workbook'
+    click_link 'Edit'
     expect(page).to have_css 'div.form-group'
     click_link 'Delete'
     page.driver.browser.switch_to.alert.accept
