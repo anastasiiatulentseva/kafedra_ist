@@ -1,4 +1,6 @@
-%h1 My subjects
+- provide(:title, t('my_subjects'))
+
+%h1.page-header=t('my_subjects')
 
 #select_subjects_form
   = form_tag({ controller: 'users', action: 'save_subjects' }, method: 'post') do
@@ -13,5 +15,5 @@
           multiple: true,
           class: "form-control", id: 'select_subjects', placeholder: "select subjects"
       .btn-group
-        = link_to "<- Go back", user_path(@user), class: "btn btn-default"
-        = submit_tag "Submit", class: 'btn btn-primary'
+        = link_to t('back'), user_path(@user), class: "btn btn-default"
+        = submit_tag t('save'), class: 'btn btn-primary'
