@@ -1,7 +1,7 @@
 %th
   = link_to user.name, user_path(user.id)
 %td= user.email
-%td= user.confirmed_at? ? t('yes') : t('No')
+%td= user.confirmed_at? ? t('yes') : t('no')
 %td
   =form_for(user, remote: true) do |f|
     .form-group-sm

@@ -111,10 +111,20 @@ en:
   contacts: Contacts
   addresses: Address and contacts
   follow_us: "Follow us"
-  alumnus: Our alumnus
+  alumni: Our alumni
   enrollee_text: Get useful information here. Click links below!
   employer_text: Get information of our best students you may want to hire
   student_text: Get everything you need for your education here
+
+  welcome: Welcome
+  confirm_account: "You can confirm your account email through the link below:"
+  confirm_account_link: Confirm my account
+  hello: Hello
+  password_change: We're contacting you to notify you that your password has been changed.
+  password_change_request: Someone has requested a link to change your password. You can do this through the link below.
+  change_password_link: Change my password
+  did_not_request: If you didn't request this, please ignore this email.
+  password_wont_change: Your password won't change until you access the link above and create a new one.
 
   activerecord:
     models:
@@ -163,7 +173,7 @@ en:
         form_objects/mass_mailout:
           attributes:
             users:
-              user_list_blank: "list is empty, select other group of users"
+              user_list_blank: "is empty, select other group of users"
     attributes:
       form_objects/mass_mailout:
         subject: Subject
