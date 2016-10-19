@@ -1,13 +1,13 @@
-- provide(:title, "All workbooks")
+- provide(:title, t('all_workbooks'))
 %h1.page-header
-  All workbooks
+  = t('all_workbooks')
 
 #workbook_index_for_admin
   .row
     .col-md-4
       %ul.nav.nav-pills.nav-stacked
         %li{class: params[:subject].blank? && 'active' }
-          = link_to 'Special', special_workbooks_path
+          = link_to t('special'), special_workbooks_path
         - @subjects.each do |subject|
           %li{class: (params[:subject] == subject.id.to_s) && 'active' }
             = link_to special_workbooks_path(subject: subject.id) do
@@ -18,5 +18,5 @@
       .panel.panel-default
         .panel-heading
           = @panel_heading
-        .panel-body
+        %ul.list-group
           = render @panel_workbooks

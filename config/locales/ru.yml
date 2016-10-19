@@ -1,0 +1,218 @@
+ru:
+  sign_in: Вход
+  sign_up: Регистрация
+  remember_me: Запомнить меня
+  forgotten_password: Забыли пароль?
+  no_confirmation_instructions: Не получили письмо для подтверждения?
+  no_unlock_instructions: Не получали инструкции по разблокировке?
+  send_password_insrtuctions: Получить письмо с инструкциями
+  change_password: Придумайте новый пароль
+  me_student: Я студент!
+  password_length: "Минимум %{minimum_password_length} символов"
+  save: Сохранить
+  resend_confirmation: Выслать письмо для подтверждения еще раз
+  send: Отправить
+  edit_profile: Редактировать профиль
+  back: "<- Назад"
+  leave_blank: (не заполняйте, если не хотите менять пароль)
+  current_picture: "Текущее изображение"
+  change_picture: "Сменить изображение:"
+  file_size_limit: Выберите файл до 5МБ
+  my_subjects: Мои дисциплины
+  my_workbooks: Мои методички
+  contact_user: Написать пользователю
+  users_subjects: "Дисциплины, которые преподает %{user}:"
+  mail_subject: Тема письма
+  no_user_information: Пользователь не предоставил информацию о себе
+  message_text: Текст письма
+  response_email_info: Вы получите ответ на адрес email, который указан в Вашем профиле
+  send_message to: "Отправить сообщение пользователю %{recipient}"
+  all_workbooks: Все методички
+  dashboard: Панель управления
+  my_profile: Мой профиль
+  log_out: Выйти
+
+  welcome: Добро пожаловать,
+  confirm_account: "Вы можете подтвердить свой аккаунт с помощью ссылки:"
+  confirm_account_link: Подтвердить мой аккаунт
+  hello: Здравствуйте
+  password_change: Хотим уведомить Вас, что Ваш пароль на сайте кафедры ИСТ был изменен.
+  password_change_request: "Вы или кто-то другой запросил ссылку для смены Вашего пароля. Изменить пароль Вы можете с помощью следующей ссылки:"
+  change_password_link: Поменять мой пароль
+  did_not_request: Если Вы не запрашивали данное действие, пожалуйста, проигнорируйте данное письмо.
+  password_wont_change: Ваш пароль не будет изменен, пока Вы не перейдете по ссылке и не сохраните новый.
+
+  content_management: Управление контентом
+  user_management: Управление пользователями
+  create_article: Создать статью
+  create_workbook: Создать методичку по дисциплине
+  create_special_workbook: Создать методичку по ДП/практике
+  all_articles: Все статьи
+  all_workbooks: Все методички
+  more: "Больше ->"
+  content_statistics: Статистика по материалам
+  user_statistics: Статистика по пользователям
+  teachers: Преподаватели
+  students: Студенты
+  send_mailout: Рассылка
+  new_teachers_schedule: Создать новое расписание
+  all_users: Все пользователи
+  active_users: Активных пользователей
+  users_today: Заходило сегодня
+
+  delete_article: Удалить статью?
+  delete_workbook: Удалить методичку?
+  delete: Удалить
+  edit: Редактировать
+  error_alert: "Форма содержит следующие ошибки:"
+  file_types: "Разрешенные типы файлов:"
+  unlimited_file_size: Размер загружаемого файла не ограничен, однако используйте дисковое пространство рационально
+  article_created: Статья успешно создана!
+  article_updated: Статья обновлена
+  article_deleted: Статья удалена
+  workbook_created: Методичка успешно создана!
+  workbook_updated: Методичка обновлена
+  workbook_deleted: Методичка удалена
+  current_file: "Текущий файл:"
+  file_upload_warning: При загрузке нового файла старый будет удален.
+  all: Все
+  new: Новые
+  delete_user: Удалить пользователя?
+  special: ДП/практика
+  download: Скачать
+  new_workbook: Новая методичка
+  special_workbook: Методичка по ДП/практике
+  ban: Бан
+  unban: Разбан
+  confirmed: Подтвержден
+  set_role: Задать роль
+  unban_user: "Разблокировать пользователя?"
+  ban_user: "Заблокировать пользователя?"
+  banned: В бане
+  select_user_group: Выберите пользователей
+  select_specialty: Выберите специальность
+  select_course_year: Выберите курс
+  select_student_group: Выберите группу
+  all_site_users: Все активные
+  send_this_mailout: Разослать всем!
+  new_teachers_schedule: Новое расписание
+  choose_date:  Выберите начальную дату
+  teacher: "Преподаватель:"
+  print_pdf: Печать PDF
+  schedule_week: "Расписание с"
+  to: по
+  schedule_created: Расписание успешно создано!
+  schedule_updated: Расписание изменено
+  email_sent: Письмо отправлено!
+  contact_us: Напишите нам!
+  kafedra_ist: Кафедра ИСТ
+  slogan: Наша кафедра лучше всех!!! УРА товарищи!
+  for_enrollee: Абитуриенту
+  for_student: Студенту
+  for_teacher: Преподавателю
+  for_employer: Работодателю
+  remote_education: Дистанционное обучение
+  contacts: Контакты
+  addresses: Адреса и контакты
+  follow_us: Мы в соцсетях
+  alumni: Наши выпускники
+  enrollee_text: Вся необходимая информация здесь. Просто нажми кнопку!
+  employer_text: Получите информацию о наших лучших студентах
+  student_text: Полезные материалы для успешной сдачи сессии
+  next: Вперед
+  previous: Назад
+  activerecord:
+    models:
+      users: Пользователи
+      articles: Статьи
+      workbooks: Методички
+      subjects: Дисциплины
+      specialties: Специальности
+      teachers_schedule: Расписание для преподавателей
+    attributes:
+      user:
+        name: Имя пользователя
+        picture: Изображение
+        email: Электронная почта
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      article:
+        name: Название
+        text: Tекст
+        category: Категория
+        order: Порядковый номер
+      workbook:
+        name: Название
+        description: Описание
+        attachment: Прикрепленный файл
+        subject_id: Дисциплина
+      teachers_schedule:
+        week: Неделя
+      specialty:
+        name: Название
+      subject:
+        name: Название
+        specialty_id: Специальность
+        course_year: Курс
+        teacher_profile_id: Преподаватель
+      student_profile:
+        group: Группа
+        course_year: Курс
+        specialty_id: Специальность
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: должна быть указана
+        article:
+          attributes:
+            name:
+              blank: должно быть заполнено
+            order:
+              not_a_number: должен быть целым числом
+        workbook:
+          attributes:
+            name:
+              blank: должно быть заполнено
+            attachment:
+              blank: обязателен
+  'yes': Да
+  'no': Нет
+  unauthorized:
+        default: "Доступ к запрашиваемой странице не разрешен."
+  will_paginate:
+    next_label: Вперед
+    previous_label: Назад
+  activemodel:
+    models:
+      form_objects/mass_mailout: Почтовая рассылка
+    attributes:
+      form_objects/mass_mailout:
+        subject: Тема письма
+        text: Текст письма
+        users: Список пользователей
+      form_objects/user_feedback:
+        text: Текст письма
+        user_email: Электронная почта
+    errors:
+      models:
+        form_objects/mass_mailout:
+          attributes:
+            subject:
+              blank: должна быть указана
+            text:
+              blank: отсутствует
+            users:
+              user_list_blank: "пуст, выберите другие критерии"
+        form_objects/user_feedback:
+          attributes:
+            text:
+              blank: обязателен
+            user_email:
+              blank: должна быть указана
+  date:
+    formats:
+      days_of_week: "%A"
+      days_with_date: "%A, %d %b"
+      simple_date: "%d-%m-%y"

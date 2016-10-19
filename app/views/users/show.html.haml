@@ -8,32 +8,32 @@
     #links
       %ul.list-group
         - if @user.id == current_user.id
-          %li.list-group-item= link_to 'Edit profile', edit_user_registration_path
+          %li.list-group-item= link_to t('edit_profile'), edit_user_registration_path
           - if can? :own_subjects, @user
-            %li.list-group-item= link_to 'My subjects', choose_subjects_user_path
-            %li.list-group-item= link_to 'My workbooks', workbooks_path
+            %li.list-group-item= link_to t('my_subjects'), choose_subjects_user_path
+            %li.list-group-item= link_to t('my_workbooks'), workbooks_path
         - else
-          %li.list-group-item= link_to 'Contact user', mailers_contact_user_path(id: @user.id), class: "contact-user-link"
+          %li.list-group-item= link_to t('contact_user'), mailers_contact_user_path(id: @user.id), class: "contact-user-link"
   .col-md-6.col-md-offset-1
     - if @user.student_profile
       %ul.list-unstyled
         %li
           %h4
-            Group:
+            = t('activerecord.attributes.student_profile.group')
           = @user.student_profile.group
         %li
           %h4
-            Specialty:
+            = t('activerecord.attributes.student_profile.specialty_id')
           = @user.student_profile.specialty.name
     - elsif @user.teacher_profile
       %h3
-        = @user.name
-        's subjects
+        = t('users_subjects', user: @user.name)
       %ul
         - @user.teacher_profile.subjects.each do |subject|
           %li=subject.name
     - else
-      %h4 No information about user
+      %h4
+        = t('no_user_information')
 
 
 #contact_user_modal.modal.fade{"aria-labelledby" => "contact_user", :role => "dialog", :tabindex => "-1"}

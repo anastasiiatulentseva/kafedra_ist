@@ -1,40 +1,42 @@
 .panel.panel-success
   .panel-heading
-    %h3.panel-title Content management
+    %h3.panel-title
+      = t('content_management')
   %ul.list-group
     %li.list-group-item
-      %h4.list-group-item-heading Articles
+      %h4.list-group-item-heading
+        = t('activerecord.models.articles')
     %li.list-group-item
-      = link_to 'Create new article', new_article_path
+      = link_to t('create_article'), new_article_path
     %li.list-group-item
-      =link_to 'All articles', articles_path
+      =link_to t('all_articles'), articles_path
   %ul.list-group
     %li.list-group-item
-      %h4.list-group-item-heading Workbooks
+      %h4.list-group-item-heading
+        = t('activerecord.models.workbooks')
     %li.list-group-item
-      = link_to 'Create new workbook', new_workbook_path
+      = link_to t('create_workbook'), new_workbook_path
     %li.list-group-item
-      = link_to 'Create new special workbook', new_special_workbook_path
+      = link_to t('create_special_workbook'), new_special_workbook_path
     %li.list-group-item
-      =link_to 'All workbooks', special_workbooks_path
+      =link_to t('activerecord.models.workbooks'), workbooks_path
+    %li.list-group-item
+      =link_to t('all_workbooks'), special_workbooks_path
   .panel-footer
-    %h4.panel-title Content statistics
+    %h4.panel-title
+      = t('content_statistics')
     %p
       %ul.list-inline
         %li
-          Articles:
-          = @articles_count
+          = "#{t('activerecord.models.articles')}: #{@articles_count}"
         %li
-          Workbooks:
-          = @workbooks_count
+          = "#{t('activerecord.models.workbooks')}: #{@workbooks_count}"
         %li
-          = link_to 'More statistics ->', '#collapseContentStatistics', 'data-toggle': 'collapse'
+          = link_to t('more'), '#collapseContentStatistics', 'data-toggle': 'collapse'
       .collapse#collapseContentStatistics
         .well-lg
           %ul.list-inline
             %li
-              Specialties:
-              = @specialties_count
+              = "#{t('activerecord.models.specialties')}: #{@specialties_count}"
             %li
-              Subjects:
-              = @subjects_count
+              = "#{t('activerecord.models.subjects')}: #{@subjects_count}"

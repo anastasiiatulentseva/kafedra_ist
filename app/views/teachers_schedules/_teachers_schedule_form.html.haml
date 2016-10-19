@@ -1,18 +1,19 @@
 = form_tag(  url, method: http_method, id: "schedule_form") do
   .form-group
-    %label.control-label Choose start date
+    %label.control-label=t('choose_date')
     .form-inline
       = date_field_tag 'week', teachers_schedule.persisted? ? teachers_schedule.week : Date.today, name: "week", class: "form-control"
-      = submit_tag 'Save schedule', class: 'btn btn-primary pull-right', id: "save_on_top"
+      = submit_tag t('save'), class: 'btn btn-primary pull-right', id: "save_on_top"
   #schedule_table.table-responsive
     %table.table.table-striped.table-condensed.table-bordered
       %thead
         %tr
           %th
-            Teacher
+            %span.small
+              = t('teachers')
           - 5.times do |day|
             %th
-              = (Date.today.at_beginning_of_week + day.to_i.days).strftime("%A")
+              = l Date.today.at_beginning_of_week + day.to_i.days, format: :days_of_week
       %tbody
         - teachers.each do |teacher|
           - 5.times do |lesson_number|
@@ -27,4 +28,4 @@
                       lesson_number: lesson_number,
                       teachers_schedule: @teachers_schedule,
                       day: day
-  = submit_tag 'Save schedule', class: 'btn btn-primary pull-right', id: "save_on_bottom"
+  = submit_tag t('save'), class: 'btn btn-primary pull-right', id: "save_on_bottom"

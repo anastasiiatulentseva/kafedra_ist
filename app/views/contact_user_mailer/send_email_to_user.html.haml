@@ -1,13 +1,13 @@
 %h1
-  Dear
+  Уважаемый(ая)
   = @recipient.name
 %h2
-  User
+  Пользователь
   = @sender.name
-  sent you the message:
+  прислал вам сообщение:
 %p.lead=@text
 %p
-  To respond please use the email they provide:
+  Чтобы написать ответ, используйте адрес электронной почты, предоставленный отправителем:
   = @sender.email
-  or go to
-  = link_to 'contact form on website', user_url(@sender)
+  или
+  = link_to "форму отправки сообщений", user_url(@sender)

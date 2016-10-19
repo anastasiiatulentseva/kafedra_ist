@@ -3,7 +3,7 @@ module DeviseHelper
     return "" if resource.errors.empty?
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg, class: "text-danger") }.join
-    sentence = "The form contains #{pluralize(resource.errors.count, "error")}"
+    sentence = t('error_alert')
 
     html = <<-HTML
     <div id="error_explanation">

@@ -27,7 +27,7 @@ class MailersController < ApplicationController
         attachment_data = nil
       end
       UserMassMailer.send_mailout(users_emails, subject, text, attachment_data).deliver_now
-      flash[:success] = 'Email has been sent'
+      flash[:success] = t('email_sent')
       redirect_to mailers_mass_mail_path
     else
       @specialties = Specialty.joins(:student_profiles)
@@ -47,7 +47,7 @@ class MailersController < ApplicationController
           text = feedback_params[:text]
           FeedbackMailer.feedback_from_user(user_email, text).deliver_now
           FeedbackMailer.notify_user_of_getting_feedback(user_email).deliver_now
-          flash[:success] = "Feedback has been sent"
+          flash[:success] = t('email_sent')
           @redirect_url = root_path
         end
       end
@@ -72,7 +72,7 @@ class MailersController < ApplicationController
           subject = contact_message_params[:subject]
           text = contact_message_params[:text]
           ContactUserMailer.send_email_to_user(@sender, @recipient, subject, text).deliver_now
-          flash[:success] = "Message has been sent"
+          flash[:success] = t('email_sent')
           @redirect_url = user_path(@recipient)
         end
       end

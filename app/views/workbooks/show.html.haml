@@ -1,10 +1,14 @@
 - provide(:title, @workbook.name)
 %h1.page-header= @workbook.name
-.pull-right
-  = link_to 'Edit workbook', edit_workbook_path(@workbook.id), class: "text-danger"
-  |
-  = link_to 'Back to index', workbooks_path, class: "text-danger"
+.text-right
+  .btn-group
+    = link_to t('back'), workbooks_path, class: "btn btn-default"
+    - if can? :edit, @workbook
+      = link_to t('edit'), edit_workbook_path(@workbook.id), class: "btn btn-default"
 .clearfix
-  %p= @workbook.description.html_safe
-  %span.help-block Download file:
-  = link_to "Click", @workbook.attachment.url
+  %p
+    = @workbook.description.html_safe
+%hr
+= link_to t('download'), @workbook.attachment.url, class: "btn btn-default"
+
+

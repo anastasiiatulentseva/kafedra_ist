@@ -25,11 +25,11 @@ RSpec.feature "Special workbooks management" do
     click_button 'Save'
 
     expect(page).to have_css 'div.alert-success'
-    expect(page).to have_text 'Special workbook has been created'
+    expect(page).to have_text 'Workbook has been created'
     expect(page).to have_text 'Special workbook1'
     expect(page).to have_css "a[href=\"#{Workbook.last.attachment.url}\"]"
 
-    click_link 'Edit special workbook'
+    click_link 'Edit'
 
     expect(page).to have_css 'div.form-group'
     click_link 'Delete'

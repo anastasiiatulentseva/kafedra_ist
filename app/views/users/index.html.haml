@@ -1,27 +1,28 @@
-- provide(:title, "Users")
+- provide(:title, t('activerecord.models.users'))
 
-%h2.page-header User list
+%h2.page-header
+  = t('activerecord.models.users')
 #user_index
   %ul.nav.nav-tabs
     %li{class: (params[:type].blank? && params[:role].blank?) && 'active' }
-      = link_to 'All', users_path
+      = link_to t('all'), users_path
     %li{class: (params[:type] == 'without_role') && 'active' }
-      = link_to 'New', users_path(type: 'without_role')
+      = link_to t('new'), users_path(type: 'without_role')
     %li{class: (params[:type] == 'banned') && 'active' }
-      = link_to 'Banned', users_path(type: 'banned')
+      = link_to t('banned'), users_path(type: 'banned')
     - User::ROLES.each do |user_role|
       %li{class: (params[:role] == user_role.to_s) && 'active' }
-        = link_to user_role.to_s.humanize, users_path(role: user_role)
+        = link_to user_role.to_s.humanize, users_path(role: user_role), class: 'bg-info'
 
   %table.table.table-hover
     %thead
       %tr
-        %th.col-md-3 Name
+        %th.col-md-3=t('activerecord.attributes.user.name')
         %th.col-md-2 Email
-        %th.col-md-1 Confirmed
-        %th.col-md-2 Set role
-        %th.col-md-1 Ban
-        %th.col-md-1 Delete
+        %th.col-md-1=t('confirmed')
+        %th.col-md-2=t('set_role')
+        %th.col-md-1=t('ban')
+        %th.col-md-1=t('delete')
     %tbody
       - @users.each do |user|
         %tr{id: "user_#{user.id}"}

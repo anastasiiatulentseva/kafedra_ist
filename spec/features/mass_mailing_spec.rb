@@ -27,7 +27,7 @@ RSpec.feature "Admins mass mailing" do
     # attach attachment
     attach_file('form_objects_mass_mailout[attachment]', Rails.root.join('spec/files/123.zip'))
 
-    click_button 'Send this big mailout'
+    click_button 'send_mailout'
     expect(page).to have_css 'div.alert-success'
   end
 
@@ -55,7 +55,7 @@ RSpec.feature "Admins mass mailing" do
     choose_from_selectize('div#select_specialties', specialty_2.id)
     choose_from_selectize('div#select_course_years', 1)
     choose_from_selectize('div#select_groups', 2)
-    click_button 'Send this big mailout'
+    click_button 'send_mailout'
 
     expect(page).to have_css 'div#error_explanation'
     expect(page).to have_text 'Users list is empty, select other group of users'
@@ -70,7 +70,7 @@ RSpec.feature "Admins mass mailing" do
 
     fill_in 'form_objects_mass_mailout[subject]', with: 'mailout subject'
     fill_wysiwyg("#form_objects_mass_mailout_text", "Mass mailout text")
-    click_button 'Send this big mailout'
+    click_button 'send_mailout'
     expect(page).to have_css 'div.alert-success'
   end
 end

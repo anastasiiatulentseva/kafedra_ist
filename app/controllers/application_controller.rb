@@ -2,8 +2,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    redirect_back(fallback_location: root_path, flash: {alert: exception.message})
   end
+
+  before_action :set_locale_from_query_string
+  before_action :restore_locale_from_session
+
 
   def current_or_guest_user
     if current_user
@@ -33,6 +37,19 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale_from_query_string
+    if params[:lang].present?
+      session[:current_lang] = params[:lang]
+    end
+  end
+
+  def restore_locale_from_session
+    lang = session[:current_lang]
+    lang ||= :ru
+
+    I18n.locale = lang
+  end
 
   def redirect_to_back_or_default(default = root_url)
     if request.env["HTTP_REFERER"].present? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]

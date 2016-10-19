@@ -5,7 +5,8 @@ RSpec.feature "Users behavior" do
   scenario "User signs up", :js do
     #invalid submission
     visit root_path
-    find_link("Log in").click
+    find_link("ENG").click
+    find_link("Sign in").click
     find_link("Sign up").click
     expect(page).to have_css 'form#new_user'
     fill_in 'user[name]', with: ''
@@ -29,9 +30,10 @@ RSpec.feature "Users behavior" do
     specialty = create(:specialty)
 
     visit new_user_registration_path
+    find_link("ENG").click
     fill_in 'user[name]', with: 'Student'
     fill_in 'user[email]', with: 'stud@example.com'
-    check 'I am student!'
+    check 'user[is_student]'
     expect(page).to have_css '#for_student'
     fill_in 'user[student_profile_attributes][course_year]', with: '4'
     select specialty.name, :from => "user[student_profile_attributes][specialty_id]"
@@ -46,11 +48,12 @@ RSpec.feature "Users behavior" do
     user = create(:user)
 
     visit root_path
-    find_link("Log in").click
+    find_link("ENG").click
+    find_link("Sign in").click
     expect(page).to have_css 'form#new_user'
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: "foobar"
-    click_button 'Log in'
+    click_button 'Sign in'
     expect(page).to have_css 'div.alert-notice'
 
     click_link user.name

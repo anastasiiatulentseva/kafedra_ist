@@ -24,11 +24,11 @@ RSpec.feature "Articles management" do
     expect(page).to have_text 'Article has been created'
     expect(page).to have_text 'About John Smith'
 
-    find_link('Back to index').click
+    find_link('<- Go back').click
     expect(page).to have_text 'John Smith'
 
     click_link('John Smith')
-    find_link('Edit article').click
+    find_link('Edit').click
     expect(page).to have_text 'Delete'
     click_link 'Delete'
 

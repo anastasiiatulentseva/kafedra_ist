@@ -1,4 +1,5 @@
-- provide(:title, "Edit article")
-%h1.page-header= @article.name
-.col-md-9.col-md-offset-2
-  = render 'articles/article_form'
+- provide(:title, @article_name)
+%h1.page-header= @article_name
+.row
+  .col-md-10.col-md-offset-1
+    = render 'articles/article_form'

@@ -25,7 +25,7 @@ class WorkbooksController < PrivateAreaController
       end
     else
       @panel_workbooks = @workbooks
-      @panel_heading = 'All'
+      @panel_heading = t('all')
     end
     @workbook_counts = @workbooks.group_by(&:subject_id).each_with_object(Hash.new(0)) do |(subj_id, workbooks), memo|
       memo[subj_id] = workbooks.length
@@ -41,7 +41,7 @@ class WorkbooksController < PrivateAreaController
     @workbook = current_user.teacher_profile.workbooks.new(workbook_params)
     @subjects = current_user.teacher_profile.subjects.simple
     if @workbook.save
-      flash[:success] = "Workbook has been created"
+      flash[:success] = t('workbook_created')
       redirect_to workbook_path(@workbook.id)
     else
       render 'new'
@@ -51,13 +51,15 @@ class WorkbooksController < PrivateAreaController
   def edit
     @workbook = Workbook.find(params[:id])
     @subjects = current_user.teacher_profile.subjects.simple
+    @workbook_name = @workbook.reload.name
   end
 
   def update
     @workbook = Workbook.find(params[:id])
     @subjects = current_user.teacher_profile.subjects.simple
+    @workbook_name = @workbook.reload.name
     if @workbook.update_attributes(workbook_params)
-      flash[:success] = "Workbook has been updated"
+      flash[:success] = t('workbook_updated')
       redirect_to workbook_path
     else
       render 'edit'
@@ -66,7 +68,7 @@ class WorkbooksController < PrivateAreaController
 
   def destroy
     @workbook = Workbook.find(params[:id]).destroy
-    flash[:info] = "Workbook deleted"
+    flash[:info] = t('workbook_deleted')
     redirect_to workbooks_path
   end
 

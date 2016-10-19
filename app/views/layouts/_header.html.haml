@@ -1,0 +1,15 @@
+%nav.navbar.navbar-default.navbar-fixed-top.header
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar_collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "КАФЕДРА ICT", root_url, class: "navbar-brand", id: "logo"
+    #navbar_collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-left
+        = render 'layouts/main_menu'
+      %ul.nav.navbar-nav.navbar-right
+        = render 'layouts/user_menu'
+        = render 'layouts/lang_switcher'

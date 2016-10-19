@@ -1,6 +1,6 @@
 - unless user_signed_in?
   %li
-    = link_to "Log in", new_user_session_path
+    = link_to t('sign_in'), new_user_session_path
 - else
   %li.dropdown
     %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -9,9 +9,9 @@
     %ul.dropdown-menu
       -if can? :read, :dashboard
         %li
-          = link_to 'Dashboard', dashboard_path
+          = link_to t('dashboard'), dashboard_path
       %li
-        = link_to 'My profile', user_path(current_user.id)
+        = link_to t('my_profile'), user_path(current_user.id)
       %li.divider{:role => "separator"}
       %li
-        = link_to 'Log out', destroy_user_session_path, method: :delete
+        = link_to t('log_out'), destroy_user_session_path, method: :delete

@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @articles_categories = Article.select(:category).distinct
     if @article.save
-      flash[:success] = "Article has been created"
+      flash[:success] = t('article_created')
       redirect_to article_path(@article.id)
     else
       render 'new'
@@ -29,12 +29,15 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @articles_categories = Article.select(:category).distinct
+    @article_name = @article.reload.name
   end
 
   def update
     @article = Article.find(params[:id])
+    @articles_categories = Article.select(:category).distinct
+    @article_name = @article.reload.name
     if @article.update_attributes(article_params)
-      flash[:success] = "Article has been updated"
+      flash[:success] = t('article_updated')
       redirect_to article_path
     else
       render 'edit'
@@ -43,7 +46,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id]).destroy
-    flash[:info] = "Article deleted"
+    flash[:info] = t('article_deleted')
     redirect_to articles_path
   end
 

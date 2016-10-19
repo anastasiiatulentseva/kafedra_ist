@@ -1,35 +1,36 @@
-- provide(:title, "Teacher schedule")
-%h1.page-header Show teachers schedule
+- provide(:title, t('activerecord.models.teachers_schedule'))
+%h1.page-header
+  =t('activerecord.models.teachers_schedule')
 
 .clearfix
   .pull-left
-    = link_to '<< previous', teachers_schedule_path(@teachers_schedule.previous)
+    = link_to t('previous'), teachers_schedule_path(@teachers_schedule.previous), class: "btn btn-default btn-xs"
   .pull-right
-    = link_to 'next >>', teachers_schedule_path(@teachers_schedule.next)
-.clearfix
-  %p
-    .pull-right
-      = link_to 'Edit', edit_teachers_schedule_url(@teachers_schedule)
-      %span.glyphicon.glyphicon-print
-      = link_to 'Print PDF', teachers_schedule_path(@teachers_schedule, format: 'pdf'), id: "print_pdf"
-  %b
-    Schedule days:
-  from
-  %b=@date.strftime("%d.%m.%Y")
-  to
-  %b=@date_end.strftime("%d.%m.%Y")
+    = link_to t('next'), teachers_schedule_path(@teachers_schedule.next), class: "btn btn-default btn-xs"
+%hr
+.btn-group.pull-right
+  = link_to t('edit'), edit_teachers_schedule_url(@teachers_schedule), class: "btn btn-danger btn-xs"
+  = link_to teachers_schedule_path(@teachers_schedule, format: 'pdf'), id: "print_pdf", class: "btn btn-default btn-xs" do
+    %span.glyphicon.glyphicon-print
+    = t('print_pdf')
+%p
+  = t('schedule_week')
+  %b= @date.strftime("%d.%m.%Y")
+  = t('to')
+  %b= @date_end.strftime("%d.%m.%Y")
+%p
 #schedule_table_show.table-responsive
   - @schedule.each do |teacher_id, schedule|
     %table.table.table-condensed.table-bordered{id: "teacher_#{teacher_id}"}
       %thead
         %tr
           %th{colspan: 5}
-            Teacher:
+            =t('teacher')
             = @teachers[teacher_id].name
         %tr
           - schedule.each do |day, lessons|
             %th
-              = (@date + day.to_i.days).strftime("%A, %d %b")
+              =  l @date + day.to_i.days, format: :days_with_date
       %tbody
         - 5.times do |para|
           %tr
@@ -38,4 +39,3 @@
                 - subj = @schedule["#{teacher_id}"]["#{day}"]["#{para+1}"]["subject"]
                 = @subjects[subj].name if subj.present?
                 = @schedule["#{teacher_id}"]["#{day}"]["#{para+1}"]["room"]
-

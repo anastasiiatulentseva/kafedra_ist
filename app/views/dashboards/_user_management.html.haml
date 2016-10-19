@@ -1,34 +1,36 @@
 .panel.panel-info
   .panel-heading
-    %h3.panel-title User management
+    %h3.panel-title
+      = t('user_management')
   %ul.list-group
     %li.list-group-item
-      = link_to 'All users', users_path
+      = link_to t('all_users'), users_path
     %li.list-group-item
-      = link_to 'Send mailout', mailers_mass_mail_path
+      = link_to t('send_mailout'), mailers_mass_mail_path
+  %ul.list-group
     %li.list-group-item
-      = link_to 'New teachers schedule', new_teachers_schedule_path
+      %h4.list-group-item-heading
+        = t('activerecord.models.teachers_schedule')
+    %li.list-group-item
+      = link_to t('new_teachers_schedule'), new_teachers_schedule_path
     %li.list-group-item
       - if @schedule
-        = link_to 'Teacher schedule', teachers_schedule_path(@schedule)
+        = link_to t('activerecord.models.teachers_schedule'), teachers_schedule_path(@schedule)
   .panel-footer
-    %h4.panel-title User statistics
+    %h4.panel-title
+      = t('user_statistics')
     %p
       %ul.list-inline
         %li
-          Active users:
-          = @active_users_count
+          = "#{t('active_users')}: #{@active_users_count}"
         %li
-          Users today:
-          = @recent_users_count
+          = "#{t('users_today')}: #{@recent_users_count}"
         %li
-          = link_to 'More statistics ->', '#collapseUserStatistics', 'data-toggle': 'collapse'
+          = link_to t('more'), '#collapseUserStatistics', 'data-toggle': 'collapse'
     .collapse#collapseUserStatistics
       .well-lg
         %ul.list-inline
           %li
-            Teachers:
-            = @teachers_count
+            = "#{t('teachers')}: #{@teachers_count}"
           %li
-            Students:
-            = @students_count
+            = "#{t('students')}: #{@students_count}"

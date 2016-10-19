@@ -1,20 +1,20 @@
 %p
-  Schedule days: from
+  = t('schedule_week')
   %b=@date.at_beginning_of_week.strftime("%d.%m.%Y")
-  to
+  = t('to')
   %b=@date.at_end_of_week.strftime("%d.%m.%Y")
-- @schedule.each do |teacher_id, schedule|
+- @schedule.each_with_index do |(teacher_id, schedule), idx |
   %p
   %table{style: "width:100%; border-collapse:collapse;"}
     %thead
       %tr
-        %th{colspan: 5}
-          Teacher:
+        %th{colspan: 10}
+          = t('teacher')
           = @teachers[teacher_id].name
       %tr
         - schedule.each do |day, lessons|
-          %th{colspan: 2, style: "min-width:150px;"}
-            = (@date + day.to_i.days).strftime("%A, %d %b")
+          %th{colspan: 2, style: "min-width:150px; font-size:90%"}
+            =  l @date + day.to_i.days, format: :days_with_date
     %tbody
       - schedule.each do |day_number, lessons|
         %tr
@@ -26,3 +26,5 @@
               - unless lesson["subject"].empty?
                 = @subjects[lesson["subject"]].name
               = lesson["room"]
+  - if (idx+1)%5 == 0 && idx > 0
+    .page-break{style: "display:block; clear:both; page-break-after:always"}

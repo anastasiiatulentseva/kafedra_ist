@@ -1,31 +1,31 @@
-%h1.page-header Body is here!
+%h1.page-header Тут надо чето написать!
 .row
   .col-sm-6.col-md-4
     #enrollee.thumbnail
       %img{:alt => "...", :src => "https://www.firestock.ru/wp-content/uploads/2014/04/114-istock_000008231672medium-700x465.jpg"}/
       .caption
-        %h3 Enrollee
-        %p Get useful information here. Click links below!
+        %h3=t('for_enrollee')
+        %p=t('enrollee_text')
         %p
           = link_to "Articles", articles_path, class: "btn btn-primary"
           - if can? :create, Article
             = link_to "New article", new_article_path, class: "btn btn-default"
   .col-sm-6.col-md-4
-    .thumbnail
+    #student.thumbnail
       %img{:alt => "...", :src => "http://abiturient.ru/upload/medialibrary/342/IMG_17613_1got.jpg"}/
       .caption
-        %h3 Student
-        %p Get everything you need for your education here
+        %h3=(t'for_student')
+        %p=t('student_text')
         %p
           = link_to "Workbooks", workbooks_path, class: "btn btn-primary"
           - if can? :read, Workbook
             = link_to "Special workbooks", special_workbooks_path, class: "btn btn-default"
   .col-sm-6.col-md-4
-    .thumbnail
+    #employer.thumbnail
       %img{:alt => "...", :src => "http://bm.img.com.ua/berlin/storage/finance/600x500/b/90/b2b33549b9e179d6b8c51dbcc04dc90b.jpg"}/
       .caption
-        %h3 Employer
-        %p Get information of our best students you may want to hire
+        %h3=t('for_employer')
+        %p=t('employer_text')
         %p
           %a.btn.btn-primary{:href => "#", :role => "button"} Button
           %a.btn.btn-default{:href => "#", :role => "button"} Button
@@ -33,12 +33,12 @@
   .col-md-6
     = image_tag("skrypitsyn.jpg", class: "img-responsive img-rounded center-block", style: "height:650px")
   .col-md-6
-    %h1 Welcome to Kafedra IST!
+    %h1 Тут слово Скрыпицына
     %p
       h2 { font-size: 1.2em; letter-spacing: -1px; margin-bottom: 30px; text-align: center; font-weight: normal; color: $gray-light; } p { font-size: 1.1em; line-height: 1.7em; } /* header */ #logo { float: left; margin-right: 10px; font-size: 1.7em; color: #fff; text-transform: uppercase; letter-spacing: -1px; padding-top: 9px; font-weight: bold; &amp;:hover { color:#fff; text-decoration: none; } } /* footer */ footer { margin-top: 45px; padding-top:5px; border-top: 1px solid $gray-medium-light; color: $gray-light; a { color: $gray; &amp;:hover { color: $gray-darker; } } small { float: left; } ul { float: right; list-style: none; li { float: left; margin-left: 15px; } } }
       h2 { font-size: 1.2em; letter-spacing: -1px; margin-bottom: 30px; text-align: center; font-weight: normal; color: $gray-light; } p { font-size: 1.1em; line-height: 1.7em; } /* header */ #logo { float: left; margin-right: 10px; font-size: 1.7em; color: #fff; text-transform: uppercase; letter-spacing: -1px; padding-top: 9px; font-weight: bold; &amp;:hover { color:#fff; text-decoration: none; } } /* footer */ footer { margin-top: 45px; padding-top:5px; border-top: 1px solid $gray-medium-light; color: $gray-light; a { color: $gray; &amp;:hover { color: $gray-darker; } } small { float: left; } ul { float: right; list-style: none; li { float: left; margin-left: 15px; } } }
     %p.text-primary.pull-right Director Skrypitsyn N. V.
-%h1.page-header Our alumnus
+%h1.page-header=t('alumni')
 .row
   .col-sm-6.col-md-4
     = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
@@ -65,7 +65,7 @@
     = image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTz-jUuRCJbeim9EQ5VCnfj4GbgpGcCjlvHeF-AGNlXDYI9c0yZoQ", class: "img-circle")
     %span.clearfix Петя, сантехник
     %span.clearfix Отдел продаж
-%h1.page-header Contact us!
+%h1.page-header=t('contact_us')
 .row
   .col-md-6.col-md-offset-3
     = render 'feedback_mailer/feedback_form'
